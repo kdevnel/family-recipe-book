@@ -100,4 +100,79 @@ class Family_Recipe_Book_Admin {
 
 	}
 
+	/**
+	 * Creates a new custom post type
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @uses 	register_post_type()
+	 */
+	public static function new_cpt_recipes() {
+
+		$cap_type 	= 'post';
+		$plural 	= 'Recipes';
+		$single 	= 'Recipe';
+		$cpt_name 	= 'family_recipe_book';
+
+		$args['can_export']								= TRUE;
+		$args['capability_type']						= $cap_type;
+		$args['description']							= 'Everything you need to store your recipes online';
+		$args['exclude_from_search']					= FALSE;
+		$args['has_archive']							= TRUE;
+		$args['hierarchical']							= FALSE;
+		$args['map_meta_cap']							= TRUE;
+		$args['menu_icon']								= 'dashicons-carrot';
+		$args['menu_position']							= 5;
+		$args['public']									= TRUE;
+		$args['publicly_querable']						= TRUE;
+		$args['query_var']								= TRUE;
+		$args['register_meta_box_cb']					= '';
+		$args['rewrite']								= FALSE;
+		$args['show_in_admin_bar']						= TRUE;
+		$args['show_in_menu']							= TRUE;
+		$args['show_in_nav_menu']						= TRUE;
+		$args['show_ui']								= TRUE;
+		$args['supports']								= array( 'title', 'editor', 'thumbnail', 'comments', 'revisions' );
+		$args['taxonomies']								= array();
+
+		$args['capabilities']['delete_others_posts']	= "delete_others_{$cap_type}s";
+		$args['capabilities']['delete_post']			= "delete_{$cap_type}";
+		$args['capabilities']['delete_posts']			= "delete_{$cap_type}s";
+		$args['capabilities']['delete_private_posts']	= "delete_private_{$cap_type}s";
+		$args['capabilities']['delete_published_posts']	= "delete_published_{$cap_type}s";
+		$args['capabilities']['edit_others_posts']		= "edit_others_{$cap_type}s";
+		$args['capabilities']['edit_post']				= "edit_{$cap_type}";
+		$args['capabilities']['edit_posts']				= "edit_{$cap_type}s";
+		$args['capabilities']['edit_private_posts']		= "edit_private_{$cap_type}s";
+		$args['capabilities']['edit_published_posts']	= "edit_published_{$cap_type}s";
+		$args['capabilities']['publish_posts']			= "publish_{$cap_type}s";
+		$args['capabilities']['read_post']				= "read_{$cap_type}";
+		$args['capabilities']['read_private_posts']		= "read_private_{$cap_type}s";
+
+		$args['labels']['add_new']						= esc_html__( "Add {$single}", 'dvnl_recipes' );
+		$args['labels']['add_new_item']					= esc_html__( "Add New {$single}", 'dvnl_recipes' );
+		$args['labels']['all_items']					= esc_html__( "All {$plural}", 'dvnl_recipes' );
+		$args['labels']['edit_item']					= esc_html__( "Edit {$single}" , 'dvnl_recipes' );
+		$args['labels']['menu_name']					= esc_html__( $plural, 'dvnl_recipes' );
+		$args['labels']['name']							= esc_html__( $plural, 'dvnl_recipes' );
+		$args['labels']['name_admin_bar']				= esc_html__( $single, 'dvnl_recipes' );
+		$args['labels']['new_item']						= esc_html__( "New {$single}", 'dvnl_recipes' );
+		$args['labels']['not_found']					= esc_html__( "No {$plural} Found", 'dvnl_recipes' );
+		$args['labels']['not_found_in_trash']			= esc_html__( "No {$plural} Found in Trash", 'dvnl_recipes' );
+		$args['labels']['parent_item_colon']			= esc_html__( "Parent {$plural}:", 'dvnl_recipes' );
+		$args['labels']['search_items']					= esc_html__( "Search {$plural}", 'dvnl_recipes' );
+		$args['labels']['singular_name']				= esc_html__( $single, 'dvnl_recipes' );
+		$args['labels']['view_item']					= esc_html__( "View {$single}", 'dvnl_recipes' );
+
+		$args['rewrite']['ep_mask']						= EP_PERMALINK;
+		$args['rewrite']['feeds']						= TRUE;
+		$args['rewrite']['pages']						= TRUE;
+		$args['rewrite']['slug']						= esc_html__( strtolower( $plural ), 'dvnl_recipes' );
+		$args['rewrite']['with_front']					= FALSE;
+
+		$args = apply_filters( 'recipe-book-cpt-options', $args );
+
+		register_post_type( strtolower( $cpt_name ), $args );
+	} // new_cpt_recipes()
+
 }
