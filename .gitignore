@@ -26,9 +26,9 @@ wp-content/plugins/**
 # wp-content/themes/recipe-book/dist-product
 
 # Functionality Plugin
-# !wp-content/plugins/recipe-book-core/
-# !wp-content/plugins/recipe-book-core/**
-# wp-content/plugins/recipe-book-core/node_modules
+!wp-content/plugins/family-recipe-book/
+!wp-content/plugins/family-recipe-book/**
+wp-content/plugins/family-recipe-book/node_modules
 
 
 # Stop editing!
