@@ -122,6 +122,11 @@ class Family_Recipe_Book {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-family-recipe-book-public.php';
 
+		/**
+		 * The class responsible for all global functions.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/family-recipe-book-global-functions.php';
+
 		$this->loader = new Family_Recipe_Book_Loader();
 
 	}
@@ -157,11 +162,13 @@ class Family_Recipe_Book {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_admin, 'new_cpt_recipes' );
+		$this->loader->add_action( 'init', $plugin_admin, 'new_taxonomy_meal_type' );
+		$this->loader->add_action( 'init', $plugin_admin, 'new_taxonomy_cuisine_type' );
 
 	}
 
 	/**
-	 * Register all of the hooks related to the public-facing functionality
+	 * Register all of the hooks relatex	 to the public-facing functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
@@ -173,6 +180,7 @@ class Family_Recipe_Book {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_filter( 'single_template', $plugin_public, 'single_recipe_template' );
 
 	}
 

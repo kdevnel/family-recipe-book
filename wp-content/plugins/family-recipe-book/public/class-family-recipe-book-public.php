@@ -100,4 +100,26 @@ class Family_Recipe_Book_Public {
 
 	}
 
+	/**
+	 * Adds a default single view template for a recipes
+	 *
+	 * @param 	string 		$template 		The name of the template
+	 * @return 	mixed 						The single template
+	 */
+	public function single_recipe_template( $template ) {
+
+		global $post;
+
+		$return = $template;
+
+	    if ( $post->post_type == 'family_recipe_book' ) {
+
+			$return = dvnl_recipes_get_template( 'single-recipe' );
+
+		}
+
+		return $return;
+
+	} // single_recipe_template()
+
 }
