@@ -168,7 +168,7 @@ class Family_Recipe_Book {
 	}
 
 	/**
-	 * Register all of the hooks relatex	 to the public-facing functionality
+	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
@@ -181,6 +181,30 @@ class Family_Recipe_Book {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_filter( 'single_template', $plugin_public, 'single_recipe_template' );
+
+	}
+
+	/**
+	 * Register all of the hooks related to the templates.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_template_hooks() {
+
+		$plugin_templates = new Family_Recipe_Book_Template_Functions( $this->get_plugin_name(), $this->get_version() );
+
+		// Single
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_title', 10 );
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_content', 15 );
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_responsibilities', 20 );
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_location', 25 );
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_education', 30 );
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_skills', 35 );
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_experience', 40 );
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_info', 45 );
+		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_file', 50 );
+		$this->loader->add_action( 'dvnl-recipes-after-single', $plugin_templates, 'single_post_how_to_apply', 10 );
 
 	}
 
