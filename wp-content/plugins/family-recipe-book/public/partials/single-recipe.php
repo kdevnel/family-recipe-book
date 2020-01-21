@@ -71,7 +71,7 @@ get_header( 'recipe' ); ?>
 		endif; ?>
 		</div>
 
-		<?php // now to output the rest of the fields
+		<?php // now to output the rest of the fields ?>
 
 
 	<?php endwhile;
