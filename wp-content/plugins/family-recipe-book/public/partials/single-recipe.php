@@ -19,8 +19,6 @@ get_header( 'recipe' ); ?>
 
 <?php if ( have_posts() ) : ?>
 
-	<div>
-
 	<?php
 
 	/**
@@ -32,44 +30,39 @@ get_header( 'recipe' ); ?>
 
 	while ( have_posts() ) : the_post(); ?>
 
+
 		<h2 class="entry-title"><?php the_title(); ?></h2>
 
 		<?php
 		//include dvnl_recipes_get_template( 'single-content' );
 
-		// Output the recipe parts
-		// check if the repeater field has rows of data
-		if( have_rows('recipe_part') ): ?>
+		/**
+		 * dvnl_recipes_single_details hook
+		 *
+		 * @hooked 		single_recipe_details 		10
+		 */
+		do_action( 'dvnl_recipes_single_details');
 
-			<div class="recipe-ingredients">
-			<?php
+		/**
+		 * dvnl_recipes_single_ingredients hook
+		 *
+		 * @hooked 		single_recipe_ingredients 		10
+		 */
+		do_action( 'dvnl_recipes_single_ingredients');
 
-			// loop through the rows of data
-			while ( have_rows('recipe_part') ) : the_row(); ?>
-				<div class="recipe-part">
-					<h3 class="recipe-part-title"><?php the_sub_field('recipe_part_title'); ?></h3>
-					<?php
+		/**
+		 * dvnl_recipes_single_instructions hook
+		 *
+		 * @hooked 		single_recipe_instructions 		10
+		 */
+		do_action( 'dvnl_recipes_single_instructions');
 
-					//display the recipe ingredients list (sub-repeater)
-					if( have_rows( 'ingredient_list' ) ): ?>
-						<ul class="ingredient-list">
-						<?php
-						while ( have_rows( 'ingredient_list' ) ) : the_row(); ?>
-							<li class="ingredient-list-item"><?php the_sub_field('ingredient'); ?></li>
-						<?php endwhile;
-						else :
-					endif; ?>
-						</ul>
-
-				</div><!-- .recipe-ingredients -->
-			<?php endwhile;
-
-			else :
-
-			// no rows found
-
-		endif; ?>
-		</div>
+		/**
+		 * dvnl_recipes_single_nutrition hook
+		 *
+		 * @hooked 		single_recipe_nutrition 		10
+		 */
+		 do_action( 'dvnl_recipes_single_nutrition'); ?>
 
 		<?php // now to output the rest of the fields ?>
 
@@ -83,7 +76,6 @@ get_header( 'recipe' ); ?>
 	 */
 	do_action( 'dvnl-recipes-single-after-loop' ); ?>
 
-	</div>
 <?php endif; ?>
 
 </div><!-- .entry-content -->

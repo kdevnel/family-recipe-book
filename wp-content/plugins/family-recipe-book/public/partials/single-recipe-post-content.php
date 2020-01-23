@@ -1,3 +1,3 @@
 <?php
-?>
-<div>this is a test</div>
+
+echo '<div>from single-recipe-post-content.php</div>';

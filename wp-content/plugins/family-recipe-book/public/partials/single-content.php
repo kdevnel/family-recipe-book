@@ -25,7 +25,7 @@ do_action( 'dvnl-recipes-before-single', $meta );
 		 * dvnl-recipes-single-content hook
 		 */
 		do_action( 'dvnl-recipes-single-content', $meta );
-		echo "from single-content.php";
+		echo "<div>from single-content.php</div>";
 
 	/**
 	 * dvnl-recipes-after-single-content hook

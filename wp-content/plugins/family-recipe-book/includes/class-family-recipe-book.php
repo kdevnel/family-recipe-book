@@ -78,6 +78,7 @@ class Family_Recipe_Book {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_template_hooks();
 
 	}
 
@@ -121,6 +122,11 @@ class Family_Recipe_Book {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-family-recipe-book-public.php';
+
+		/**
+		 * The class responsible for defining all actions creating the templates.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-family-recipe-book-template-functions.php';
 
 		/**
 		 * The class responsible for all global functions.
@@ -205,6 +211,11 @@ class Family_Recipe_Book {
 		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_info', 45 );
 		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_file', 50 );
 		$this->loader->add_action( 'dvnl-recipes-after-single', $plugin_templates, 'single_post_how_to_apply', 10 );
+
+		$this->loader->add_action( 'dvnl_recipes_single_details', $plugin_templates, 'single_recipe_details', 10);
+		$this->loader->add_action( 'dvnl_recipes_single_ingredients', $plugin_templates, 'single_recipe_ingredients', 10);
+		$this->loader->add_action( 'dvnl_recipes_single_instructions', $plugin_templates, 'single_recipe_instructions', 10);
+		$this->loader->add_action( 'dvnl_recipes_single_nutrition', $plugin_templates, 'single_recipe_nutrition', 10);
 
 	}
 

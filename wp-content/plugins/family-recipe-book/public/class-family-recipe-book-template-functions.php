@@ -205,6 +205,50 @@ class Family_Recipe_Book_Template_Functions {
 	} // single_post_content()
 
 	/**
+	 * Includes the single recipe details content
+	 *
+	 * @hooked 		dvnl_single_recipe_details 	10
+	 */
+	public function single_recipe_details() {
+
+		include dvnl_recipes_get_template( 'single-recipe-details' );
+
+	} // single_recipe_details()
+
+	/**
+	 * Includes the single recipe ingredients content
+	 *
+	 * @hooked 		dvnl_single_recipe_ingredients 	10
+	 */
+	public function single_recipe_ingredients() {
+
+		include dvnl_recipes_get_template( 'single-recipe-ingredients' );
+
+	} // single_recipe_ingredients()
+
+	/**
+	 * Includes the single recipe instructions content
+	 *
+	 * @hooked 		dvnl_single_recipe_instructions 	10
+	 */
+	public function single_recipe_instructions() {
+
+		include dvnl_recipes_get_template( 'single-recipe-instructions' );
+
+	} // single_recipe_instructions()
+
+	/**
+	 * Includes the single recipe nutrition content
+	 *
+	 * @hooked 		dvnl_single_recipe_nutrition 	10
+	 */
+	public function single_recipe_nutrition() {
+
+		include dvnl_recipes_get_template( 'single-recipe-nutrition' );
+
+	} // single_recipe_nutrition()
+
+	/**
 	 * Includes the single job post metadata for education
 	 *
 	 * @hooked 		now-hiring-single-content 	30
@@ -213,7 +257,7 @@ class Family_Recipe_Book_Template_Functions {
 	 */
 	public function single_post_education( $meta ) {
 
-		include dvnl_recipes_get_template( 'single-job-meta-education' );
+		// include dvnl_recipes_get_template( 'single-job-meta-education' );
 
 	} // single_post_education()
 
@@ -226,7 +270,7 @@ class Family_Recipe_Book_Template_Functions {
 	 */
 	public function single_post_experience( $meta ) {
 
-		include dvnl_recipes_get_template( 'single-job-meta-experience' );
+		// include dvnl_recipes_get_template( 'single-job-meta-experience' );
 
 	} // single_post_experience()
 
@@ -239,7 +283,7 @@ class Family_Recipe_Book_Template_Functions {
 	 */
 	public function single_post_file( $meta ) {
 
-		include dvnl_recipes_get_template( 'single-job-meta-file' );
+		// include dvnl_recipes_get_template( 'single-job-meta-file' );
 
 	} // single_post_file()
 
@@ -252,7 +296,7 @@ class Family_Recipe_Book_Template_Functions {
 	 */
 	public function single_post_info( $meta ) {
 
-		include dvnl_recipes_get_template( 'single-job-meta-info' );
+		// include dvnl_recipes_get_template( 'single-job-meta-info' );
 
 	} // single_post_info()
 
@@ -265,7 +309,7 @@ class Family_Recipe_Book_Template_Functions {
 	 */
 	public function single_post_location( $meta ) {
 
-		include dvnl_recipes_get_template( 'single-job-meta-location' );
+		// include dvnl_recipes_get_template( 'single-job-meta-location' );
 
 	} // single_post_location()
 
@@ -278,7 +322,7 @@ class Family_Recipe_Book_Template_Functions {
 	 */
 	public function single_post_responsibilities( $meta ) {
 
-		include dvnl_recipes_get_template( 'single-job-meta-responsibilities' );
+		// include dvnl_recipes_get_template( 'single-job-meta-responsibilities' );
 
 	} // single_post_responsibilities()
 
@@ -291,7 +335,7 @@ class Family_Recipe_Book_Template_Functions {
 	 */
 	public function single_post_skills( $meta ) {
 
-		include dvnl_recipes_get_template( 'single-job-meta-skills' );
+		// include dvnl_recipes_get_template( 'single-job-meta-skills' );
 
 	} // single_post_skills()
 
@@ -302,7 +346,7 @@ class Family_Recipe_Book_Template_Functions {
 	 */
 	public function single_post_title() {
 
-		include dvnl_recipes_get_template( 'single-job-post-title' );
+		// include dvnl_recipes_get_template( 'single-job-post-title' );
 
 	} // single_post_title()
 
