@@ -12,7 +12,7 @@
 if( have_rows('recipe_part') ): ?>
 
     <div class="recipe-ingredients">
-        <h3 class="ingredients-title">Ingredients</h3>
+        <h3 id="ingredients" class="ingredients-title">Ingredients</h3>
         <?php
 
         // loop through the rows of data

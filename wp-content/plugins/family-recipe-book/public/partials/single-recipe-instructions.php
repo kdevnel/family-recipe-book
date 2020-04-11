@@ -12,7 +12,7 @@
 if( have_rows('how_to_step') ): ?>
 
     <div class="recipe-method-wrap">
-        <h3 class="recipe-method-title">Method</h3>
+        <h3 id="method" class="recipe-method-title">Method</h3>
         <?php
 
             while ( have_rows('how_to_step') ) : the_row(); ?>

@@ -30,7 +30,7 @@ $cookTime = get_field( 'cook_time' ) . ' ' . get_field( 'cook_timescale' );
 $totalTime = get_field( 'total_time' ) . ' ' . get_field( 'total_timescale' );
 ?>
 
-<div class="recipe-details-wrap">
+<div id="details" class="recipe-details-wrap">
     <?php if ($creator) { ?>
     <div class="recipe-creator">Original creator: <?php echo $creator; ?></div>
     <?php } ?>

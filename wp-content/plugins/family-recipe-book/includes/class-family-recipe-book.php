@@ -172,9 +172,12 @@ class Family_Recipe_Book {
 		$this->loader->add_action( 'init', $plugin_admin, 'new_taxonomy_meal_type' );
 		$this->loader->add_action( 'init', $plugin_admin, 'new_taxonomy_cuisine_type' );
 
-		$this->loader->add_filter( 'acf/settings/save_json', $plugin_admin, 'set_acf_json_save_folder' );
+		$this->loader->add_filter( 'pre_get_posts', $plugin_admin, 'dvnl_recipe_author_search' );
 
+		// ACF local JSON filter
+		$this->loader->add_filter( 'acf/settings/save_json', $plugin_admin, 'set_acf_json_save_folder' );
 		$this->loader->add_filter( 'acf/settings/load_json', $plugin_admin, 'add_acf_json_load_folder' );
+
 
 	}
 
@@ -217,7 +220,9 @@ class Family_Recipe_Book {
 		$this->loader->add_action( 'dvnl-recipes-single-content', $plugin_templates, 'single_post_file', 50 );
 		$this->loader->add_action( 'dvnl-recipes-after-single', $plugin_templates, 'single_post_how_to_apply', 10 );
 
+		$this->loader->add_action( 'dvnl_recipes_single_header', $plugin_templates, 'single_recipe_header', 10);
 		$this->loader->add_action( 'dvnl_recipes_single_details', $plugin_templates, 'single_recipe_details', 10);
+		$this->loader->add_action( 'dvnl_recipes_single_content', $plugin_templates, 'single_recipe_content', 10);
 		$this->loader->add_action( 'dvnl_recipes_single_ingredients', $plugin_templates, 'single_recipe_ingredients', 10);
 		$this->loader->add_action( 'dvnl_recipes_single_instructions', $plugin_templates, 'single_recipe_instructions', 10);
 		$this->loader->add_action( 'dvnl_recipes_single_nutrition', $plugin_templates, 'single_recipe_nutrition', 10);

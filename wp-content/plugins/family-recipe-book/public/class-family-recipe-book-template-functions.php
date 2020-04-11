@@ -205,6 +205,17 @@ class Family_Recipe_Book_Template_Functions {
 	} // single_post_content()
 
 	/**
+	 * Includes the single recipe header content
+	 *
+	 * @hooked 		dvnl_single_recipe_header 	10
+	 */
+	public function single_recipe_header() {
+
+		include dvnl_recipes_get_template( 'single-recipe-header' );
+
+	} // single_recipe_header()
+
+	/**
 	 * Includes the single recipe details content
 	 *
 	 * @hooked 		dvnl_single_recipe_details 	10
@@ -214,6 +225,17 @@ class Family_Recipe_Book_Template_Functions {
 		include dvnl_recipes_get_template( 'single-recipe-details' );
 
 	} // single_recipe_details()
+
+	/**
+	 * Includes the single recipe content
+	 *
+	 * @hooked 		dvnl_single_recipe_content 	10
+	 */
+	public function single_recipe_content() {
+
+		include dvnl_recipes_get_template( 'single-recipe-content' );
+
+	} // single_recipe_content()
 
 	/**
 	 * Includes the single recipe ingredients content

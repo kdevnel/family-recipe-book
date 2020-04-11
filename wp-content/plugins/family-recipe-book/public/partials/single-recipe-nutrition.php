@@ -11,7 +11,7 @@
 
 <?php if ( get_field( 'add_nutrition' ) == TRUE ) { ?>
 <div class="recipe-nutrition-wrap">
-    <h3 class="recipe-nutrition-title">Nutritional Information</h3>
+    <h3 id="nutrition" class="recipe-nutrition-title">Nutritional Information</h3>
     <ul>
         <li>Calories: <?php the_field( 'calories' ); ?></li>
         <li>Carbohydrates: <?php the_field( 'carbohydrates' ); ?></li>

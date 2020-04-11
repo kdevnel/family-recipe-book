@@ -33,10 +33,13 @@ get_header( 'recipe' );
 
 		<div class="dvnlRecipe" itemscope itemtype="http://schema.org/Recipe">
 
-			<h2 class="entry-title" itemprop="name"><?php the_title(); ?></h2>
-
 			<?php
-			//include dvnl_recipes_get_template( 'single-content' );
+			/**
+			 * dvnl_recipes_single_header hook
+			 *
+			 * @hooked 		single_recipe_header 		10
+			 */
+			do_action( 'dvnl_recipes_single_header');
 
 			/**
 			 * dvnl_recipes_single_details hook
@@ -45,10 +48,12 @@ get_header( 'recipe' );
 			 */
 			do_action( 'dvnl_recipes_single_details');
 
-			the_post_thumbnail( 'post_thumbnail', ['itemprop' => 'image'] );
-
-			/* Output content temporarily until CPT is finalised */
-			the_content();
+			/**
+			 * dvnl_recipes_single_content hook
+			 *
+			 * @hooked 		single_recipe_content 		10
+			 */
+			do_action( 'dvnl_recipes_single_content');
 
 			/**
 			 * dvnl_recipes_single_ingredients hook

@@ -184,6 +184,21 @@ class Family_Recipe_Book_Admin {
 	} // new_cpt_recipes()
 
 	/**
+	 * Adds Recipe posts to author pages
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public static function dvnl_recipe_author_search( $query ) {
+		if( is_category() || is_tag() || is_author() && empty( $query->query_vars['suppress_filters'] ) ) {
+		  $query->set( 'post_type', array(
+		   'post', 'family_recipe_book'
+			  ));
+			return $query;
+		  }
+	  }
+
+	/**
 	 * Creates a new taxonomy for a custom post type
 	 *
 	 * @since 	1.0.0
