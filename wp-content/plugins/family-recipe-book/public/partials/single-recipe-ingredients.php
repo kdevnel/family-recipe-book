@@ -26,17 +26,16 @@ if( have_rows('recipe_part') ): ?>
                     <ul class="ingredient-list">
                     <?php
                     while ( have_rows( 'ingredient_list' ) ) : the_row(); ?>
-                        <li class="ingredient-list-item"><?php the_sub_field('ingredient'); ?></li>
-                    <?php endwhile;
-                    else :
-                endif; ?>
+                        <li class="ingredient-list-item" itemprop="recipeIngredient"><?php the_sub_field('ingredient'); ?></li>
+                    <?php endwhile; ?>
                     </ul>
+                <?php endif; ?>
 
-            </div><!-- .recipe-ingredients -->
-        <?php endwhile;
-
-else : ?>
+            </div><!-- .ingredient-part-wrap -->
+        <?php endwhile; ?>
+    </div>
+<? else : ?>
     <div>No ingredients listed</div>
 
 <?php endif; ?>
-</div>
+<hr />

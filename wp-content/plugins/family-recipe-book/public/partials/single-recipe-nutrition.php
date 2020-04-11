@@ -9,11 +9,15 @@
  */
 ?>
 
+<?php if ( get_field( 'add_nutrition' ) == TRUE ) { ?>
 <div class="recipe-nutrition-wrap">
-        <h3 class="recipe-nutrition-title">Nutritional Information</h3>
-        <div>Calories: <?php the_field( 'calories' ); ?></div>
-        <div>Carbohydrates: <?php the_field( 'carbohydrates' ); ?></div>
-        <div>Fats: <?php the_field( 'fats' ); ?></div>
-        <div>Proteins: <?php the_field( 'proteins' ); ?></div>
-        <div>Fibre: <?php the_field( 'fibre' ); ?></div>
+    <h3 class="recipe-nutrition-title">Nutritional Information</h3>
+    <ul>
+        <li>Calories: <?php the_field( 'calories' ); ?></li>
+        <li>Carbohydrates: <?php the_field( 'carbohydrates' ); ?></li>
+        <li>Fats: <?php the_field( 'fats' ); ?></li>
+        <li>Proteins: <?php the_field( 'proteins' ); ?></li>
+        <li>Fibre: <?php the_field( 'fibre' ); ?></li>
+    </ul>
 </div><!-- recipe-nutrition-wrap -->
+<?php };

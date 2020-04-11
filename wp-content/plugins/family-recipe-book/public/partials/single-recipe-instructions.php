@@ -13,15 +13,25 @@ if( have_rows('how_to_step') ): ?>
 
     <div class="recipe-method-wrap">
         <h3 class="recipe-method-title">Method</h3>
-        <ol class="recipe-method-list">
         <?php
 
             while ( have_rows('how_to_step') ) : the_row(); ?>
-                <li class="recipe-method-list-item"><?php the_sub_field('step'); ?></li>
+                <div class="instruction-part-wrap">
+                    <h4 class="instruction-part-title"><?php the_sub_field('how_to_part'); ?></h4>
+
+                    <?php if ( have_rows( 'instruction_step' ) ): ?>
+                        <ol class="instruction-list" itemprop="recipeInstructions">
+                            <?php while ( have_rows( 'instruction_step' ) ) : the_row(); ?>
+                                <li class="recipe-method-list-item" itemprop="howToStep"><?php the_sub_field('how_to_step'); ?></li>
+                            <?php endwhile; ?>
+                        </ol>
+                   <?php endif; ?>
+
+                </div><!-- .instruction-part-wrap -->
+
             <?php endwhile; ?>
 
         </ol>
-
 
     </div><!-- recipe-method-wrap -->
 
@@ -29,3 +39,4 @@ if( have_rows('how_to_step') ): ?>
     <div>No method listed</div>
 
 <?php endif; ?>
+<hr />

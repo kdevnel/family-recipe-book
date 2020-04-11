@@ -249,6 +249,17 @@ class Family_Recipe_Book_Template_Functions {
 	} // single_recipe_nutrition()
 
 	/**
+	 * Includes the single recipe meta content
+	 *
+	 * @hooked 		dvnl_single_recipe_meta 	10
+	 */
+	public function single_recipe_meta() {
+
+		include dvnl_recipes_get_template( 'single-recipe-meta' );
+
+	} // single_recipe_nutrition()
+
+	/**
 	 * Includes the single job post metadata for education
 	 *
 	 * @hooked 		now-hiring-single-content 	30

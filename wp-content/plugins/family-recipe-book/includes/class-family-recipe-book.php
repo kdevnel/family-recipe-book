@@ -168,8 +168,13 @@ class Family_Recipe_Book {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_admin, 'new_cpt_recipes' );
+		$this->loader->add_action( 'init', $plugin_admin, 'new_taxonomy_creator' );
 		$this->loader->add_action( 'init', $plugin_admin, 'new_taxonomy_meal_type' );
 		$this->loader->add_action( 'init', $plugin_admin, 'new_taxonomy_cuisine_type' );
+
+		$this->loader->add_filter( 'acf/settings/save_json', $plugin_admin, 'set_acf_json_save_folder' );
+
+		$this->loader->add_filter( 'acf/settings/load_json', $plugin_admin, 'add_acf_json_load_folder' );
 
 	}
 
@@ -216,6 +221,7 @@ class Family_Recipe_Book {
 		$this->loader->add_action( 'dvnl_recipes_single_ingredients', $plugin_templates, 'single_recipe_ingredients', 10);
 		$this->loader->add_action( 'dvnl_recipes_single_instructions', $plugin_templates, 'single_recipe_instructions', 10);
 		$this->loader->add_action( 'dvnl_recipes_single_nutrition', $plugin_templates, 'single_recipe_nutrition', 10);
+		$this->loader->add_action( 'dvnl_recipes_single_meta', $plugin_templates, 'single_recipe_meta', 10);
 
 	}
 

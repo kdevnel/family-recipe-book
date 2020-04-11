@@ -137,6 +137,8 @@ class Family_Recipe_Book_Admin {
 			'title',
 			'thumbnail',
 			'comments',
+			'editor',
+			'author',
 			'revisions'
 		);
 		$args['taxonomies']								= array();
@@ -188,11 +190,70 @@ class Family_Recipe_Book_Admin {
 	 * @access 	public
 	 * @uses 	register_taxonomy()
 	 */
+	public static function new_taxonomy_creator() {
+
+		$plural 	= 'Creators';
+		$single 	= 'Creator';
+		$tax_name 	= 'recipe_creator';
+
+		$opts['hierarchical']							= TRUE;
+		//$opts['meta_box_cb'] 							= '';
+		$opts['public']									= TRUE;
+		$opts['query_var']								= $tax_name;
+		$opts['show_admin_column'] 						= TRUE;
+		$opts['show_in_nav_menus']						= TRUE;
+		$opts['show_tag_cloud'] 						= TRUE;
+		$opts['show_ui']								= TRUE;
+		$opts['sort'] 									= '';
+		//$opts['update_count_callback'] 					= '';
+
+		$opts['capabilities']['assign_terms'] 			= 'edit_posts';
+		$opts['capabilities']['delete_terms'] 			= 'manage_categories';
+		$opts['capabilities']['edit_terms'] 			= 'manage_categories';
+		$opts['capabilities']['manage_terms'] 			= 'manage_categories';
+
+		$opts['labels']['add_new_item'] 				= esc_html__( "Add New {$single}", 'dvnl_recipes' );
+		$opts['labels']['add_or_remove_items'] 			= esc_html__( "Add or remove {$plural}", 'dvnl_recipes' );
+		$opts['labels']['all_items'] 					= esc_html__( $plural, 'dvnl_recipes' );
+		$opts['labels']['choose_from_most_used'] 		= esc_html__( "Choose from most used {$plural}", 'dvnl_recipes' );
+		$opts['labels']['edit_item'] 					= esc_html__( "Edit {$single}" , 'dvnl_recipes');
+		$opts['labels']['menu_name'] 					= esc_html__( $plural, 'dvnl_recipes' );
+		$opts['labels']['name'] 						= esc_html__( $plural, 'dvnl_recipes' );
+		$opts['labels']['new_item_name'] 				= esc_html__( "New {$single} Name", 'dvnl_recipes' );
+		$opts['labels']['not_found'] 					= esc_html__( "No {$plural} Found", 'dvnl_recipes' );
+		$opts['labels']['parent_item'] 					= esc_html__( "Parent {$single}", 'dvnl_recipes' );
+		$opts['labels']['parent_item_colon'] 			= esc_html__( "Parent {$single}:", 'dvnl_recipes' );
+		$opts['labels']['popular_items'] 				= esc_html__( "Popular {$plural}", 'dvnl_recipes' );
+		$opts['labels']['search_items'] 				= esc_html__( "Search {$plural}", 'dvnl_recipes' );
+		$opts['labels']['separate_items_with_commas'] 	= esc_html__( "Separate {$plural} with commas", 'dvnl_recipes' );
+		$opts['labels']['singular_name'] 				= esc_html__( $single, 'dvnl_recipes' );
+		$opts['labels']['update_item'] 					= esc_html__( "Update {$single}", 'dvnl_recipes' );
+		$opts['labels']['view_item'] 					= esc_html__( "View {$single}", 'dvnl_recipes' );
+
+		$opts['rewrite']['ep_mask']						= EP_NONE;
+		$opts['rewrite']['hierarchical']				= FALSE;
+		$opts['rewrite']['slug']						= esc_html__( strtolower( $single ), 'dvnl_recipes' );
+		$opts['rewrite']['with_front']					= FALSE;
+
+		$opts = apply_filters( 'dvnl-recipes-taxonomy-options', $opts );
+
+		register_taxonomy( $tax_name, 'family_recipe_book', $opts );
+
+	} // new_taxonomy_meal_type()
+
+	/**
+	 * Creates a new taxonomy for a custom post type
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 * @uses 	register_taxonomy()
+	 */
 	public static function new_taxonomy_meal_type() {
 
 		$plural 	= 'Meal Types';
 		$single 	= 'Meal Type';
 		$tax_name 	= 'meal_type';
+		$slug		= 'meal';
 
 		$opts['hierarchical']							= TRUE;
 		//$opts['meta_box_cb'] 							= '';
@@ -230,7 +291,7 @@ class Family_Recipe_Book_Admin {
 
 		$opts['rewrite']['ep_mask']						= EP_NONE;
 		$opts['rewrite']['hierarchical']				= FALSE;
-		$opts['rewrite']['slug']						= esc_html__( strtolower( $tax_name ), 'dvnl_recipes' );
+		$opts['rewrite']['slug']						= esc_html__( strtolower( $slug ), 'dvnl_recipes' );
 		$opts['rewrite']['with_front']					= FALSE;
 
 		$opts = apply_filters( 'dvnl-recipes-taxonomy-options', $opts );
@@ -249,7 +310,7 @@ class Family_Recipe_Book_Admin {
 	public static function new_taxonomy_cuisine_type() {
 
 		$plural 	= 'Cuisine';
-		$single 	= 'cuisine';
+		$single 	= 'Cuisine';
 		$tax_name 	= 'cuisine_type';
 
 		$opts['hierarchical']							= TRUE;
@@ -288,7 +349,7 @@ class Family_Recipe_Book_Admin {
 
 		$opts['rewrite']['ep_mask']						= EP_NONE;
 		$opts['rewrite']['hierarchical']				= FALSE;
-		$opts['rewrite']['slug']						= esc_html__( strtolower( $tax_name ), 'dvnl_recipes' );
+		$opts['rewrite']['slug']						= esc_html__( strtolower( $single ), 'dvnl_recipes' );
 		$opts['rewrite']['with_front']					= FALSE;
 
 		$opts = apply_filters( 'dvnl-recipes-taxonomy-options', $opts );
@@ -296,5 +357,28 @@ class Family_Recipe_Book_Admin {
 		register_taxonomy( $tax_name, 'family_recipe_book', $opts );
 
 	} // new_taxonomy_cuisine_type()
+
+	/**
+	 * Creates a new folder for ACF Local JSON to saving
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public static function set_acf_json_save_folder( $path ) {
+		$path = plugin_dir_path( __DIR__ ) . 'includes/acf-json';
+		return $path;
+	}
+
+	/**
+	 * Creates a new folder for ACF Local JSON to load
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public static function add_acf_json_load_folder( $paths ) {
+		unset($paths[0]);
+		$paths[] = plugin_dir_path( __DIR__ ) . 'includes/acf-json';
+		return $paths;
+	}
 
 }

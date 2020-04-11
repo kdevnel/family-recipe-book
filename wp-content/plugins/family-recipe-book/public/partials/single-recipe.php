@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
  * Get a custom header-recipe.php file, if it exists.
  * Otherwise, get default header.
  */
-get_header( 'recipe' ); ?>
+get_header( 'recipe' );
+?>
 
 <div class="entry-content">
 
@@ -30,42 +31,56 @@ get_header( 'recipe' ); ?>
 
 	while ( have_posts() ) : the_post(); ?>
 
+		<div class="dvnlRecipe" itemscope itemtype="http://schema.org/Recipe">
 
-		<h2 class="entry-title"><?php the_title(); ?></h2>
+			<h2 class="entry-title" itemprop="name"><?php the_title(); ?></h2>
 
-		<?php
-		//include dvnl_recipes_get_template( 'single-content' );
+			<?php
+			//include dvnl_recipes_get_template( 'single-content' );
 
-		/**
-		 * dvnl_recipes_single_details hook
-		 *
-		 * @hooked 		single_recipe_details 		10
-		 */
-		do_action( 'dvnl_recipes_single_details');
+			/**
+			 * dvnl_recipes_single_details hook
+			 *
+			 * @hooked 		single_recipe_details 		10
+			 */
+			do_action( 'dvnl_recipes_single_details');
 
-		/**
-		 * dvnl_recipes_single_ingredients hook
-		 *
-		 * @hooked 		single_recipe_ingredients 		10
-		 */
-		do_action( 'dvnl_recipes_single_ingredients');
+			the_post_thumbnail( 'post_thumbnail', ['itemprop' => 'image'] );
 
-		/**
-		 * dvnl_recipes_single_instructions hook
-		 *
-		 * @hooked 		single_recipe_instructions 		10
-		 */
-		do_action( 'dvnl_recipes_single_instructions');
+			/* Output content temporarily until CPT is finalised */
+			the_content();
 
-		/**
-		 * dvnl_recipes_single_nutrition hook
-		 *
-		 * @hooked 		single_recipe_nutrition 		10
-		 */
-		 do_action( 'dvnl_recipes_single_nutrition'); ?>
+			/**
+			 * dvnl_recipes_single_ingredients hook
+			 *
+			 * @hooked 		single_recipe_ingredients 		10
+			 */
+			do_action( 'dvnl_recipes_single_ingredients');
 
-		<?php // now to output the rest of the fields ?>
+			/**
+			 * dvnl_recipes_single_instructions hook
+			 *
+			 * @hooked 		single_recipe_instructions 		10
+			 */
+			do_action( 'dvnl_recipes_single_instructions');
 
+			/**
+			 * dvnl_recipes_single_nutrition hook
+			 *
+			 * @hooked 		single_recipe_nutrition 		10
+			 */
+			do_action( 'dvnl_recipes_single_nutrition');
+
+			/**
+			 * dvnl_recipes_single_nutrition hook
+			 *
+			 * @hooked 		single_recipe_meta 		10
+			 */
+			do_action( 'dvnl_recipes_single_meta'); ?>
+
+			<?php // now to output the rest of the fields ?>
+
+		</div><!-- Recipe Content -->
 
 	<?php endwhile;
 
