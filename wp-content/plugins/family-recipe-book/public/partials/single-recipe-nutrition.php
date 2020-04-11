@@ -20,4 +20,5 @@
         <li>Fibre: <?php the_field( 'fibre' ); ?></li>
     </ul>
 </div><!-- recipe-nutrition-wrap -->
+<hr />
 <?php };
