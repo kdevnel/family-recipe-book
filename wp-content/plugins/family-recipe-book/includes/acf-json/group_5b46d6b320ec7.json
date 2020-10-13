@@ -77,6 +77,61 @@
                             "prepend": "",
                             "append": "",
                             "maxlength": ""
+                        },
+                        {
+                            "key": "field_5f85b6611823f",
+                            "label": "Quantity",
+                            "name": "quantity",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "min": "",
+                            "max": "",
+                            "step": ""
+                        },
+                        {
+                            "key": "field_5f85b69918240",
+                            "label": "Measurement",
+                            "name": "measurement",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "teaspoons": "teaspoons",
+                                "tablespoons": "tablespoons",
+                                "cups": "cups",
+                                "ml": "ml",
+                                "litre": "litres",
+                                "gram": "grams",
+                                "kg": "kg",
+                                "oz": "oz",
+                                "fl.oz": "fl.oz",
+                                "lbs": "lbs",
+                                "tins": "tins"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 1,
+                            "ajax": 1,
+                            "return_format": "label",
+                            "placeholder": ""
                         }
                     ]
                 }
@@ -100,5 +155,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602597381
+    "modified": 1602599640
 }
