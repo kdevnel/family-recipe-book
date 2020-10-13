@@ -9,6 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
+acf_form_head();
 /**
  * Get a custom header-recipe.php file, if it exists.
  * Otherwise, get default header.
@@ -84,6 +85,8 @@ get_header( 'recipe' );
 			do_action( 'dvnl_recipes_single_meta'); ?>
 
 			<?php // now to output the rest of the fields ?>
+
+			<?php acf_form(); ?>
 
 		</div><!-- Recipe Content -->
 

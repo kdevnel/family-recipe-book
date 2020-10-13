@@ -21,10 +21,11 @@
 }
 
 .recipe-post-nav {
-  position: absolute;
+  position: fixed;
   left: 0;
+  transition: all 0.2s ease-in;
   background-color: rgba(120, 76, 170, 0.3);
-  padding: 10px;
+  padding: 5px;
   box-shadow: 1px 2px 4px rgba(120, 76, 170, 0.7);
 }
 .recipe-post-nav ul {

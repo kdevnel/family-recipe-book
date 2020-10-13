@@ -15,8 +15,8 @@
     <ul>
         <li>Jump to: </li>
         <li><a href="#details">Details</a></li>
-        <li><a href="#ingredients">Ingredients</a></li>
-        <li><a href="#method">Method</a></li>
-        <li><a href="#nutrition">Nutrition</a></li>
+        <?php if( have_rows('recipe_part') ): ?><li><a href="#ingredients">Ingredients</a></li><?php endif; ?>
+        <?php if( have_rows('how_to_step') ): ?><li><a href="#method">Method</a></li><?php endif; ?>
+        <?php if ( get_field( 'add_nutrition' ) == TRUE ) :?><li><a href="#nutrition">Nutrition</a></li><?php endif; ?>
     </ul>
 </nav>

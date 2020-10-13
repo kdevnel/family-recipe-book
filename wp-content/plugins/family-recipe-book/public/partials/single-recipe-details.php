@@ -31,6 +31,7 @@ $totalTime = get_field( 'total_time' ) . ' ' . get_field( 'total_timescale' );
 ?>
 
 <div id="details" class="recipe-details-wrap">
+    <div class="recipe-author" itemprop="author">Author: <?php the_author_posts_link(); ?></div>
     <?php if ($creator) { ?>
     <div class="recipe-creator">Original creator: <?php echo $creator; ?></div>
     <?php } ?>
