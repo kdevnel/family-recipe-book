@@ -1,11 +1,11 @@
 {
-    "key": "group_5b46d6b320ec7",
-    "title": "Ingredients",
+    "key": "group_5b46d719772c3",
+    "title": "Instructions",
     "fields": [
         {
-            "key": "field_5b46d6be42a7c",
-            "label": "Recipe Part",
-            "name": "recipe_part",
+            "key": "field_5b46d72d74520",
+            "label": "How to step",
+            "name": "how_to_step",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -19,12 +19,12 @@
             "min": 0,
             "max": 0,
             "layout": "table",
-            "button_label": "Add Recipe Part",
+            "button_label": "Add Instruction Group",
             "sub_fields": [
                 {
-                    "key": "field_5b46d6e342a7d",
-                    "label": "Title",
-                    "name": "recipe_part_title",
+                    "key": "field_5b46d73c74521",
+                    "label": "Instruction Part",
+                    "name": "how_to_part",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -41,9 +41,9 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_5b48435f15c72",
-                    "label": "Ingredient List",
-                    "name": "ingredient_list",
+                    "key": "field_5e901b65ae1c3",
+                    "label": "Instruction Step",
+                    "name": "instruction_step",
                     "type": "repeater",
                     "instructions": "",
                     "required": 0,
@@ -57,12 +57,12 @@
                     "min": 0,
                     "max": 0,
                     "layout": "table",
-                    "button_label": "Add Ingredient",
+                    "button_label": "Add Step",
                     "sub_fields": [
                         {
-                            "key": "field_5b48438d15c73",
-                            "label": "Ingredient",
-                            "name": "ingredient",
+                            "key": "field_5e901c71ae1c4",
+                            "label": "Step",
+                            "name": "how_to_step",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -100,5 +100,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602597381
+    "modified": 1602597363
 }
