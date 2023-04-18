@@ -19,7 +19,7 @@ Note that if you include your own classes, or third-party libraries, there are t
 * `family-recipe-book/admin` is for all admin-specific functionality
 * `family-recipe-book/public` is for all public-facing functionality
 
-Note that previous versions of the Boilerplate did not include `Plugin_Name_Loader` but this class is used to register all filters and actions with WordPress.
+Note that previous versions of the Boilerplate did not include `family_recipe_book_Loader` but this class is used to register all filters and actions with WordPress.
 
 ## Recommended Tools
 
