@@ -1,74 +1,39 @@
-# Ignore everything #
-**
-!wp-content/
-wp-content/**
-!wp-content/themes/
-!wp-content/plugins/
-wp-content/themes/**
-wp-content/plugins/**
-
-# Add two rules for each Theme or Plugin you want to include:
-# 1. !folder-name/    <-- includes the Plugin and top level files
-# 2. !folder-name/**  <-- includes the Plugin and sub level files recursively, except for the "Ignore some other system generated files" rules below
-###############################
-
-# Start editing!
-
-# Theme
-!wp-content/themes/recipe-book/
-!wp-content/themes/recipe-book/**
-
-# Theme system file ignore
-# wp-content/themes/recipe-book/node_modules
-# wp-content/themes/recipe-book/vendor/
-# wp-content/themes/recipe-book/dist
-# wp-content/themes/recipe-book/bower_components
-# wp-content/themes/recipe-book/dist-product
-
-# Functionality Plugin
-!wp-content/plugins/family-recipe-book/
-!wp-content/plugins/family-recipe-book/**
-wp-content/plugins/family-recipe-book/node_modules
-
-
-# Stop editing!
-
-############################################
-# Ignore some other system generated files #
-############################################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
 *.log
-*.sql
-*.sqlite
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# OS or Editor folders
 .DS_Store
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-.codekit-cache
-.sass-cache
-# Sublime
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+nbproject
 *.sublime-project
 *.sublime-workspace
-# PhpStorm
-.idea/
 
-# Always include the build script #
-###################################
-!build.sh
-!README.md
-!CHANGELOG.md
-!.gitignore
+# Dreamweaver added files
+_notes
+dwsync.xml
+
+# Komodo
+*.komodoproject
+.komodotools
+
+# Folders to ignore
+.hg
+.svn
+.CVS
+intermediate
+.idea
+cache
