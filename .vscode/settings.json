@@ -1,0 +1,32 @@
+{
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "[php]": {
+        "editor.defaultFormatter": "wongjn.php-sniffer"
+      },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+    ],
+    "stylelint.validate": [
+        "css",
+        "less",
+        "postcss",
+        "scss"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.stylelint": true,
+        "source.fixAll.eslint": true
+    },
+    "phpSniffer.autoDetect": true,
+    "phpSniffer.standard": "WordPress",
+    "phpSniffer.run": "onType",
+    "phpSniffer.onTypeDelay": 250,
+    "editor.formatOnSave": false,
+    "editor.rulers": [
+        86
+    ],
+    "git.ignoreLimitWarning": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+}

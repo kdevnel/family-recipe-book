@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -100,4 +99,78 @@ class Dvnl_Family_Recipe_Book_Admin {
 
 	}
 
+	/**
+	 * Save custom post meta fields.
+	 */
+	public function update_or_save_post_meta() {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return;
+		}
+
+		global $post;
+		update_post_meta( $post->ID, 'dvnl_recipe_ingredients', $_POST[ 'ingredients' ] );
+		update_post_meta( $post->ID, 'dvnl_recipe_instructions', $_POST[ 'instructions' ] );
+		// Author - will need to be a dropdown of users.
+		// Original Author - search for a non-user author like a category.
+		// URL
+		// Servings
+		// Cost
+		// Course
+		// Cuisine
+		// Diet
+		// Keywords
+		// Difficulty
+		// Timings
+			// Prep time (days / hours / minutes)
+			// Cook time (days / hours / minutes)
+			// Rest time (days / hours / minutes)
+			// Total time (days / hours / minutes)
+		// Ingredients
+			// Single Ingredient
+				// Amount
+				// Unit
+				// Name
+				// Notes
+				// Group
+		// Instructions
+			// Single step
+				// Instruction
+				// Media
+				// Group
+		// Video
+		// Nutrition
+			// Protein
+			// Carbohydrates
+			// Fat
+			// Cholesterol
+			// Sodium
+			// Fibre
+		// Notes.
+	}
+
+	/**
+	 * Register metaboxes for custom meta fields.
+	 */
+	public function add_meta_boxes() {
+		add_meta_box( 'recipe-meta', 'Recipe Details', array( $this, 'display_meta_boxes' ), 'dvnl_recipes', 'normal', 'low' );
+	}
+
+	/**
+	 * Display the metaboxes and custom meta fields.
+	 */
+	public function display_meta_boxes() {
+		global $post;
+
+		$meta_fields = get_post_custom( $post->ID );
+
+		$ingredients = $meta_fields['dvnl_recipe_ingredients'][0];
+		?>
+		<label><?php _e( 'Ingredients:', $this->plugin_name ); ?></label><input name="ingredients" value="<?php echo $ingredients; ?>" /><br>
+		<?php
+
+		$instructions = $meta_fields['dvnl_recipe_instructions'][0];
+		?>
+		<label><?php _e( 'Instructions:', $this->plugin_name ); ?></label><input name="instructions" value="<?php echo $instructions; ?>" /><br>
+		<?php
+	}
 }
