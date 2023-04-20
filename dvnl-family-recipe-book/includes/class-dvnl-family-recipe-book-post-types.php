@@ -292,11 +292,7 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 					'author',
 					'thumbnail',
 					'comments',
-					'trackbacks',
-					'custom-fields',
 					'revisions',
-					'page-attributes',
-					'post-formats',
 				),
 				'custom_caps'         => true,
 				'custom_caps_users'   => array(

@@ -42,9 +42,9 @@ class Dvnl_Family_Recipe_Book_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @since 1.0.0
+	 * @param string $plugin_name The name of this plugin.
+	 * @param string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -100,77 +100,56 @@ class Dvnl_Family_Recipe_Book_Admin {
 	}
 
 	/**
-	 * Save custom post meta fields.
+	 * Add metaboxes to the recipe post type.
 	 */
-	public function update_or_save_post_meta() {
-		if ( ! current_user_can( 'edit_posts' ) ) {
+	public function register_recipe_metaboxes() {
+		add_meta_box(
+			'dvnl_family_recipe_book_recipe_details',
+			__( 'Recipe Details', 'dvnl-family-recipe-book' ),
+			array( $this, 'render_recipe_details_metabox' ),
+			'dvnl_recipes',
+			'normal',
+			'high'
+		);
+	}
+
+	/**
+	 * Render the recipe details metabox.
+	 */
+	public function render_recipe_details_metabox() {
+		include plugin_dir_path( __FILE__ ) . 'partials/dvnl-family-recipe-book-details-metabox.php';
+	}
+
+	/**
+	 * Save the recipe details metabox.
+	 *
+	 * @param int $post_id The post ID.
+	 */
+	public function save_recipe_metaboxes( $post_id ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 
-		global $post;
-		update_post_meta( $post->ID, 'dvnl_recipe_ingredients', $_POST[ 'ingredients' ] );
-		update_post_meta( $post->ID, 'dvnl_recipe_instructions', $_POST[ 'instructions' ] );
-		// Author - will need to be a dropdown of users.
-		// Original Author - search for a non-user author like a category.
-		// URL
-		// Servings
-		// Cost
-		// Course
-		// Cuisine
-		// Diet
-		// Keywords
-		// Difficulty
-		// Timings
-			// Prep time (days / hours / minutes)
-			// Cook time (days / hours / minutes)
-			// Rest time (days / hours / minutes)
-			// Total time (days / hours / minutes)
-		// Ingredients
-			// Single Ingredient
-				// Amount
-				// Unit
-				// Name
-				// Notes
-				// Group
-		// Instructions
-			// Single step
-				// Instruction
-				// Media
-				// Group
-		// Video
-		// Nutrition
-			// Protein
-			// Carbohydrates
-			// Fat
-			// Cholesterol
-			// Sodium
-			// Fibre
-		// Notes.
+		$parent_id = wp_is_post_revision( $post_id );
+		if ( $parent_id ) {
+			$post_id = $parent_id;
+		}
+
+		if ( ! isset( $_POST['dvnl_recipe_details_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['dvnl_recipe_details_nonce'] ), 'dvnl_recipe_submit' ) ) {
+			return;
+		}
+
+		$fields = array(
+			'dvnl_original_author',
+			'dvnl_published_date',
+			'dvnl_cost',
+		);
+
+		foreach ( $fields as $field ) {
+			if ( array_key_exists( $field, $_POST ) ) {
+				update_post_meta( $post_id, $field, sanitize_text_field( wp_unslash( $_POST[ $field ] ) ) );
+			}
+		}
 	}
 
-	/**
-	 * Register metaboxes for custom meta fields.
-	 */
-	public function add_meta_boxes() {
-		add_meta_box( 'recipe-meta', 'Recipe Details', array( $this, 'display_meta_boxes' ), 'dvnl_recipes', 'normal', 'low' );
-	}
-
-	/**
-	 * Display the metaboxes and custom meta fields.
-	 */
-	public function display_meta_boxes() {
-		global $post;
-
-		$meta_fields = get_post_custom( $post->ID );
-
-		$ingredients = $meta_fields['dvnl_recipe_ingredients'][0];
-		?>
-		<label><?php _e( 'Ingredients:', $this->plugin_name ); ?></label><input name="ingredients" value="<?php echo $ingredients; ?>" /><br>
-		<?php
-
-		$instructions = $meta_fields['dvnl_recipe_instructions'][0];
-		?>
-		<label><?php _e( 'Instructions:', $this->plugin_name ); ?></label><input name="instructions" value="<?php echo $instructions; ?>" /><br>
-		<?php
-	}
 }

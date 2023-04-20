@@ -179,8 +179,8 @@ class Dvnl_Family_Recipe_Book {
 		 *
 		 * @link https:// code.tutsplus.com/articles/rock-solid-wordpress-30-themes-using-custom-post-types--net-12093
 		 */
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'add_meta_boxes' );
-		$this->loader->add_action( 'save_post', $plugin_admin, 'update_or_save_post_meta' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'register_recipe_metaboxes' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'save_recipe_metaboxes' );
 	}
 
 	/**
