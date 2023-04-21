@@ -22,6 +22,17 @@ Note that if you include your own classes, or third-party libraries, there are t
 
 Note that previous versions of the Boilerplate did not include `family_recipe_book_Loader` but this class is used to register all filters and actions with WordPress.
 
+### Post Types
+To register a new post type:
+* register a hook in `family-recipe-book/includes/class-dvnl-family-recipe-book.php`
+* Create a new method defining the fields for your post type in `dvnl-family-recipe-book/includes/class-dvnl-family-recipe-book-post-types.php`
+
+### Metaboxes and custom field
+To register a metabox:
+* define your metabox details in the `create_recipe_metaboxes` method as a new array.
+* create a new template in `admin/partials` and define the path in the initial definition method above.
+* To register the save method, add a new array to `$field_args` in the `save_recipe_metaboxes` method where you can define your fields and nonce.
+
 ## Recommended Tools
 
 ### i18n Tools

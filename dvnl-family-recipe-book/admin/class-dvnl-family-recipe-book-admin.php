@@ -49,7 +49,7 @@ class Dvnl_Family_Recipe_Book_Admin {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -100,32 +100,17 @@ class Dvnl_Family_Recipe_Book_Admin {
 	}
 
 	/**
-	 * Add metaboxes to the recipe post type.
-	 */
-	public function register_recipe_metaboxes() {
-		add_meta_box(
-			'dvnl_family_recipe_book_recipe_details',
-			__( 'Recipe Details', 'dvnl-family-recipe-book' ),
-			array( $this, 'render_recipe_details_metabox' ),
-			'dvnl_recipes',
-			'normal',
-			'high'
-		);
-	}
-
-	/**
-	 * Render the recipe details metabox.
-	 */
-	public function render_recipe_details_metabox() {
-		include plugin_dir_path( __FILE__ ) . 'partials/dvnl-family-recipe-book-details-metabox.php';
-	}
-
-	/**
 	 * Save the recipe details metabox.
 	 *
 	 * @param int $post_id The post ID.
 	 */
 	public function save_recipe_metaboxes( $post_id ) {
+
+		// verify nonce.
+		if ( ! isset( $_POST['dvnl_recipe_details_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['dvnl_recipe_details_nonce'] ), 'dvnl_recipe_submit' ) ) {
+			return;
+		}
+
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
@@ -133,10 +118,6 @@ class Dvnl_Family_Recipe_Book_Admin {
 		$parent_id = wp_is_post_revision( $post_id );
 		if ( $parent_id ) {
 			$post_id = $parent_id;
-		}
-
-		if ( ! isset( $_POST['dvnl_recipe_details_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['dvnl_recipe_details_nonce'] ), 'dvnl_recipe_submit' ) ) {
-			return;
 		}
 
 		$fields = array(

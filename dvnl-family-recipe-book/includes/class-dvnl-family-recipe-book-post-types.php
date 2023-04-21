@@ -8,16 +8,6 @@
  * @package Dvnl_Family_Recipe_Book
  * @subpackage Dvnl_Family_Recipe_Book/includes
  */
-
-/**
- * Define the custom post types
- *
- * @link https://devnel.blog
- * @since 1.0.0
- *
- * @package Dvnl_Family_Recipe_Book
- * @subpackage Dvnl_Family_Recipe_Book/includes
- */
 class Dvnl_Family_Recipe_Book_Post_Types {
 
 	/**

@@ -126,6 +126,11 @@ class Dvnl_Family_Recipe_Book {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dvnl-family-recipe-book-post-types.php';
 
+		/**
+		 * Custom post type metaboxes
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-dvnl-family-recipe-book-metaboxes.php';
+
 		$this->loader = new Dvnl_Family_Recipe_Book_Loader();
 
 	}
@@ -161,7 +166,6 @@ class Dvnl_Family_Recipe_Book {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-		$plugin_post_types = new Dvnl_Family_Recipe_Book_Post_Types();
 		/**
 		* The problem with the initial activation code is that when the activation hook runs, it's after the init hook has run,
 		* so hooking into init from the activation hook won't do anything.
@@ -172,6 +176,7 @@ class Dvnl_Family_Recipe_Book {
 		*
 		* @link https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/issues/261
 		*/
+		$plugin_post_types = new Dvnl_Family_Recipe_Book_Post_Types();
 		$this->loader->add_action( 'init', $plugin_post_types, 'create_custom_post_type', 999 );
 
 		/**
@@ -179,8 +184,11 @@ class Dvnl_Family_Recipe_Book {
 		 *
 		 * @link https:// code.tutsplus.com/articles/rock-solid-wordpress-30-themes-using-custom-post-types--net-12093
 		 */
-		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'register_recipe_metaboxes' );
-		$this->loader->add_action( 'save_post', $plugin_admin, 'save_recipe_metaboxes' );
+		$plugin_metaboxes = new Dvnl_Family_Recipe_Book_Metaboxes();
+		$this->loader->add_action( 'add_meta_boxes', $plugin_metaboxes, 'create_recipe_metaboxes' );
+		// TODO: move this to the metabox class.
+		// $this->loader->add_action( 'save_post', $plugin_admin, 'save_recipe_metaboxes' );
+		$this->loader->add_action( 'save_post', $plugin_metaboxes, 'save_recipe_metaboxes' );
 	}
 
 	/**
