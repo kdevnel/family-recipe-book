@@ -186,8 +186,6 @@ class Dvnl_Family_Recipe_Book {
 		 */
 		$plugin_metaboxes = new Dvnl_Family_Recipe_Book_Metaboxes();
 		$this->loader->add_action( 'add_meta_boxes', $plugin_metaboxes, 'create_recipe_metaboxes' );
-		// TODO: move this to the metabox class.
-		// $this->loader->add_action( 'save_post', $plugin_admin, 'save_recipe_metaboxes' );
 		$this->loader->add_action( 'save_post', $plugin_metaboxes, 'save_recipe_metaboxes' );
 	}
 

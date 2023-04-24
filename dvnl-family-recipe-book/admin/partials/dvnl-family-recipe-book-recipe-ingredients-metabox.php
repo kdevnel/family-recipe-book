@@ -1,6 +1,6 @@
 <?php
 /**
- * Display of the recipe details metabox
+ * Display of the recipe ingredients metabox - this is a sample override file.
  *
  * @link       https://devnel.blog
  * @since      2.0.0

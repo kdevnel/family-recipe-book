@@ -24,7 +24,77 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 				'context'       => 'normal',
 				'priority'      => 'high',
 				'callback_args' => array(
-					'template' => 'partials/dvnl-family-recipe-book-recipe-details-metabox.php',
+					'nonce'  => 'dvnl_recipe_details_nonce',
+					'fields' => array(
+						array(
+							'id'    => 'dvnl_original_author',
+							'label' => __( 'Original Author', 'dvnl-family-recipe-book' ),
+							'type'  => 'text',
+						),
+						array(
+							'id'    => 'dvnl_published_date',
+							'label' => __( 'Published Date', 'dvnl-family-recipe-book' ),
+							'type'  => 'date',
+						),
+						array(
+							'id'    => 'dvnl_cost',
+							'label' => __( 'Cost', 'dvnl-family-recipe-book' ),
+							'type'  => 'number',
+						),
+						array(
+							'id'    => 'dvnl_url',
+							'label' => __( 'URL', 'dvnl-family-recipe-book' ),
+							'type'  => 'url',
+						),
+						array(
+							'id'    => 'dvnl_servings',
+							'label' => __( 'Servings', 'dvnl-family-recipe-book' ),
+							'type'  => 'number',
+						),
+						array(
+							'id' => 'dvnl_difficulty',
+							'label' => __( 'Difficulty', 'dvnl-family-recipe-book' ),
+							'type' => 'select',
+							'options' => array(
+								'easy' => __( 'Easy', 'dvnl-family-recipe-book' ),
+								'medium' => __( 'Medium', 'dvnl-family-recipe-book' ),
+								'hard' => __( 'Hard', 'dvnl-family-recipe-book' ),
+							),
+						),
+					),
+				),
+			),
+			array(
+				'id'			=> 'dvnl_family_recipe_book_recipe_timings',
+				'title'			=> __( 'Recipe Timings', 'dvnl-family-recipe-book' ),
+				'callback'		=> array( $this, 'render_recipe_metabox_templates' ),
+				'screen'		=> 'dvnl_recipes',
+				'context'		=> 'normal',
+				'priority'		=> 'high',
+				'callback_args' => array(
+					'nonce' => 'dvnl_recipe_timings_nonce',
+					'fields'=> array(
+						array(
+							'id' => 'dvnl_prep_time',
+							'label' => __( 'Prep Time', 'dvnl-family-recipe-book' ),
+							'type' => 'number',
+						),
+						array(
+							'id' => 'dvnl_cook_time',
+							'label' => __( 'Cook Time', 'dvnl-family-recipe-book' ),
+							'type' => 'number',
+						),
+						array(
+							'id' => 'dvnl_rest_time',
+							'label' => __( 'Rest Time', 'dvnl-family-recipe-book' ),
+							'type' => 'number',
+						),
+						array(
+							'id' => 'dvnl_total_time',
+							'label' => __( 'Total Time', 'dvnl-family-recipe-book' ),
+							'type' => 'number',
+						),
+					),
 				),
 			),
 			array(
@@ -35,7 +105,15 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 				'context'       => 'normal',
 				'priority'      => 'high',
 				'callback_args' => array(
-					'template' => 'partials/dvnl-family-recipe-book-recipe-ingredients-metabox.php',
+					'nonce' => 'dvnl_recipe_ingredients_nonce',
+					'fields' => array(
+						array(
+							'id'    => 'dvnl_ingredients',
+							'label' => __( 'Ingredients', 'dvnl-family-recipe-book' ),
+							'type'  => 'textarea',
+						),
+					),
+					//'template' => 'partials/dvnl-family-recipe-book-recipe-ingredients-metabox.php',
 				),
 			),
 		);
@@ -62,7 +140,17 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	 * @return void
 	 */
 	public function render_recipe_metabox_templates( $post, $metabox ) {
-		include plugin_dir_path( __FILE__ ) . $metabox['args']['template'];
+		if ( isset( $metabox['args']['template'] ) ) {
+			include plugin_dir_path( __FILE__ ) . $metabox['args']['template'];
+			return;
+		}
+
+		echo '<div class="dvnl-recipes metabox">';
+			foreach ( $metabox['args']['fields'] as $field ) {
+				load_template( plugin_dir_path( __FILE__ ) . 'partials/dvnl-family-recipe-book-recipe-metabox.php', false, array( 'nonce' => $metabox['args']['nonce'], 'field' => $field ) );
+			}
+		echo '</div>';
+
 	}
 
 	/**
@@ -76,6 +164,7 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 					'dvnl_original_author',
 					'dvnl_published_date',
 					'dvnl_cost',
+					'dvnl_url',
 				),
 			),
 			array(
