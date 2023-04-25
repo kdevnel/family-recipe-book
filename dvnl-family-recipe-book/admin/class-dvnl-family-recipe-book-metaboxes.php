@@ -1,12 +1,16 @@
 <?php
 /**
- * Define the metabox and field configurations.
+ * The metabox functionality of the plugin.
  *
  * @link       https://devnel.blog
  * @since      2.0.0
  *
  * @package    Dvnl_Family_Recipe_Book
  * @subpackage Dvnl_Family_Recipe_Book/admin
+ */
+
+/**
+ * Metabox and custom field configurations class.
  */
 class Dvnl_Family_Recipe_Book_Metaboxes {
 	/**
@@ -47,59 +51,64 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 							'type'  => 'url',
 						),
 						array(
+							'id'	=> 'dvnl_video',
+							'label'	=> __( 'Video', 'dvnl-family-recipe-book' ),
+							'type'	=> 'url',
+						),
+						array(
 							'id'    => 'dvnl_servings',
 							'label' => __( 'Servings', 'dvnl-family-recipe-book' ),
 							'type'  => 'number',
 						),
 						array(
-							'id' => 'dvnl_difficulty',
-							'label' => __( 'Difficulty', 'dvnl-family-recipe-book' ),
-							'type' => 'select',
+							'id'      => 'dvnl_difficulty',
+							'label'   => __( 'Difficulty', 'dvnl-family-recipe-book' ),
+							'type'    => 'select',
 							'options' => array(
-								'easy' => __( 'Easy', 'dvnl-family-recipe-book' ),
+								'easy'   => __( 'Easy', 'dvnl-family-recipe-book' ),
 								'medium' => __( 'Medium', 'dvnl-family-recipe-book' ),
-								'hard' => __( 'Hard', 'dvnl-family-recipe-book' ),
+								'hard'   => __( 'Hard', 'dvnl-family-recipe-book' ),
 							),
 						),
 					),
 				),
 			),
 			array(
-				'id'			=> 'dvnl_family_recipe_book_recipe_timings',
-				'title'			=> __( 'Recipe Timings', 'dvnl-family-recipe-book' ),
-				'callback'		=> array( $this, 'render_recipe_metabox_templates' ),
-				'screen'		=> 'dvnl_recipes',
-				'context'		=> 'normal',
-				'priority'		=> 'high',
+				'id'            => 'dvnl_family_recipe_book_recipe_timings',
+				'title'         => __( 'Recipe Timings', 'dvnl-family-recipe-book' ),
+				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
+				'screen'        => 'dvnl_recipes',
+				'context'       => 'normal',
+				'priority'      => 'high',
 				'callback_args' => array(
-					'nonce' => 'dvnl_recipe_timings_nonce',
-					'fields'=> array(
+					'nonce'  => 'dvnl_recipe_timings_nonce',
+					'fields' => array(
 						array(
-							'id' => 'dvnl_prep_time',
+							'id'    => 'dvnl_prep_time',
 							'label' => __( 'Prep Time', 'dvnl-family-recipe-book' ),
-							'type' => 'number',
+							'type'  => 'number',
 						),
 						array(
-							'id' => 'dvnl_cook_time',
+							'id'    => 'dvnl_cook_time',
 							'label' => __( 'Cook Time', 'dvnl-family-recipe-book' ),
-							'type' => 'number',
+							'type'  => 'number',
 						),
 						array(
-							'id' => 'dvnl_rest_time',
+							'id'    => 'dvnl_rest_time',
 							'label' => __( 'Rest Time', 'dvnl-family-recipe-book' ),
-							'type' => 'number',
+							'type'  => 'number',
 						),
 						array(
-							'id' => 'dvnl_total_time',
+							'id'    => 'dvnl_total_time',
 							'label' => __( 'Total Time', 'dvnl-family-recipe-book' ),
-							'type' => 'number',
+							'type'  => 'number',
 						),
 					),
 				),
 			),
 			array(
 				'id'            => 'dvnl_family_recipe_book_recipe_ingredients',
-				'title'         => __( 'Recipe Ingredients', 'dvnl-family-recipe-book' ),
+				'title'         => __( 'Ingredients', 'dvnl-family-recipe-book' ),
 				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
 				'screen'        => 'dvnl_recipes',
 				'context'       => 'normal',
@@ -113,7 +122,93 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 							'type'  => 'textarea',
 						),
 					),
-					//'template' => 'partials/dvnl-family-recipe-book-recipe-ingredients-metabox.php',
+					// 'template' => 'partials/dvnl-family-recipe-book-recipe-ingredients-metabox.php',
+				),
+			),
+			array(
+				'id'            => 'dvnl_family_recipe_book_recipe_instructions',
+				'title'         => __( 'Instructions', 'dvnl-family-recipe-book' ),
+				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
+				'screen'        => 'dvnl_recipes',
+				'context'       => 'normal',
+				'priority'      => 'high',
+				'callback_args' => array(
+					'nonce' => 'dvnl_recipe_instructions_nonce',
+					'fields' => array(
+						array(
+							'id'    => 'dvnl_instructions',
+							'label' => __( 'Instructions', 'dvnl-family-recipe-book' ),
+							'type'  => 'textarea',
+						),
+					),
+					// 'template' => 'partials/dvnl-family-recipe-book-recipe-instructions-metabox.php',
+				),
+			),
+			array(
+				'id'            => 'dvnl_family_recipe_book_recipe_nutrition',
+				'title'         => __( 'Nutrition', 'dvnl-family-recipe-book' ),
+				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
+				'screen'        => 'dvnl_recipes',
+				'context'       => 'normal',
+				'priority'      => 'high',
+				'callback_args' => array(
+					'nonce' => 'dvnl_recipe_nutrition_nonce',
+					'fields' => array(
+						array(
+							'id'    => 'dvnl_protein',
+							'label' => __( 'Protein', 'dvnl-family-recipe-book' ),
+							'type'  => 'text',
+						),
+						array(
+							'id'    => 'dvnl_carbs',
+							'label' => __( 'Carbohydrates', 'dvnl-family-recipe-book' ),
+							'type'  => 'text',
+						),
+						array(
+							'id'    => 'dvnl_fat',
+							'label' => __( 'Fat', 'dvnl-family-recipe-book' ),
+							'type'  => 'text',
+						),
+						array(
+							'id'	=> 'dvnl_total_energy',
+							'label' => __( 'Total Energy', 'dvnl-family-recipe-book' ),
+							'type'	=> 'text',
+						),
+						array(
+							'id'    => 'dvnl_cholesterol',
+							'label' => __( 'Cholesterol', 'dvnl-family-recipe-book' ),
+							'type'  => 'text',
+						),
+						array(
+							'id'    => 'dvnl_sodium',
+							'label' => __( 'Sodium', 'dvnl-family-recipe-book' ),
+							'type'  => 'text',
+						),
+						array(
+							'id'    => 'dvnl_fibre',
+							'label' => __( 'Fibre', 'dvnl-family-recipe-book' ),
+							'type'  => 'text',
+						),
+					),
+					// 'template' => 'partials/dvnl-family-recipe-book-recipe-nutrition-metabox.php',
+				),
+			),
+			array(
+				'id'			=> 'dvnl_family_recipe_book_recipe_notes',
+				'title'			=> __( 'Notes', 'dvnl-family-recipe-book' ),
+				'callback'		=> array( $this, 'render_recipe_metabox_templates' ),
+				'screen'		=> 'dvnl_recipes',
+				'context'		=> 'normal',
+				'priority'		=> 'high',
+				'callback_args'	=> array(
+					'nonce'		=> 'dvnl_recipe_notes_nonce',
+					'fields'	=> array(
+						array(
+							'id'	=> 'dvnl_notes',
+							'label'	=> __( 'Notes', 'dvnl-family-recipe-book' ),
+							'type'	=> 'textarea',
+						),
+					),
 				),
 			),
 		);
@@ -127,7 +222,7 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	/**
 	 * Register a single metabox.
 	 *
-	 * @param array $args The metabox arguments.
+	 * @param array $values The metabox arguments.
 	 * @return void
 	 */
 	private function register_single_metabox( $values ) {
@@ -137,6 +232,8 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	/**
 	 * Render the recipe details metabox.
 	 *
+     * @param         WP_Post $post The post object.
+     * @param array   $metabox The metabox arguments.
 	 * @return void
 	 */
 	public function render_recipe_metabox_templates( $post, $metabox ) {
@@ -146,15 +243,18 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 		}
 
 		echo '<div class="dvnl-recipes metabox">';
-			foreach ( $metabox['args']['fields'] as $field ) {
-				load_template( plugin_dir_path( __FILE__ ) . 'partials/dvnl-family-recipe-book-recipe-metabox.php', false, array( 'nonce' => $metabox['args']['nonce'], 'field' => $field ) );
-			}
+		foreach ( $metabox['args']['fields'] as $field ) {
+			load_template( plugin_dir_path( __FILE__ ) . 'partials/dvnl-family-recipe-book-recipe-metabox.php', false, array( 'nonce' => $metabox['args']['nonce'], 'field' => $field ) );
+		}
 		echo '</div>';
 
 	}
 
 	/**
 	 * Generic method for saving date in the recipe metaboxes.
+     *
+     * @param int $post_id The post ID.
+     * @return void
 	 */
 	public function save_recipe_metaboxes( $post_id ) {
 		$field_args = array(
@@ -182,6 +282,10 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 
 	/**
 	 * Save the recipe details metabox.
+     *
+     * @param int   $post_id The post ID.
+     * @param array $args The metabox arguments.
+     * @return void
 	 */
 	public function save_single_metabox( $post_id, $args ) {
 
