@@ -1,0 +1,25 @@
+{
+    "name": "devnel/family-recipe-book",
+    "description": "Family Recipe Book",
+    "autoload": {
+        "psr-4": {
+            "Devnel\\FamilyRecipeBook\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kyle Nel",
+            "email": "22053773+kdevnel@users.noreply.github.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*",
+        "wp-coding-standards/wpcs": "^2.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+    }
+}

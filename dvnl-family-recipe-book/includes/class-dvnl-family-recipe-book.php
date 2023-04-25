@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -70,7 +69,7 @@ class Dvnl_Family_Recipe_Book {
 		if ( defined( 'DVNL_FAMILY_RECIPE_BOOK_VERSION' ) ) {
 			$this->version = DVNL_FAMILY_RECIPE_BOOK_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '2.0.0';
 		}
 		$this->plugin_name = 'dvnl-family-recipe-book';
 
@@ -122,6 +121,17 @@ class Dvnl_Family_Recipe_Book {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-dvnl-family-recipe-book-public.php';
 
+		/**
+		 * Custom post types
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dvnl-family-recipe-book-post-types.php';
+
+		/**
+		 * Custom post type metaboxes
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-dvnl-family-recipe-book-metaboxes.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-dvnl-family-recipe-book-field-repeater.php';
+
 		$this->loader = new Dvnl_Family_Recipe_Book_Loader();
 
 	}
@@ -157,6 +167,29 @@ class Dvnl_Family_Recipe_Book {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		/**
+		* The problem with the initial activation code is that when the activation hook runs, it's after the init hook has run,
+		* so hooking into init from the activation hook won't do anything.
+		* You don't need to register the CPT within the activation function unless you need rewrite rules to be added
+		* via flush_rewrite_rules() on activation. In that case, you'll want to register the CPT normally, via the
+		* loader on the init hook, and also re-register it within the activation function and
+		* call flush_rewrite_rules() to add the CPT rewrite rules.
+		*
+		* @link https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/issues/261
+		*/
+		$plugin_post_types = new Dvnl_Family_Recipe_Book_Post_Types();
+		$this->loader->add_action( 'init', $plugin_post_types, 'create_custom_post_type', 999 );
+
+		/**
+		 * Register meta field and create metabox
+		 *
+		 * @link https:// code.tutsplus.com/articles/rock-solid-wordpress-30-themes-using-custom-post-types--net-12093
+		 */
+		$plugin_metaboxes = new Dvnl_Family_Recipe_Book_Metaboxes();
+		$this->loader->add_action( 'add_meta_boxes', $plugin_metaboxes, 'create_recipe_metaboxes' );
+		$this->loader->add_action( 'save_post', $plugin_metaboxes, 'save_recipe_metaboxes' );
+		$plugin_field_types = new Dvnl_Family_Recipe_Book_Field_Repeater();
+		$this->loader->add_action( 'admin_init', $plugin_field_types, 'hhs_add_meta_boxes' );
 	}
 
 	/**

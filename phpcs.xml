@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<ruleset name="WooCommerce.com">
+	<description>PHP coding standards for WooCommerce.com.</description>
+	<config name="installed_paths" value="vendor/wp-coding-standards/wpcs/"/>
+
+	<!-- Check for PHP 8.1 -->
+	<!-- <config name="testVersion" value="8.1"/> -->
+
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+
+	<!-- Exclude external libraries used in our code -->
+	<exclude-pattern>*/plugins/wccom-pdf-invoices/mpdf/*</exclude-pattern>
+
+	<!-- Exclude plugins developed by third-parties -->
+
+	<rule ref="WordPress-Core">
+		<!-- called WordPress.WP.PreparedSQL prior to WPCS 2.0, WCCOM has never implemented this rule -->
+		<exclude name="WordPress.DB.PreparedSQL.NotPrepared"/>
+		<exclude name="WordPress.DB.PreparedSQL.InterpolatedNotPrepared"/>
+
+		<!-- added to Core ruleset in 2.2.0, but we don't implement it yet (some would be pretty easy to fix) -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+		<exclude name="WordPress.PHP.DisallowShortTernary"/>
+		<exclude name="WordPress.DateTime.RestrictedFunctions.date_date"/>
+		<exclude name="WordPress.DateTime.CurrentTimeTimestamp"/>
+	</rule>
+
+	<rule ref="WordPress-Extra">
+		<!-- Rules that we have decided not to implemnt -->
+		<exclude name="PEAR.Files.IncludingFile.BracketsNotRequired"/>
+		<exclude name="Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace"/>
+		<exclude name="Generic.Formatting.MultipleStatementAlignment"/>
+
+		<!-- added in WPCS 1.0 but we've not implemented everywhere yet (some would be pretty easy to fix) -->
+		<exclude name="WordPress.Security.SafeRedirect"/>
+		<exclude name="WordPress.WP.EnqueuedResourceParameters"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.strip_tags_strip_tags"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.rand_rand"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.rand_mt_rand"/>
+		<exclude name="WordPress.WP.PostsPerPage"/>
+
+		<!-- renamed from WordPress.XSS.EscapeOutput.* in WPCS 1.0, we're still a long way from implementing -->
+		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped"/>
+		<exclude name="WordPress.Security.EscapeOutput.UnsafePrintingFunction"/>
+
+		<!-- moved to WordPress-Extra from WordPress-Docs in WPCS 1.1.0 but we're not quite ready to implement -->
+		<exclude name="Squiz.PHP.CommentedOutCode"/>
+
+		<!-- replaced Generic.Files.OneClassPerFile.MultipleFound in WPCS 2.0-RC1, requries work to include -->
+		<exclude name="Generic.Files.OneObjectStructurePerFile"/>
+
+		<!-- called WordPress.CSRF.NonceVerification.NoNonceVerification prior to WPCS 2.0, requires work to include -->
+		<exclude name="WordPress.Security.NonceVerification.Recommended"/>
+		<exclude name="WordPress.Security.NonceVerification.Missing"/>
+
+		<!-- replaced Squiz.Scope.MemberVarScope.Missing in WPCS 2.0, requires work to include -->
+		<exclude name="PSR2.Classes.PropertyDeclaration"/>
+
+		<!-- replaced WordPress.Variables.GlobalVariables.OverrideProhibited in WPCS 2.0, requires work to include -->
+		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
+
+		<!-- Other rules that need to be fixed manually and will require more work to include, since WPCS 0.14.3 -->
+		<exclude name="WordPress.PHP.StrictComparisons.LooseComparison"/>
+		<exclude name="Squiz.PHP.DisallowMultipleAssignments.Found"/>
+		<exclude name="WordPress.WP.I18n.MissingTranslatorsComment"/>
+		<exclude name="WordPress.PHP.StrictInArray.MissingTrueStrict"/>
+		<exclude name="WordPress.CodeAnalysis.AssignmentInCondition.Found"/>
+		<exclude name="Squiz.Scope.MethodScope.Missing"/>
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.json_encode_json_encode"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.urlencode_urlencode"/>
+		<exclude name="WordPress.DB.PreparedSQLPlaceholders.QuotedSimplePlaceholder"/>
+		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_setopt"/>
+		<exclude name="Squiz.Operators.ValidLogicalOperators.NotAllowed"/>
+		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedScript"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_file_get_contents"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_fopen"/>
+		<exclude name="WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition"/>
+		<exclude name="Generic.Strings.UnnecessaryStringConcat.Found"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.parse_url_parse_url"/>
+		<exclude name="WordPress.WP.DiscouragedFunctions.wp_reset_query_wp_reset_query"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_fclose"/>
+		<exclude name="WordPress.WP.DiscouragedFunctions.query_posts_query_posts"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode"/>
+		<exclude name="Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode"/>
+		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_ini_set"/>
+		<exclude name="WordPress.PHP.RestrictedPHPFunctions.create_function_create_function"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_exec"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_init"/>
+		<exclude name="Squiz.PHP.DisallowSizeFunctionsInLoops.Found"/>
+		<exclude name="Squiz.Operators.IncrementDecrementUsage.Found"/>
+		<exclude name="WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQuery"/>
+		<exclude name="WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare"/>
+		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_trigger_error"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_close"/>
+		<exclude name="Generic.Classes.DuplicateClassName.Found"/>
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
+	</rule>
+
+	<!-- Run against the PHPCompatibilityWP ruleset -->
+	<rule ref="PHPCompatibilityWP"/>
+</ruleset>
