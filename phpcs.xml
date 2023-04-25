@@ -101,6 +101,7 @@
 		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_trigger_error"/>
 		<exclude name="WordPress.WP.AlternativeFunctions.curl_curl_close"/>
 		<exclude name="Generic.Classes.DuplicateClassName.Found"/>
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
 	</rule>
 
 	<!-- Run against the PHPCompatibilityWP ruleset -->
