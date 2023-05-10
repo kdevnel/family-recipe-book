@@ -188,8 +188,9 @@ class Dvnl_Family_Recipe_Book {
 		$plugin_metaboxes = new Dvnl_Family_Recipe_Book_Metaboxes();
 		$this->loader->add_action( 'add_meta_boxes', $plugin_metaboxes, 'create_recipe_metaboxes' );
 		$this->loader->add_action( 'save_post', $plugin_metaboxes, 'save_recipe_metaboxes' );
-		$plugin_field_types = new Dvnl_Family_Recipe_Book_Field_Repeater();
-		$this->loader->add_action( 'admin_init', $plugin_field_types, 'hhs_add_meta_boxes' );
+        // temporary repeater field code
+		// $plugin_field_types = new Dvnl_Family_Recipe_Book_Field_Repeater();
+		// $this->loader->add_action( 'admin_init', $plugin_field_types, 'hhs_add_meta_boxes' );
 	}
 
 	/**

@@ -20,6 +20,41 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	 */
 	public function create_recipe_metaboxes() {
 		$metabox_args = array(
+            array(
+                'id'  => 'dvnl_family_recipe_book_recipe_repeater_test',
+                'title'  => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
+                'callback'  => array( $this, 'render_recipe_metabox_repeater' ),
+                'screen'  => 'dvnl_recipes',
+                'context'  => 'normal',
+                'priority'  => 'high',
+                'callback_args'  => array(
+                    'nonce'  => 'dvnl_recipe_repeater_test_nonce',
+                    'fields'  => array(
+                        array(
+                            'id'  => 'dvnl_recipe_repeater_test',
+                            'label'  => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
+                            'type'  => 'repeater',
+                            'options'  => array(
+                                array(
+                                    'id'  => 'dvnl_recipe_repeater_test_text',
+                                    'label'  => __( 'Text', 'dvnl-family-recipe-book' ),
+                                    'type'  => 'text',
+                                ),
+                                array(
+                                    'id'  => 'dvnl_recipe_repeater_test_select',
+                                    'label'  => __( 'Select', 'dvnl-family-recipe-book' ),
+                                    'type'  => 'select',
+                                    'options'  => array(
+                                        'option_one'  => __( 'Option One', 'dvnl-family-recipe-book' ),
+                                        'option_two'  => __( 'Option Two', 'dvnl-family-recipe-book' ),
+                                        'option_three'  => __( 'Option Three', 'dvnl-family-recipe-book' ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
 			array(
 				'id'            => 'dvnl_family_recipe_book_recipe_details',
 				'title'         => __( 'Recipe Details', 'dvnl-family-recipe-book' ),
@@ -226,11 +261,15 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	 * @return void
 	 */
 	private function register_single_metabox( $values ) {
+        if ( $values['id'] === 'dvnl_family_recipe_book_recipe_repeater_test' ) {
+            $this->render_recipe_metabox_repeater( $values, null );
+            return;
+        }
 		add_meta_box( $values['id'], $values['title'], $values['callback'], $values['screen'], $values['context'], $values['priority'], $values['callback_args'] );
 	}
 
 	/**
-	 * Render the recipe details metabox.
+	 * Render the recipe metaboxes dynamically.
 	 *
      * @param         WP_Post $post The post object.
      * @param array   $metabox The metabox arguments.
@@ -249,6 +288,12 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 		echo '</div>';
 
 	}
+
+    public function render_recipe_metabox_repeater( $post, $metabox ) {
+        require_once plugin_dir_path( __FILE__ ) . 'partials/class-dvnl-family-recipe-book-field-repeater.php';
+        $repeater = new Dvnl_Family_Recipe_Book_Field_Repeater();
+        $repeater->dvnl_add_meta_boxes();
+    }
 
 	/**
 	 * Generic method for saving date in the recipe metaboxes.

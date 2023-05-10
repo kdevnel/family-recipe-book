@@ -8,8 +8,8 @@
  * @package    Dvnl_Family_Recipe_Book
  * @subpackage Dvnl_Family_Recipe_Book/admin
  */
-class hhs_Family_Recipe_Book_Field_Repeater {
-    function hhs_get_sample_options() {
+class Dvnl_Family_Recipe_Book_Field_Repeater {
+    function dvnl_get_sample_options() {
         $options = array (
             'Option 1' => 'option1',
             'Option 2' => 'option2',
@@ -20,17 +20,17 @@ class hhs_Family_Recipe_Book_Field_Repeater {
         return $options;
     }
 
-    function hhs_add_meta_boxes() {
-        add_meta_box( 'repeatable-fields', 'Repeatable Fields', array( $this, 'hhs_repeatable_meta_box_display' ), 'dvnl_recipes', 'normal', 'default');
+    function dvnl_add_meta_boxes() {
+        add_meta_box( 'repeatable-fields', 'Repeatable Fields', array( $this, 'dvnl_repeatable_meta_box_display' ), 'dvnl_recipes', 'normal', 'default');
     }
 
-    function hhs_repeatable_meta_box_display() {
+    function dvnl_repeatable_meta_box_display() {
         global $post;
 
         $repeatable_fields = get_post_meta($post->ID, 'repeatable_fields', true);
-        $options = $this->hhs_get_sample_options();
+        $options = $this->dvnl_get_sample_options();
 
-        wp_nonce_field( 'hhs_repeatable_meta_box_nonce', 'hhs_repeatable_meta_box_nonce' );
+        wp_nonce_field( 'dvnl_repeatable_meta_box_nonce', 'dvnl_repeatable_meta_box_nonce' );
         ?>
         <script type="text/javascript">
         jQuery(document).ready(function( $ ){
@@ -124,11 +124,11 @@ class hhs_Family_Recipe_Book_Field_Repeater {
         <?php
     }
 
-    // add_action('save_post', 'hhs_repeatable_meta_box_save');
+    // add_action('save_post', 'dvnl_repeatable_meta_box_save');
 
-    function hhs_repeatable_meta_box_save($post_id) {
-        if ( ! isset( $_POST['hhs_repeatable_meta_box_nonce'] ) ||
-        ! wp_verify_nonce( $_POST['hhs_repeatable_meta_box_nonce'], 'hhs_repeatable_meta_box_nonce' ) )
+    function dvnl_repeatable_meta_box_save($post_id) {
+        if ( ! isset( $_POST['dvnl_repeatable_meta_box_nonce'] ) ||
+        ! wp_verify_nonce( $_POST['dvnl_repeatable_meta_box_nonce'], 'dvnl_repeatable_meta_box_nonce' ) )
             return;
 
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -139,7 +139,7 @@ class hhs_Family_Recipe_Book_Field_Repeater {
 
         $old = get_post_meta($post_id, 'repeatable_fields', true);
         $new = array();
-        $options = $this->hhs_get_sample_options();
+        $options = $this->dvnl_get_sample_options();
 
         $names = $_POST['name'];
         $selects = $_POST['select'];
