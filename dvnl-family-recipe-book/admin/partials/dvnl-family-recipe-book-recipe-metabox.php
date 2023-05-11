@@ -10,16 +10,14 @@
  */
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/class-dvnl-family-recipe-book-custom-fields.php';
 $custom_fields = new Dvnl_Family_Recipe_Book_Custom_Fields();
-//print_r( $args );
 $nonce = $args['nonce'];
-// $id = $args['field']['id'];
+$id = $args['field']['id'];
 $label = $args['field']['label'];
 $type = $args['field']['type'];
 ?>
 
-<?php wp_nonce_field( 'dvnl_recipe_submit', $nonce ); ?>
+
 <p class="meta-options dvnl-recipes field">
-	<label for="<?php echo $id ?>"><?php echo $label ?></label>
 	<?php
     switch ( $type ) {
         case 'select':

@@ -186,9 +186,9 @@ class Dvnl_Family_Recipe_Book {
 		 * @link https:// code.tutsplus.com/articles/rock-solid-wordpress-30-themes-using-custom-post-types--net-12093
 		 */
 		$plugin_metaboxes = new Dvnl_Family_Recipe_Book_Metaboxes();
-		$this->loader->add_action( 'add_meta_boxes', $plugin_metaboxes, 'create_recipe_metaboxes' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_metaboxes, 'register_recipe_metaboxes' );
 		$this->loader->add_action( 'save_post', $plugin_metaboxes, 'save_recipe_metaboxes' );
-        // temporary repeater field code
+        // TODO: remove temporary repeater field code
 		// $plugin_field_types = new Dvnl_Family_Recipe_Book_Field_Repeater();
 		// $this->loader->add_action( 'admin_init', $plugin_field_types, 'hhs_add_meta_boxes' );
 	}

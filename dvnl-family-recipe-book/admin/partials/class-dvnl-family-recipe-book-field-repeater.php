@@ -9,6 +9,7 @@
  * @subpackage Dvnl_Family_Recipe_Book/admin
  */
 class Dvnl_Family_Recipe_Book_Field_Repeater {
+
     function dvnl_get_sample_options() {
         $options = array (
             'Option 1' => 'option1',
@@ -20,17 +21,12 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
         return $options;
     }
 
-    function dvnl_add_meta_boxes() {
-        add_meta_box( 'repeatable-fields', 'Repeatable Fields', array( $this, 'dvnl_repeatable_meta_box_display' ), 'dvnl_recipes', 'normal', 'default');
-    }
-
     function dvnl_repeatable_meta_box_display() {
         global $post;
 
         $repeatable_fields = get_post_meta($post->ID, 'repeatable_fields', true);
         $options = $this->dvnl_get_sample_options();
 
-        wp_nonce_field( 'dvnl_repeatable_meta_box_nonce', 'dvnl_repeatable_meta_box_nonce' );
         ?>
         <script type="text/javascript">
         jQuery(document).ready(function( $ ){
@@ -124,7 +120,7 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
         <?php
     }
 
-    // add_action('save_post', 'dvnl_repeatable_meta_box_save');
+    // TODO: implement save add_action('save_post', 'dvnl_repeatable_meta_box_save');
 
     function dvnl_repeatable_meta_box_save($post_id) {
         if ( ! isset( $_POST['dvnl_repeatable_meta_box_nonce'] ) ||

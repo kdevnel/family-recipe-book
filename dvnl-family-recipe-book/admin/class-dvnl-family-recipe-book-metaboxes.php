@@ -13,17 +13,18 @@
  * Metabox and custom field configurations class.
  */
 class Dvnl_Family_Recipe_Book_Metaboxes {
-	/**
-	 * Create a details metabox for the recipe post type.
-	 *
-	 * @return void
-	 */
-	public function create_recipe_metaboxes() {
-		$metabox_args = array(
+    /**
+     * definition of the recipe metaboxes
+     *
+     * @return array the metaboxes to render
+     */
+    private function get_recipe_metaboxes() {
+        $metabox_args = array(
             array(
                 'id'  => 'dvnl_family_recipe_book_recipe_repeater_test',
                 'title'  => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
-                'callback'  => array( $this, 'render_recipe_metabox_repeater' ),
+                // 'callback'  => array( $this, 'render_recipe_metabox_repeater' ),
+                'callback'      => array( $this, 'render_recipe_metabox_templates' ),
                 'screen'  => 'dvnl_recipes',
                 'context'  => 'normal',
                 'priority'  => 'high',
@@ -54,6 +55,7 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
                         ),
                     ),
                 ),
+                'template'  => 'partials/dvnl-family-recipe-book-field-repeater.php',
             ),
 			array(
 				'id'            => 'dvnl_family_recipe_book_recipe_details',
@@ -247,9 +249,17 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 				),
 			),
 		);
+        return $metabox_args;
+    }
 
-		// loop through and register each metabox.
-		foreach ( $metabox_args as $args ) {
+	/**
+	 *
+     * Register all metaboxes for the recipe post type.
+	 *
+	 * @return void
+	 */
+	public function register_recipe_metaboxes() {
+		foreach ( $this->get_recipe_metaboxes() as $args ) {
 			$this->register_single_metabox( $args );
 		}
 	}
@@ -261,10 +271,6 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	 * @return void
 	 */
 	private function register_single_metabox( $values ) {
-        if ( $values['id'] === 'dvnl_family_recipe_book_recipe_repeater_test' ) {
-            $this->render_recipe_metabox_repeater( $values, null );
-            return;
-        }
 		add_meta_box( $values['id'], $values['title'], $values['callback'], $values['screen'], $values['context'], $values['priority'], $values['callback_args'] );
 	}
 
@@ -282,18 +288,13 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 		}
 
 		echo '<div class="dvnl-recipes metabox">';
+        wp_nonce_field( 'dvnl_recipe_submit', $metabox['args'][ 'nonce' ] );
 		foreach ( $metabox['args']['fields'] as $field ) {
 			load_template( plugin_dir_path( __FILE__ ) . 'partials/dvnl-family-recipe-book-recipe-metabox.php', false, array( 'nonce' => $metabox['args']['nonce'], 'field' => $field ) );
 		}
 		echo '</div>';
 
 	}
-
-    public function render_recipe_metabox_repeater( $post, $metabox ) {
-        require_once plugin_dir_path( __FILE__ ) . 'partials/class-dvnl-family-recipe-book-field-repeater.php';
-        $repeater = new Dvnl_Family_Recipe_Book_Field_Repeater();
-        $repeater->dvnl_add_meta_boxes();
-    }
 
 	/**
 	 * Generic method for saving date in the recipe metaboxes.
@@ -302,27 +303,9 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
      * @return void
 	 */
 	public function save_recipe_metaboxes( $post_id ) {
-		$field_args = array(
-			array(
-				'nonce'  => 'dvnl_recipe_details_nonce',
-				'fields' => array(
-					'dvnl_original_author',
-					'dvnl_published_date',
-					'dvnl_cost',
-					'dvnl_url',
-				),
-			),
-			array(
-				'nonce'  => 'dvnl_recipe_ingredients_nonce',
-				'fields' => array(
-					'dvnl_ingredients',
-				),
-			),
-		);
-
-		foreach ( $field_args as $args ) {
+        foreach ( $this->get_recipe_metaboxes() as $args ) {
 			$this->save_single_metabox( $post_id, $args );
-		};
+		}
 	}
 
 	/**
@@ -333,13 +316,13 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
      * @return void
 	 */
 	public function save_single_metabox( $post_id, $args ) {
-
+        $nonce = $args['callback_args']['nonce'];
 		// verify nonce.
-		if ( ! isset( $_POST[ $args['nonce'] ] ) ) {
+		if ( ! isset( $_POST[ $nonce] ) ) {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $args['nonce'] ] ), 'dvnl_recipe_submit' ) ) {
+		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $nonce ] ), 'dvnl_recipe_submit' ) ) {
 			return;
 		}
 
@@ -353,10 +336,11 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 			$post_id = $parent_id;
 		}
 
+        $fields = $args['callback_args']['fields'];
 		// save the data.
-		foreach ( $args['fields'] as $field ) {
-			if ( array_key_exists( $field, $_POST ) ) {
-				update_post_meta( $post_id, $field, sanitize_text_field( wp_unslash( $_POST[ $field ] ) ) );
+		foreach ( $fields as $field ) {
+			if ( array_key_exists( $field['id'], $_POST ) ) {
+				update_post_meta( $post_id, $field['id'], sanitize_text_field( wp_unslash( $_POST[ $field['id'] ] ) ) );
 			}
 		}
 
