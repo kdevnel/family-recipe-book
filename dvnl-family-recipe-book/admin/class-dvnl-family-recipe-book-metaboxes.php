@@ -21,7 +21,7 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
     private function get_recipe_metaboxes() {
         $metabox_args = array(
             array(
-                'id'  => 'dvnl_family_recipe_book_recipe_repeater_test',
+                'id'  => 'dvnl_family_recipe_book_recipe_repeater_metabox_test',
                 'title'  => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
                 // 'callback'  => array( $this, 'render_recipe_metabox_repeater' ),
                 'callback'      => array( $this, 'render_recipe_metabox_templates' ),
@@ -32,7 +32,7 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
                     'nonce'  => 'dvnl_recipe_repeater_test_nonce',
                     'fields'  => array(
                         array(
-                            'id'  => 'dvnl_recipe_repeater_test',
+                            'id'  => 'dvnl_recipe_repeater_field_test',
                             'label'  => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
                             'type'  => 'repeater',
                             'options'  => array(
@@ -318,17 +318,17 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	public function save_single_metabox( $post_id, $args ) {
         $nonce = $args['callback_args']['nonce'];
 		// verify nonce.
-		if ( ! isset( $_POST[ $nonce] ) ) {
-			return;
-		}
-
-		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $nonce ] ), 'dvnl_recipe_submit' ) ) {
+		if ( ! isset( $_POST[ $nonce] ) || ! wp_verify_nonce( sanitize_key( $_POST[ $nonce ] ), 'dvnl_recipe_submit' ) ) {
 			return;
 		}
 
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
+
+        if ( !current_user_can('edit_post', $post_id) ) {
+            return;
+        }
 
 		// verify not a revision.
 		$parent_id = wp_is_post_revision( $post_id );

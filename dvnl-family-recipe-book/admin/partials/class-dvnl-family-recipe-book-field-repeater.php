@@ -9,6 +9,19 @@
  * @subpackage Dvnl_Family_Recipe_Book/admin
  */
 class Dvnl_Family_Recipe_Book_Field_Repeater {
+    private $field;
+    private $id;
+    private $type;
+    private $label;
+    private $options;
+
+    public function __construct( $field_args ) {
+        $this->field = $field_args;
+        $this->id = $field_args['id'];
+        $this->type = $field_args['type'];
+        $this->label = $field_args['label'];
+        isset( $field_args['options'] ) ? $this->options = $field_args['options'] : null;
+    }
 
     function dvnl_get_sample_options() {
         $options = array (
@@ -24,7 +37,12 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
     function dvnl_repeatable_meta_box_display() {
         global $post;
 
-        $repeatable_fields = get_post_meta($post->ID, 'repeatable_fields', true);
+        echo '<pre>';
+        var_dump($this->field['options']);
+        echo '</pre>';
+        // return;
+
+        $repeatable_fields = get_post_meta($post->ID, $this->id, true);
         $options = $this->dvnl_get_sample_options();
 
         ?>
@@ -81,11 +99,11 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
         // show a blank one
         ?>
         <tr>
-            <td><input type="text" class="widefat" name="name[]" /></td>
+            <!-- <td><input type="text" class="widefat" name="name[]" /></td>
 
             <td>
                 <select name="select[]">
-                <?php foreach ( $options as $label => $value ) : ?>
+                <?php foreach ( $this->options as $label => $value ) : ?>
                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
                 <?php endforeach; ?>
                 </select>
@@ -93,7 +111,14 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
 
             <td><input type="text" class="widefat" name="url[]" value="http://" /></td>
 
-            <td><a class="button remove-row" href="#">Remove</a></td>
+            <td><a class="button remove-row" href="#">Remove</a></td> -->
+
+            <?php
+            // TODO: Implement a dynamic field display system
+            foreach ( $this->options as $sub_field ) {
+                load_template( plugin_dir_path( __FILE__ ) . 'dvnl-family-recipe-book-recipe-metabox.php', false, array( 'field' => $sub_field ) );
+            }
+            ?>
         </tr>
         <?php endif; ?>
 
@@ -103,7 +128,7 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
 
             <td>
                 <select name="select[]">
-                <?php foreach ( $options as $label => $value ) : ?>
+                <?php foreach ( $this->options as $label => $value ) : ?>
                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
                 <?php endforeach; ?>
                 </select>

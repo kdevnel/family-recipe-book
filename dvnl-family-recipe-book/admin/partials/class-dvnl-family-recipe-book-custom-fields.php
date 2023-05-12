@@ -2,44 +2,47 @@
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/class-dvnl-family-recipe-book-field-repeater.php';
 
 class Dvnl_Family_Recipe_Book_Custom_Fields {
+    private $field;
+    private $id;
+    private $type;
+    private $label;
+    private $options;
 
-    public function render_select_field( $args ) {
-        $id = $args['field']['id'];
-        $options = $args['field']['options'];
-        $label = $args['field']['label'];
+    public function __construct( $args ) {
+        $this->field = $args['field'];
+        $this->id = $args['field']['id'];
+        $this->type = $args['field']['type'];
+        $this->label = $args['field']['label'];
+        isset( $args['field']['options'] ) ? $this->options = $args['field']['options'] : null;
+    }
+
+    public function render_field_select() {
         ?>
-        <label for="<?php echo $id ?>"><?php echo $label ?></label>
+        <label for="<?php echo $this->id ?>"><?php echo $this->label ?></label>
         <select
-            id="<?php echo $id ?>"
-            name="<?php echo $id ?>">
-            <?php foreach ( $options as $key => $value ) : ?>
-                <option value="<?php echo $key ?>" <?php selected( esc_attr( get_post_meta( get_the_ID(), $id, true ) ), $key ); ?>><?php echo $value ?></option>
+            id="<?php echo $this->id ?>"
+            name="<?php echo $this->id ?>">
+            <?php foreach ( $this->options as $key => $value ) : ?>
+                <option value="<?php echo $key ?>" <?php selected( esc_attr( get_post_meta( get_the_ID(), $this->id, true ) ), $key ); ?>><?php echo $value ?></option>
             <?php endforeach; ?>
         </select>
         <?php
     }
 
-    public function render_text_field( $args ) {
-        $id = $args['field']['id'];
-        $type = $args['field']['type'];
-        $label = $args['field']['label'];
+    public function render_field_text() {
         ?>
-        <label for="<?php echo $id ?>"><?php echo $label ?></label>
+        <label for="<?php echo $this->id ?>"><?php echo $this->label ?></label>
         <input
-            id="<?php echo $id ?>"
-            type="<?php echo $type ?>"
-            name="<?php echo $id ?>"
-            value="<?php echo esc_attr( get_post_meta( get_the_ID(), $id, true ) ); ?>">
+            id="<?php echo $this->id ?>"
+            type="<?php echo $this->type ?>"
+            name="<?php echo $this->id ?>"
+            value="<?php echo esc_attr( get_post_meta( get_the_ID(), $this->id, true ) ); ?>">
         <?php
     }
 
-    public function render_repeater_field( $args ) {
-        $id = $args['field']['id'];
-        $label = $args['field']['label'];
-        $type = $args['field']['type'];
-        $options = $args['field']['options'];
-        $repeater = new Dvnl_Family_Recipe_Book_Field_Repeater();
-        $repeater->dvnl_repeatable_meta_box_display( $id, $label, $type, $options );
+    public function render_field_repeater() {
+        $repeater = new Dvnl_Family_Recipe_Book_Field_Repeater( $this->field );
+        $repeater->dvnl_repeatable_meta_box_display();
     }
 
 }
