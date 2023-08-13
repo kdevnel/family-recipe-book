@@ -38,12 +38,12 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
                             'options'  => array(
                                 array(
                                     'id'  => 'dvnl_recipe_repeater_test_text',
-                                    'label'  => __( 'Text', 'dvnl-family-recipe-book' ),
+                                    'label'  => __( 'Text test', 'dvnl-family-recipe-book' ),
                                     'type'  => 'text',
                                 ),
                                 array(
                                     'id'  => 'dvnl_recipe_repeater_test_select',
-                                    'label'  => __( 'Select', 'dvnl-family-recipe-book' ),
+                                    'label'  => __( 'Select test', 'dvnl-family-recipe-book' ),
                                     'type'  => 'select',
                                     'options'  => array(
                                         'option_one'  => __( 'Option One', 'dvnl-family-recipe-book' ),

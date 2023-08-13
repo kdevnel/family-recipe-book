@@ -37,9 +37,9 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
     function dvnl_repeatable_meta_box_display() {
         global $post;
 
-        echo '<pre>';
-        var_dump($this->field['options']);
-        echo '</pre>';
+        // echo '<pre>';
+        // var_dump($this->field['options']);
+        // echo '</pre>';
         // return;
 
         $repeatable_fields = get_post_meta($post->ID, $this->id, true);
@@ -65,61 +65,87 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
         <table id="repeatable-fieldset-one" width="100%">
         <thead>
             <tr>
-                <th width="40%">Name</th>
-                <th width="12%">Select</th>
-                <th width="40%">URL</th>
-                <th width="8%"></th>
+                <?php
+                $table_headers = array();
+                foreach ( $this->options as $sub_field ) { ?>
+                    <th><?php echo $sub_field['label']; ?></th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
         <?php
-
         if ( $repeatable_fields ) :
+            foreach ( $repeatable_fields as $field ) { ?>
+            <tr>
+                <td><input type="text" class="widefat" name="name[]" value="<?php if($field['name'] != '') echo esc_attr( $field['name'] ); ?>" /></td>
 
-        foreach ( $repeatable_fields as $field ) {
-        ?>
-        <tr>
-            <td><input type="text" class="widefat" name="name[]" value="<?php if($field['name'] != '') echo esc_attr( $field['name'] ); ?>" /></td>
+                <td>
+                    <select name="select[]">
+                    <?php foreach ( $options as $label => $value ) : ?>
+                    <option value="<?php echo $value; ?>"<?php selected( $field['select'], $value ); ?>><?php echo $label; ?></option>
+                    <?php endforeach; ?>
+                    </select>
+                </td>
 
-            <td>
-                <select name="select[]">
-                <?php foreach ( $options as $label => $value ) : ?>
-                <option value="<?php echo $value; ?>"<?php selected( $field['select'], $value ); ?>><?php echo $label; ?></option>
-                <?php endforeach; ?>
-                </select>
-            </td>
+                <td><input type="text" class="widefat" name="url[]" value="<?php if ($field['url'] != '') echo esc_attr( $field['url'] ); else echo 'http://'; ?>" /></td>
 
-            <td><input type="text" class="widefat" name="url[]" value="<?php if ($field['url'] != '') echo esc_attr( $field['url'] ); else echo 'http://'; ?>" /></td>
-
-            <td><a class="button remove-row" href="#">Remove</a></td>
-        </tr>
-        <?php
-        }
-        else :
-        // show a blank one
-        ?>
-        <tr>
-            <!-- <td><input type="text" class="widefat" name="name[]" /></td>
-
-            <td>
-                <select name="select[]">
-                <?php foreach ( $this->options as $label => $value ) : ?>
-                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-                <?php endforeach; ?>
-                </select>
-            </td>
-
-            <td><input type="text" class="widefat" name="url[]" value="http://" /></td>
-
-            <td><a class="button remove-row" href="#">Remove</a></td> -->
-
+                <td><a class="button remove-row" href="#">Remove</a></td>
+            </tr>
             <?php
-            // TODO: Implement a dynamic field display system
-            foreach ( $this->options as $sub_field ) {
-                load_template( plugin_dir_path( __FILE__ ) . 'dvnl-family-recipe-book-recipe-metabox.php', false, array( 'field' => $sub_field ) );
             }
+        else :
+            // display a blank repeater field
             ?>
-        </tr>
+            <tr>
+                <!-- <td><input type="text" class="widefat" name="name[]" /></td>
+
+                <td>
+                    <select name="select[]">
+                    <?php foreach ( $this->options as $label => $value ) : ?>
+                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                    <?php endforeach; ?>
+                    </select>
+                </td>
+
+                <td><input type="text" class="widefat" name="url[]" value="http://" /></td>
+
+                <td><a class="button remove-row" href="#">Remove</a></td> -->
+
+                <?php
+                // TODO: Implement a dynamic field display system
+
+                // Generate a foreach loop that creates a table from the options array. Table headings are the label field and then the row content should be the type field.
+                // The type field should be a switch statement that loads a template file based on the type.
+                // The template file should be a function that takes the field as an argument and displays the field.
+                // The template file should be loaded with load_template().
+                // The template file should be located in the admin/partials/ folder.
+                foreach ( $this->options as $sub_field ) { ?>
+                    <td>
+                        <?php
+                        switch ( $sub_field['type'] ) {
+                            case 'text':
+                                echo '<input type="text" class="widefat" name="' . $sub_field['id'] . '[]" />';
+                                break;
+                            case 'select':
+                                echo '<select name="' . $sub_field['id'] . '[]">';
+                                foreach ( $sub_field['options'] as $label => $value ) {
+                                    echo '<option value="' . $value . '">' . $label . '</option>';
+                                }
+                                echo '</select>';
+                                break;
+                            case 'url':
+                                echo '<input type="text" class="widefat" name="' . $sub_field['id'] . '[]" value="http://" />';
+                                break;
+                            case 'button':
+                                echo '<a class="button remove-row" href="#">Remove</a>';
+                                break;
+                            default:
+                                echo 'Error: Field type not found.';
+                        }
+                        ?>
+                    </td>
+            <?php } ?>
+            </tr>
         <?php endif; ?>
 
         <!-- empty hidden one for jQuery -->
