@@ -14,6 +14,7 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
     private $type;
     private $label;
     private $options;
+    private $custom_fields;
 
     public function __construct( $field_args ) {
         $this->field = $field_args;
@@ -21,29 +22,43 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
         $this->type = $field_args['type'];
         $this->label = $field_args['label'];
         isset( $field_args['options'] ) ? $this->options = $field_args['options'] : null;
+
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/class-dvnl-family-recipe-book-repeater-fields.php';
     }
 
-    function dvnl_get_sample_options() {
-        $options = array (
-            'Option 1' => 'option1',
-            'Option 2' => 'option2',
-            'Option 3' => 'option3',
-            'Option 4' => 'option4',
-        );
-
-        return $options;
+    function dvnl_render_blank_repeater_fields() {
+        foreach ( $this->options as $sub_field ) {
+            $repeater_fields = new Dvnl_Family_Recipe_Book_Repeater_Fields( $sub_field );
+            ?>
+            <td>
+                <?php
+                switch ( $sub_field['type'] ) {
+                    case 'text':
+                    case 'url':
+                    case 'date':
+                    case 'number':
+                        $repeater_fields->render_field_repeater_text();
+                        break;
+                    case 'select':
+                        $repeater_fields->render_field_repeater_select();
+                        break;
+                    case 'button':
+                        // echo '<a class="button remove-row" href="#">Remove</a>';
+                        // $repeater_fields->render_field_repeater_button();
+                        echo '<div>Button field not yet implemented.</div>';
+                        break;
+                    default:
+                        echo 'Error: Field type not found.';
+                }
+                ?>
+            </td>
+        <?php }
     }
 
-    function dvnl_repeatable_meta_box_display() {
+    public function dvnl_repeatable_meta_box_display() {
         global $post;
 
-        // echo '<pre>';
-        // var_dump($this->field['options']);
-        // echo '</pre>';
-        // return;
-
         $repeatable_fields = get_post_meta($post->ID, $this->id, true);
-        $options = $this->dvnl_get_sample_options();
 
         ?>
         <script type="text/javascript">
@@ -66,19 +81,22 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
         <thead>
             <tr>
                 <?php
-                $table_headers = array();
+                // $table_headers = array();
                 foreach ( $this->options as $sub_field ) { ?>
                     <th><?php echo $sub_field['label']; ?></th>
                 <?php } ?>
+                    <th></th>
             </tr>
         </thead>
         <tbody>
         <?php
+        // TODO: Handle repeatable fields with data
         if ( $repeatable_fields ) :
             foreach ( $repeatable_fields as $field ) { ?>
             <tr>
-                <td><input type="text" class="widefat" name="name[]" value="<?php if($field['name'] != '') echo esc_attr( $field['name'] ); ?>" /></td>
-
+                <td>
+                    <input type="text" class="widefat" name="name[]" value="<?php if($field['name'] != '') echo esc_attr( $field['name'] ); ?>" />
+                </td>
                 <td>
                     <select name="select[]">
                     <?php foreach ( $options as $label => $value ) : ?>
@@ -97,77 +115,19 @@ class Dvnl_Family_Recipe_Book_Field_Repeater {
             // display a blank repeater field
             ?>
             <tr>
-                <!-- <td><input type="text" class="widefat" name="name[]" /></td>
-
-                <td>
-                    <select name="select[]">
-                    <?php foreach ( $this->options as $label => $value ) : ?>
-                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-                    <?php endforeach; ?>
-                    </select>
-                </td>
-
-                <td><input type="text" class="widefat" name="url[]" value="http://" /></td>
-
-                <td><a class="button remove-row" href="#">Remove</a></td> -->
-
-                <?php
-                // TODO: Implement a dynamic field display system
-
-                // Generate a foreach loop that creates a table from the options array. Table headings are the label field and then the row content should be the type field.
-                // The type field should be a switch statement that loads a template file based on the type.
-                // The template file should be a function that takes the field as an argument and displays the field.
-                // The template file should be loaded with load_template().
-                // The template file should be located in the admin/partials/ folder.
-                foreach ( $this->options as $sub_field ) { ?>
-                    <td>
-                        <?php
-                        switch ( $sub_field['type'] ) {
-                            case 'text':
-                                echo '<input type="text" class="widefat" name="' . $sub_field['id'] . '[]" />';
-                                break;
-                            case 'select':
-                                echo '<select name="' . $sub_field['id'] . '[]">';
-                                foreach ( $sub_field['options'] as $label => $value ) {
-                                    echo '<option value="' . $value . '">' . $label . '</option>';
-                                }
-                                echo '</select>';
-                                break;
-                            case 'url':
-                                echo '<input type="text" class="widefat" name="' . $sub_field['id'] . '[]" value="http://" />';
-                                break;
-                            case 'button':
-                                echo '<a class="button remove-row" href="#">Remove</a>';
-                                break;
-                            default:
-                                echo 'Error: Field type not found.';
-                        }
-                        ?>
-                    </td>
-            <?php } ?>
+                <?php self::dvnl_render_blank_repeater_fields(); ?>
             </tr>
         <?php endif; ?>
 
-        <!-- empty hidden one for jQuery -->
+        <!-- empty hidden repeater for jQuery -->
         <tr class="empty-row screen-reader-text">
-            <td><input type="text" class="widefat" name="name[]" /></td>
-
-            <td>
-                <select name="select[]">
-                <?php foreach ( $this->options as $label => $value ) : ?>
-                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-                <?php endforeach; ?>
-                </select>
-            </td>
-
-            <td><input type="text" class="widefat" name="url[]" value="http://" /></td>
-
+            <?php self::dvnl_render_blank_repeater_fields(); ?>
             <td><a class="button remove-row" href="#">Remove</a></td>
         </tr>
         </tbody>
         </table>
 
-        <p><a id="add-row" class="button" href="#">Add another</a></p>
+        <div><a id="add-row" class="button" href="#">Add another</a></div>
         <?php
     }
 

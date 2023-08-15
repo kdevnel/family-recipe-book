@@ -20,17 +20,28 @@ $type = $args['field']['type'];
 <p class="meta-options dvnl-recipes field">
 	<?php
     switch ( $type ) {
+        case 'text':
+        case 'url':
+        case 'date':
+        case 'number':
+            $custom_fields->render_field_text();
+            break;
         case 'select':
-            return $custom_fields->render_field_select( $args );
+            $custom_fields->render_field_select();
             break;
-
+        case 'textarea':
+            $custom_fields->render_field_textarea();
+            // echo '<div>Textarea field not yet implemented.</div>';
+            break;
+        case 'button':
+            // $custom_fields->render_field_button();
+            echo '<div>Button field not yet implemented.</div>';
+            break;
         case 'repeater':
-            return $custom_fields->render_field_repeater( $args );
+            $custom_fields->render_field_repeater();
             break;
-
         default:
-            return $custom_fields->render_field_text( $args );
-            break;
+            echo 'Field type not found: ' . $type . '.';
     }
 	?>
 </p>

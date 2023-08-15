@@ -20,6 +20,7 @@ class Dvnl_Family_Recipe_Book_Custom_Fields {
         ?>
         <label for="<?php echo $this->id ?>"><?php echo $this->label ?></label>
         <select
+            class="widefat"
             id="<?php echo $this->id ?>"
             name="<?php echo $this->id ?>">
             <?php foreach ( $this->options as $key => $value ) : ?>
@@ -33,6 +34,7 @@ class Dvnl_Family_Recipe_Book_Custom_Fields {
         ?>
         <label for="<?php echo $this->id ?>"><?php echo $this->label ?></label>
         <input
+            class="widefat"
             id="<?php echo $this->id ?>"
             type="<?php echo $this->type ?>"
             name="<?php echo $this->id ?>"
@@ -43,6 +45,19 @@ class Dvnl_Family_Recipe_Book_Custom_Fields {
     public function render_field_repeater() {
         $repeater = new Dvnl_Family_Recipe_Book_Field_Repeater( $this->field );
         $repeater->dvnl_repeatable_meta_box_display();
+    }
+
+    public function render_field_textarea() {
+        ?>
+        <label for="<?php echo $this->id ?>"><?php echo $this->label ?></label>
+        <textarea
+            id="<?php echo $this->id ?>"
+            name="<?php echo $this->id ?>"
+            rows="2"
+            cols="40">
+                <?php echo esc_attr( get_post_meta( get_the_ID(), $this->id, true ) ); ?>
+            </textarea>
+        <?php
     }
 
 }
