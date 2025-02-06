@@ -1,0 +1,36 @@
+---
+description: Naming conventions
+globs: 
+---
+# Naming Conventions
+
+## General Directives
+- Use descriptive, unambiguous names
+- Follow WordPress/WooCommerce naming patterns
+- Use lowercase with hyphens for directory names:
+  - Theme example: `wp-content/themes/my-theme`
+  - Plugin example: `plugins/wccom-plugins/my-plugin`
+
+## PHP Standards
+- Prefix global functions with `dvnl_`
+- Use lowercase with underscores for functions:
+  ```php
+  function dvnl_process_order() {}
+  ```
+- Class names should follow WordPress namespace conventions:
+  ```php
+  class DVNL_Order_Handler {}
+  ```
+
+## React/JavaScript
+- Follow WordPress component naming patterns (PascalCase)
+
+## SCSS/CSS
+- Use BEM-like naming conventions
+- Prefix classes with `dvnl-` for plugin-specific styles:
+  ```scss
+  .dvnl-order-list__item--active {...}
+  ```
+
+## Project-specific Rules
+- Maintain lowercase-with-hyphens for all new additions

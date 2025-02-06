@@ -1,0 +1,36 @@
+---
+description: Architecture of all plugins and features
+globs: 
+---
+# Plugin Architecture and Dependencies
+
+## Plugin Architecture
+
+- Plugin is built using WordPress Plugin Boilerplate as a basis and should continue to follow that structure.
+
+## Project-specific Implementation
+- **Plugins**:
+  - Namespace format: `DVNL\DirectoryName\...`
+- **Theme Development**:
+  - Prefer Gutenberg blocks over shortcodes
+  - Use WooCommerce template overrides
+- **Code Style**:
+  - Support RTL languages in CSS
+
+## Dependencies
+
+- WordPress (latest stable version)
+- Composer for dependency management (when building advanced plugins or themes)
+
+## Core Principles
+- Use WordPress hooks (actions/filters) instead of modifying core files
+- Implement proper theme functions using functions.php
+- Use WordPress's built-in user roles and capabilities system
+- Utilize WordPress's transients API for caching
+- Implement background processing using `wp_cron()`
+- Follow WordPress i18n functions for localization
+- Implement security measures (nonces, data escaping, sanitization)
+- Use `wp_enqueue_script()`/`wp_enqueue_style()` for asset management
+- Implement custom post types/taxonomies when appropriate
+- Use WordPress options API for configuration data
+- Implement pagination with `paginate_links()` 

@@ -1,0 +1,15 @@
+---
+description: Useful things to do when asked to [CHECK CODE]
+globs: 
+---
+
+# Perform linting and code checks
+
+Code linting and checks should be performed when given the [CHECK CODE] shortcode.
+
+- Check all modified files for PHP compliance with the [phpcs.xml](mdc:family-recipe-book/family-recipe-book/family-recipe-book/family-recipe-book/phpcs.xml) file
+- Check all modified files for compliance with WordPress Coding Standards (WPCS)
+- Check all modified files for uses of debug code (particularly dd() and d())
+- Check all modified files for compliance with [.stylelintrc](mdc:family-recipe-book/family-recipe-book/family-recipe-book/family-recipe-book/.stylelintrc)
+- Check all modified files for compliance with [.prettierrc.js](mdc:family-recipe-book/family-recipe-book/family-recipe-book/family-recipe-book/.prettierrc.js)
+- Check all modified files for compliance with [.eslintrc.js](mdc:family-recipe-book/family-recipe-book/family-recipe-book/family-recipe-book/.eslintrc.js)
