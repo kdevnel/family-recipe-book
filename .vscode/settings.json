@@ -11,9 +11,6 @@
         86
     ],
     "git.ignoreLimitWarning": true,
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "[php]": {
         "editor.defaultFormatter": "wongjn.php-sniffer"
     },

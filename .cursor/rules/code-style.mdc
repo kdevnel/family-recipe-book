@@ -1,0 +1,37 @@
+---
+description: Code styles and structures to follow for all code
+globs: 
+---
+# Code Style and Structure
+
+## PHP Standards
+
+- Follow coding standards in this order:
+  1. Custom standards defined in [.phpcs.xml](mdc:family-recipe-book/family-recipe-book/.phpcs.xml)
+  2. WordPress Coding Standards (WPCS)
+- Use proper WordPress prefix for functions and classes
+- Implement WordPress nonce verification
+- Follow WordPress database operations best practices
+- Structure plugin hooks logically
+
+## JavaScript/React Standards
+
+- Write modern ES6+ code following WordPress JS standards
+- Follow WordPress and WooCommerce component patterns
+- Implement proper WordPress and WooCommerce hooks system
+- Structure components using WordPress and WooCommerce conventions
+
+## PHP/WordPress/WooCommerce Best Practices
+- Use strict typing when possible: `declare(strict_types=1);`
+- Utilize WordPress core functions and APIs when available
+- Follow standard directory structures:
+  - File structure matches WordPress theme/plugin conventions
+  - Use lowercase-with-hyphens for directory names
+- Security practices:
+  - WordPress data validation/sanitization
+  - Nonce verification for form submissions
+  - `wpdb` with prepared statements:
+    ```php
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}table WHERE id = %d", $id);
+    ```
+- Database schema changes via `dbDelta()` 

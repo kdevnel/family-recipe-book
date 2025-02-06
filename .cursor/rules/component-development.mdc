@@ -1,0 +1,40 @@
+---
+description: Guidelines for component development
+globs: 
+---
+# Component Development Guidelines
+
+## React Components
+
+- Use WordPress `@wordpress/element` instead of direct React import
+- Implement WordPress and WooCommerce hooks system
+- Follow component lifecycle patterns:
+  - WordPress for general components
+  - WooCommerce for store-related components
+
+## State Management
+- WordPress block editor stores for Gutenberg components
+- Follow WordPress data layer patterns
+- Use Redux-style state management when appropriate
+
+## Component Structure
+- Follow WordPress component patterns
+- Use functional components with hooks
+- Implement proper prop types and documentation
+- Follow accessibility guidelines
+
+## Best Practices
+- Use WordPress i18n for translations
+- Implement proper error boundaries
+- Follow WordPress coding standards for JS/JSX
+- Use WordPress utilities and helpers when available
+
+## Documentation
+- Follow JSDoc conventions
+- Document component prop types
+
+## Accessibility
+- Follow WCAG 2.1 guidelines
+- Implement proper ARIA attributes
+- Ensure keyboard navigation
+- Test with screen readers 

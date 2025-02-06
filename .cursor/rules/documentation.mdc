@@ -1,0 +1,39 @@
+---
+description: Guidelines for documenting code
+globs: 
+---
+# Documentation Requirements
+
+## Code Documentation
+
+### PHP Requirements
+- Follow PHPDoc standards
+- Include inline type hints
+- Document hooks/filters using WordPress standards
+
+### JavaScript Requirements
+- Follow JSDoc conventions
+- Document component prop types
+- Include hook documentation for custom stores
+
+## Feature Documentation
+- Create `README.md` in `/docs/` for new features
+- Include:
+  - Feature overview and purpose
+  - CLI command references with code links
+  - API endpoints and webhook documentation
+  - Setup and configuration instructions
+  - Troubleshooting common issues
+
+## User Documentation
+- Follow WordPress style guide
+- Required elements:
+  - Clear setup/configuration instructions
+  - Troubleshooting common issues
+  - API reference (if applicable)
+  - Screenshots or diagrams when helpful
+
+## Important Notes
+- Update documentation when making significant changes
+- Include version compatibility information
+- Document any required environment variables or configuration 

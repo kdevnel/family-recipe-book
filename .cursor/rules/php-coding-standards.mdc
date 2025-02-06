@@ -1,0 +1,101 @@
+---
+description: Formatting and standards for PHP files
+globs: *.php
+---
+# PHP Standards
+
+## Priority Order
+-   Follow coding standards in this order:
+    1. Custom standards in /.phpcs.xml
+    2. WordPress PHP Coding Standards (WPCS)
+    3. PSR-1 and PSR-2
+    4. The custom rules take priority
+
+## Naming & Structure
+-   Use proper WordPress or prefix for classes
+    ```php
+    // Correct
+    function process_order() {}
+    class DVNL_Order_Handler {}
+    
+    // Incorrect
+    function processOrder() {}
+    class OrderHandler {}
+    ```
+
+## Security
+-   Implement WordPress nonce verification for all form submissions and AJAX calls
+    ```php
+    // Form submission
+    wp_nonce_field( 'dvnl_action', 'dvnl_nonce' );
+    
+    // Verification
+    if ( ! wp_verify_nonce( $_POST['dvnl_nonce'], 'dvnl_action' ) ) {
+        wp_die( 'Invalid nonce' );
+    }
+    ```
+-   Sanitize inputs and escape outputs
+    ```php
+    // Input sanitization
+    $clean_input = sanitize_text_field( $_POST['user_input'] );
+    
+    // Output escaping
+    echo esc_html( $user_data );
+    ```
+
+## Database Operations
+-   Use WordPress database operations best practices
+    - Use $wpdb->prepare() for queries where possible
+    - Use WordPress meta functions when possible
+    ```php
+    global $wpdb;
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$wpdb->prefix}table WHERE id = %d",
+            $id
+        )
+    );
+    ```
+
+## Hook Structure
+-   Structure plugin hooks logically
+    - Initialize hooks in a dedicated init() method
+    - Use consistent priority numbers
+    ```php
+    public function init() {
+        add_action( 'init', array( $this, 'setup' ), 10 );
+        add_filter( 'dvnl_filter', array( $this, 'modify_data' ), 20 );
+    }
+    ```
+
+## Compatibility
+-   Ensure compatibility with PHP 8.1
+    - Use null coalescing operator (??) instead of isset() checks
+    - Use typed properties and return types
+    - Test with strict_types=1
+    ```php
+    public function get_value(): ?string {
+        return $this->optional_value ?? null;
+    }
+    ```
+
+## Development Tools
+-   Use VS Code with PHP Sniffer extension
+-   Run PHPCS before committing:
+    ```bash
+    composer run phpcs
+    ```
+-   Auto-fix compatible issues:
+    ```bash
+    composer run phpcbf
+    ```
+
+## Common Pitfalls
+-   Don't use extract()
+-   Avoid global variables
+-   Don't modify WordPress globals directly
+-   Always validate and sanitize data
+
+## Related Documentation
+-   Full PHP setup guide: /docs/setup-linting.md
+-   WordPress Coding Standards: https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/

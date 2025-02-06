@@ -1,0 +1,15 @@
+---
+description: Best practices to follow at all times
+globs: 
+---
+# WordPress Best Practices
+
+## Core Integration
+- Leverage hooks for extensibility:
+  ```php
+  add_action('wordpress_before_header', 'your_function');
+  ```
+
+## API and Security
+- Follow WordPress REST API structure for extensions
+- Implement proper authentication/permission checks
