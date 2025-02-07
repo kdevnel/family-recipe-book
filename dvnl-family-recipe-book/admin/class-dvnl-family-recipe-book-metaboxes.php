@@ -21,41 +21,6 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	private function get_recipe_metaboxes() {
 		$metabox_args = array(
 			array(
-				'id'            => 'dvnl_family_recipe_book_recipe_repeater_metabox_test',
-				'title'         => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
-				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
-				'screen'        => 'dvnl_recipes',
-				'context'       => 'normal',
-				'priority'      => 'high',
-				'callback_args' => array(
-					'nonce'  => 'dvnl_recipe_repeater_test_nonce',
-					'fields' => array(
-						array(
-							'id'      => 'dvnl_recipe_repeater_field_test',
-							'label'   => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
-							'type'    => 'repeater',
-							'options' => array(
-								array(
-									'id'    => 'repeater_text',
-									'label' => __( 'Text test', 'dvnl-family-recipe-book' ),
-									'type'  => 'text',
-								),
-								array(
-									'id'      => 'repeater_select',
-									'label'   => __( 'Select test', 'dvnl-family-recipe-book' ),
-									'type'    => 'select',
-									'options' => array(
-										'option_one'   => __( 'Option One', 'dvnl-family-recipe-book' ),
-										'option_two'   => __( 'Option Two', 'dvnl-family-recipe-book' ),
-										'option_three' => __( 'Option Three', 'dvnl-family-recipe-book' ),
-									),
-								),
-							),
-						),
-					),
-				),
-			),
-			array(
 				'id'            => 'dvnl_family_recipe_book_recipe_details',
 				'title'         => __( 'Recipe Details', 'dvnl-family-recipe-book' ),
 				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
@@ -142,90 +107,82 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 				),
 			),
 			array(
-				'id'            => 'dvnl_family_recipe_book_recipe_ingredients',
+				'id'            => 'dvnl_family_recipe_book_recipe_ingredients_repeater',
 				'title'         => __( 'Ingredients', 'dvnl-family-recipe-book' ),
 				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
 				'screen'        => 'dvnl_recipes',
 				'context'       => 'normal',
 				'priority'      => 'high',
 				'callback_args' => array(
-					'nonce'  => 'dvnl_recipe_ingredients_nonce',
+					'nonce'  => 'dvnl_recipe_ingredients_repeater_nonce',
 					'fields' => array(
 						array(
-							'id'    => 'dvnl_ingredients',
-							'label' => __( 'Ingredients', 'dvnl-family-recipe-book' ),
-							'type'  => 'textarea',
+							'id'      => 'dvnl_recipe_ingredients_repeater_field_ingredients',
+							'label'   => __( 'Ingredients', 'dvnl-family-recipe-book' ),
+							'type'    => 'repeater',
+							'options' => array(
+								array(
+									'id'    => 'quantity',
+									'label' => __( 'Quantity', 'dvnl-family-recipe-book' ),
+									'type'  => 'number',
+								),
+								array(
+									'id'      => 'unit',
+									'label'   => __( 'Unit', 'dvnl-family-recipe-book' ),
+									'type'    => 'select',
+									'options' => array(
+										'tsp'      => __( 'Teaspoon', 'dvnl-family-recipe-book' ),
+										'tbsp'     => __( 'Tablespoon', 'dvnl-family-recipe-book' ),
+										'cup'      => __( 'Cup', 'dvnl-family-recipe-book' ),
+										'ml'       => __( 'Millilitre', 'dvnl-family-recipe-book' ),
+										'l'        => __( 'Litre', 'dvnl-family-recipe-book' ),
+										'g'        => __( 'Gram', 'dvnl-family-recipe-book' ),
+										'kg'       => __( 'Kilogram', 'dvnl-family-recipe-book' ),
+										'oz'       => __( 'Ounce', 'dvnl-family-recipe-book' ),
+										'lb'       => __( 'Pound', 'dvnl-family-recipe-book' ),
+										'pinch'    => __( 'Pinch', 'dvnl-family-recipe-book' ),
+										'piece'    => __( 'Piece', 'dvnl-family-recipe-book' ),
+										'to_taste' => __( 'To Taste', 'dvnl-family-recipe-book' ),
+									),
+								),
+								array(
+									'id'    => 'ingredient_name',
+									'label' => __( 'Ingredient Name', 'dvnl-family-recipe-book' ),
+									'type'  => 'text',
+								),
+								array(
+									'id'    => 'note',
+									'label' => __( 'Note', 'dvnl-family-recipe-book' ),
+									'type'  => 'text',
+								),
+							),
 						),
 					),
-					// 'template' => 'partials/dvnl-family-recipe-book-recipe-ingredients-metabox.php',
 				),
 			),
 			array(
-				'id'            => 'dvnl_family_recipe_book_recipe_instructions',
+				'id'            => 'dvnl_family_recipe_book_recipe_repeater_instructions_repeater',
 				'title'         => __( 'Instructions', 'dvnl-family-recipe-book' ),
 				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
 				'screen'        => 'dvnl_recipes',
 				'context'       => 'normal',
 				'priority'      => 'high',
 				'callback_args' => array(
-					'nonce'  => 'dvnl_recipe_instructions_nonce',
+					'nonce'  => 'dvnl_recipe_instructions_repeater_nonce',
 					'fields' => array(
 						array(
-							'id'    => 'dvnl_instructions',
-							'label' => __( 'Instructions', 'dvnl-family-recipe-book' ),
-							'type'  => 'textarea',
+							'id'      => 'dvnl_recipe_instructions_repeater_field_instructions',
+							'label'   => __( 'Instructions', 'dvnl-family-recipe-book' ),
+							'type'    => 'repeater',
+							'options' => array(
+								array(
+									'id'    => 'instruction_steps',
+									'label' => __( 'Steps', 'dvnl-family-recipe-book' ),
+									'type'  => 'text',
+								),
+							),
 						),
 					),
-					// 'template' => 'partials/dvnl-family-recipe-book-recipe-instructions-metabox.php',
-				),
-			),
-			array(
-				'id'            => 'dvnl_family_recipe_book_recipe_nutrition',
-				'title'         => __( 'Nutrition', 'dvnl-family-recipe-book' ),
-				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
-				'screen'        => 'dvnl_recipes',
-				'context'       => 'normal',
-				'priority'      => 'high',
-				'callback_args' => array(
-					'nonce'  => 'dvnl_recipe_nutrition_nonce',
-					'fields' => array(
-						array(
-							'id'    => 'dvnl_protein',
-							'label' => __( 'Protein', 'dvnl-family-recipe-book' ),
-							'type'  => 'text',
-						),
-						array(
-							'id'    => 'dvnl_carbs',
-							'label' => __( 'Carbohydrates', 'dvnl-family-recipe-book' ),
-							'type'  => 'text',
-						),
-						array(
-							'id'    => 'dvnl_fat',
-							'label' => __( 'Fat', 'dvnl-family-recipe-book' ),
-							'type'  => 'text',
-						),
-						array(
-							'id'    => 'dvnl_total_energy',
-							'label' => __( 'Total Energy', 'dvnl-family-recipe-book' ),
-							'type'  => 'text',
-						),
-						array(
-							'id'    => 'dvnl_cholesterol',
-							'label' => __( 'Cholesterol', 'dvnl-family-recipe-book' ),
-							'type'  => 'text',
-						),
-						array(
-							'id'    => 'dvnl_sodium',
-							'label' => __( 'Sodium', 'dvnl-family-recipe-book' ),
-							'type'  => 'text',
-						),
-						array(
-							'id'    => 'dvnl_fibre',
-							'label' => __( 'Fibre', 'dvnl-family-recipe-book' ),
-							'type'  => 'text',
-						),
-					),
-					// 'template' => 'partials/dvnl-family-recipe-book-recipe-nutrition-metabox.php',
 				),
 			),
 			array(
