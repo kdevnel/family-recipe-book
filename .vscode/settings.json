@@ -1,7 +1,7 @@
 {
     "editor.codeActionsOnSave": {
-        "source.fixAll.stylelint": true,
-        "source.fixAll.eslint": true
+        "source.fixAll.stylelint": "explicit",
+        "source.fixAll.eslint": "explicit"
     },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.detectIndentation": false,
@@ -10,7 +10,6 @@
     "editor.rulers": [
         86
     ],
-    "git.ignoreLimitWarning": true,
     "[php]": {
         "editor.defaultFormatter": "wongjn.php-sniffer"
     },
@@ -26,6 +25,6 @@
     ],
     "phpSniffer.autoDetect": true,
     "phpSniffer.standard": "WordPress",
-    "phpSniffer.run": "onType",
-    "phpSniffer.onTypeDelay": 250,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
 }
