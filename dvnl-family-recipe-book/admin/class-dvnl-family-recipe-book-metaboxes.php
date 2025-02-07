@@ -13,50 +13,48 @@
  * Metabox and custom field configurations class.
  */
 class Dvnl_Family_Recipe_Book_Metaboxes {
-    /**
-     * definition of the recipe metaboxes
-     *
-     * @return array the metaboxes to render
-     */
-    private function get_recipe_metaboxes() {
-        $metabox_args = array(
-            array(
-                'id'  => 'dvnl_family_recipe_book_recipe_repeater_metabox_test',
-                'title'  => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
-                // 'callback'  => array( $this, 'render_recipe_metabox_repeater' ),
-                'callback'      => array( $this, 'render_recipe_metabox_templates' ),
-                'screen'  => 'dvnl_recipes',
-                'context'  => 'normal',
-                'priority'  => 'high',
-                'callback_args'  => array(
-                    'nonce'  => 'dvnl_recipe_repeater_test_nonce',
-                    'fields'  => array(
-                        array(
-                            'id'  => 'dvnl_recipe_repeater_field_test',
-                            'label'  => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
-                            'type'  => 'repeater',
-                            'options'  => array(
-                                array(
-                                    'id'  => 'dvnl_recipe_repeater_test_text',
-                                    'label'  => __( 'Text test', 'dvnl-family-recipe-book' ),
-                                    'type'  => 'text',
-                                ),
-                                array(
-                                    'id'  => 'dvnl_recipe_repeater_test_select',
-                                    'label'  => __( 'Select test', 'dvnl-family-recipe-book' ),
-                                    'type'  => 'select',
-                                    'options'  => array(
-                                        'option_one'  => __( 'Option One', 'dvnl-family-recipe-book' ),
-                                        'option_two'  => __( 'Option Two', 'dvnl-family-recipe-book' ),
-                                        'option_three'  => __( 'Option Three', 'dvnl-family-recipe-book' ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'template'  => 'partials/dvnl-family-recipe-book-field-repeater.php',
-            ),
+	/**
+	 * Definition of the recipe metaboxes
+	 *
+	 * @return array the metaboxes to render
+	 */
+	private function get_recipe_metaboxes() {
+		$metabox_args = array(
+			array(
+				'id'            => 'dvnl_family_recipe_book_recipe_repeater_metabox_test',
+				'title'         => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
+				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
+				'screen'        => 'dvnl_recipes',
+				'context'       => 'normal',
+				'priority'      => 'high',
+				'callback_args' => array(
+					'nonce'  => 'dvnl_recipe_repeater_test_nonce',
+					'fields' => array(
+						array(
+							'id'      => 'dvnl_recipe_repeater_field_test',
+							'label'   => __( 'Repeater Test', 'dvnl-family-recipe-book' ),
+							'type'    => 'repeater',
+							'options' => array(
+								array(
+									'id'    => 'repeater_text',
+									'label' => __( 'Text test', 'dvnl-family-recipe-book' ),
+									'type'  => 'text',
+								),
+								array(
+									'id'      => 'repeater_select',
+									'label'   => __( 'Select test', 'dvnl-family-recipe-book' ),
+									'type'    => 'select',
+									'options' => array(
+										'option_one'   => __( 'Option One', 'dvnl-family-recipe-book' ),
+										'option_two'   => __( 'Option Two', 'dvnl-family-recipe-book' ),
+										'option_three' => __( 'Option Three', 'dvnl-family-recipe-book' ),
+									),
+								),
+							),
+						),
+					),
+				),
+			),
 			array(
 				'id'            => 'dvnl_family_recipe_book_recipe_details',
 				'title'         => __( 'Recipe Details', 'dvnl-family-recipe-book' ),
@@ -88,9 +86,9 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 							'type'  => 'url',
 						),
 						array(
-							'id'	=> 'dvnl_video',
-							'label'	=> __( 'Video', 'dvnl-family-recipe-book' ),
-							'type'	=> 'url',
+							'id'    => 'dvnl_video',
+							'label' => __( 'Video', 'dvnl-family-recipe-book' ),
+							'type'  => 'url',
 						),
 						array(
 							'id'    => 'dvnl_servings',
@@ -151,7 +149,7 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 				'context'       => 'normal',
 				'priority'      => 'high',
 				'callback_args' => array(
-					'nonce' => 'dvnl_recipe_ingredients_nonce',
+					'nonce'  => 'dvnl_recipe_ingredients_nonce',
 					'fields' => array(
 						array(
 							'id'    => 'dvnl_ingredients',
@@ -170,7 +168,7 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 				'context'       => 'normal',
 				'priority'      => 'high',
 				'callback_args' => array(
-					'nonce' => 'dvnl_recipe_instructions_nonce',
+					'nonce'  => 'dvnl_recipe_instructions_nonce',
 					'fields' => array(
 						array(
 							'id'    => 'dvnl_instructions',
@@ -189,7 +187,7 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 				'context'       => 'normal',
 				'priority'      => 'high',
 				'callback_args' => array(
-					'nonce' => 'dvnl_recipe_nutrition_nonce',
+					'nonce'  => 'dvnl_recipe_nutrition_nonce',
 					'fields' => array(
 						array(
 							'id'    => 'dvnl_protein',
@@ -207,9 +205,9 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 							'type'  => 'text',
 						),
 						array(
-							'id'	=> 'dvnl_total_energy',
+							'id'    => 'dvnl_total_energy',
 							'label' => __( 'Total Energy', 'dvnl-family-recipe-book' ),
-							'type'	=> 'text',
+							'type'  => 'text',
 						),
 						array(
 							'id'    => 'dvnl_cholesterol',
@@ -231,30 +229,30 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 				),
 			),
 			array(
-				'id'			=> 'dvnl_family_recipe_book_recipe_notes',
-				'title'			=> __( 'Notes', 'dvnl-family-recipe-book' ),
-				'callback'		=> array( $this, 'render_recipe_metabox_templates' ),
-				'screen'		=> 'dvnl_recipes',
-				'context'		=> 'normal',
-				'priority'		=> 'high',
-				'callback_args'	=> array(
-					'nonce'		=> 'dvnl_recipe_notes_nonce',
-					'fields'	=> array(
+				'id'            => 'dvnl_family_recipe_book_recipe_notes',
+				'title'         => __( 'Notes', 'dvnl-family-recipe-book' ),
+				'callback'      => array( $this, 'render_recipe_metabox_templates' ),
+				'screen'        => 'dvnl_recipes',
+				'context'       => 'normal',
+				'priority'      => 'high',
+				'callback_args' => array(
+					'nonce'  => 'dvnl_recipe_notes_nonce',
+					'fields' => array(
 						array(
-							'id'	=> 'dvnl_notes',
-							'label'	=> __( 'Notes', 'dvnl-family-recipe-book' ),
-							'type'	=> 'textarea',
+							'id'    => 'dvnl_notes',
+							'label' => __( 'Notes', 'dvnl-family-recipe-book' ),
+							'type'  => 'textarea',
 						),
 					),
 				),
 			),
 		);
-        return $metabox_args;
-    }
+		return $metabox_args;
+	}
 
 	/**
 	 *
-     * Register all metaboxes for the recipe post type.
+	 * Register all metaboxes for the recipe post type.
 	 *
 	 * @return void
 	 */
@@ -277,8 +275,8 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 	/**
 	 * Render the recipe metaboxes dynamically.
 	 *
-     * @param         WP_Post $post The post object.
-     * @param array   $metabox The metabox arguments.
+	 * @param         WP_Post $post The post object.
+	 * @param array   $metabox The metabox arguments.
 	 * @return void
 	 */
 	public function render_recipe_metabox_templates( $post, $metabox ) {
@@ -288,37 +286,43 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 		}
 
 		echo '<div class="dvnl-recipes metabox">';
-        wp_nonce_field( 'dvnl_recipe_submit', $metabox['args'][ 'nonce' ] );
+		wp_nonce_field( 'dvnl_recipe_submit', $metabox['args']['nonce'] );
 		foreach ( $metabox['args']['fields'] as $field ) {
-			load_template( plugin_dir_path( __FILE__ ) . 'partials/dvnl-family-recipe-book-recipe-metabox.php', false, array( 'nonce' => $metabox['args']['nonce'], 'field' => $field ) );
+			load_template(
+				plugin_dir_path( __FILE__ ) . 'partials/dvnl-family-recipe-book-recipe-metabox.php',
+				false,
+				array(
+					'nonce' => $metabox['args']['nonce'],
+					'field' => $field,
+				)
+			);
 		}
 		echo '</div>';
-
 	}
 
 	/**
 	 * Generic method for saving date in the recipe metaboxes.
-     *
-     * @param int $post_id The post ID.
-     * @return void
+	 *
+	 * @param int $post_id The post ID.
+	 * @return void
 	 */
 	public function save_recipe_metaboxes( $post_id ) {
-        foreach ( $this->get_recipe_metaboxes() as $args ) {
+		foreach ( $this->get_recipe_metaboxes() as $args ) {
 			$this->save_single_metabox( $post_id, $args );
 		}
 	}
 
 	/**
 	 * Save the recipe details metabox.
-     *
-     * @param int   $post_id The post ID.
-     * @param array $args The metabox arguments.
-     * @return void
+	 *
+	 * @param int   $post_id The post ID.
+	 * @param array $args The metabox arguments.
+	 * @return void
 	 */
 	public function save_single_metabox( $post_id, $args ) {
-        $nonce = $args['callback_args']['nonce'];
+		$nonce = $args['callback_args']['nonce'];
 		// verify nonce.
-		if ( ! isset( $_POST[ $nonce] ) || ! wp_verify_nonce( sanitize_key( $_POST[ $nonce ] ), 'dvnl_recipe_submit' ) ) {
+		if ( ! isset( $_POST[ $nonce ] ) || ! wp_verify_nonce( sanitize_key( $_POST[ $nonce ] ), 'dvnl_recipe_submit' ) ) {
 			return;
 		}
 
@@ -326,9 +330,9 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 			return;
 		}
 
-        if ( !current_user_can('edit_post', $post_id) ) {
-            return;
-        }
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
 
 		// verify not a revision.
 		$parent_id = wp_is_post_revision( $post_id );
@@ -336,14 +340,91 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 			$post_id = $parent_id;
 		}
 
-        $fields = $args['callback_args']['fields'];
+		$fields = $args['callback_args']['fields'];
 		// save the data.
 		foreach ( $fields as $field ) {
-			if ( array_key_exists( $field['id'], $_POST ) ) {
+			if ( 'repeater' === $field['type'] ) {
+				$this->save_repeater_field( $post_id, $field );
+			} elseif ( array_key_exists( $field['id'], $_POST ) ) {
 				update_post_meta( $post_id, $field['id'], sanitize_text_field( wp_unslash( $_POST[ $field['id'] ] ) ) );
 			}
 		}
-
 	}
 
+	/**
+	 * Save a repeater field's data.
+	 *
+	 * @param int   $post_id The post ID.
+	 * @param array $field The field configuration.
+	 * @return void
+	 */
+	private function save_repeater_field( $post_id, $field ) {
+		// Verify the nonce for this specific repeater field.
+		$nonce_name   = 'dvnl_repeatable_meta_box_nonce_' . $field['id'];
+		$nonce_action = 'dvnl_repeatable_meta_box_nonce_action_' . $field['id'];
+
+		if ( ! isset( $_POST[ $nonce_name ] ) || ! wp_verify_nonce( sanitize_key( $_POST[ $nonce_name ] ), $nonce_action ) ) {
+			return;
+		}
+
+		$old = get_post_meta( $post_id, $field['id'], true );
+		$new = array();
+
+		// Check if we have data for this repeater.
+		$post_key = sanitize_key( $field['id'] );
+
+		// Process each field type from the form.
+		foreach ( $field['options'] as $sub_field ) {
+			// Look for fields with the pattern {repeater_id}_{sub_field_id}_{index}.
+			$field_pattern = $post_key . '_' . $sub_field['id'] . '_';
+
+			foreach ( $_POST as $key => $value ) {
+				if ( strpos( $key, $field_pattern ) === 0 ) {
+					$index = substr( $key, strlen( $field_pattern ) );
+
+					if ( ! isset( $new[ $index ] ) ) {
+						$new[ $index ] = array();
+					}
+
+					// Unslash the value before sanitization.
+					$raw_value = wp_unslash( $value );
+
+					switch ( $sub_field['type'] ) {
+						case 'text':
+						case 'date':
+							$new[ $index ][ $sub_field['id'] ] = sanitize_text_field( $raw_value );
+							break;
+						case 'url':
+							$new[ $index ][ $sub_field['id'] ] = esc_url_raw( $raw_value );
+							break;
+						case 'number':
+							$new[ $index ][ $sub_field['id'] ] = absint( $raw_value );
+							break;
+						case 'select':
+							if ( isset( $sub_field['options'] ) && in_array( $raw_value, array_keys( $sub_field['options'] ), true ) ) {
+								$new[ $index ][ $sub_field['id'] ] = sanitize_text_field( $raw_value );
+							}
+							break;
+					}
+				}
+			}
+		}
+
+		// Remove any empty rows.
+		$new = array_filter(
+			$new,
+			function ( $row ) {
+				return ! empty( array_filter( $row ) );
+			}
+		);
+
+		// Reindex array to ensure sequential keys.
+		$new = array_values( $new );
+
+		if ( ! empty( $new ) && $new !== $old ) {
+			update_post_meta( $post_id, $field['id'], $new );
+		} elseif ( empty( $new ) && $old ) {
+			delete_post_meta( $post_id, $field['id'], $old );
+		}
+	}
 }

@@ -8,40 +8,40 @@
  * @package    Dvnl_Family_Recipe_Book
  * @subpackage Dvnl_Family_Recipe_Book/admin/partials
  */
-require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/class-dvnl-family-recipe-book-custom-fields.php';
+require_once plugin_dir_path( __DIR__ ) . 'partials/class-dvnl-family-recipe-book-custom-fields.php';
 $custom_fields = new Dvnl_Family_Recipe_Book_Custom_Fields( $args );
 // isset( $args['nonce'] ) ? $nonce = $args['nonce'] : $nonce = null;
-$id = $args['field']['id'];
+$id    = $args['field']['id'];
 $label = $args['field']['label'];
-$type = $args['field']['type'];
+$type  = $args['field']['type'];
 ?>
 
 
-<p class="meta-options dvnl-recipes field">
+<div class="meta-options dvnl-recipes field">
 	<?php
-    switch ( $type ) {
-        case 'text':
-        case 'url':
-        case 'date':
-        case 'number':
-            $custom_fields->render_field_text();
-            break;
-        case 'select':
-            $custom_fields->render_field_select();
-            break;
-        case 'textarea':
-            $custom_fields->render_field_textarea();
-            // echo '<div>Textarea field not yet implemented.</div>';
-            break;
-        case 'button':
-            // $custom_fields->render_field_button();
-            echo '<div>Button field not yet implemented.</div>';
-            break;
-        case 'repeater':
-            $custom_fields->render_field_repeater();
-            break;
-        default:
-            echo 'Field type not found: ' . $type . '.';
-    }
+	switch ( $type ) {
+		case 'text':
+		case 'url':
+		case 'date':
+		case 'number':
+			$custom_fields->render_field_text();
+			break;
+		case 'select':
+			$custom_fields->render_field_select();
+			break;
+		case 'textarea':
+			$custom_fields->render_field_textarea();
+			// echo '<div>Textarea field not yet implemented.</div>';
+			break;
+		case 'button':
+			// $custom_fields->render_field_button();
+			echo '<div>Button field not yet implemented.</div>';
+			break;
+		case 'repeater':
+			$custom_fields->render_field_repeater();
+			break;
+		default:
+			echo 'Field type not found: ' . $type . '.';
+	}
 	?>
-</p>
+</div>
