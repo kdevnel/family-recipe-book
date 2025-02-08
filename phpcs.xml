@@ -9,8 +9,11 @@
     <!-- Use WordPress as the base -->
     <rule ref="WordPress"/>
 
+    <!-- Set installed standards paths -->
+    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs"/>
+
     <!-- Paths to check -->
-    <file>src</file>
+    <file>dvnl-family-recipe-book</file>
 
     <!-- Exclude some folders -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
@@ -30,8 +33,15 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="family-recipe-book"/>
+                <element value="dvnl-family-recipe-book"/>
             </property>
+        </properties>
+    </rule>
+
+    <!-- Allow WordPress filename exceptions -->
+    <rule ref="WordPress.Files.FileName">
+        <properties>
+            <property name="strict_class_file_names" value="false"/>
         </properties>
     </rule>
 </ruleset>

@@ -1,18 +1,41 @@
 # Family Recipe Book Plugin for WordPress
 
-A plugin for allowing you to store family recipes and display them on your WordPress website.
-
 ## Technology
 
-Built using the [WordPress Plugin Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate) as a foundation.
+Built using:
+- [WordPress Plugin Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate)
+- Composer for dependency management (PHPCS and WPCS)
+- WordPress Coding Standards (via included phpcs.xml)
 
-# Development Installation
-* Add the plugin folder at `/family-recipe-book` to your WordPress site's `/wp-content/plugins` folder
-* Activate the plugin
+## Development Installation
 
-# Development
+1. Clone repository:
+```bash
+git clone https://github.com/kdevnel/family-recipe-book.git
 
-## Includes
+cd family-recipe-book/dvnl-family-recipe-book
+```
+
+2. Install dependencies:
+```bash
+composer install
+```
+
+3. Install plugin:
+- Run `wp-now` or `wp-env` from the `/dvnl-family-recipe-book` folder
+
+OR
+
+- Symlink or copy the `dvnl-family-recipe-book` directory to your WordPress install:
+```bash
+ln -s $(pwd) /path/to/wordpress/wp-content/plugins/dvnl-family-recipe-book
+```
+
+4. Activate plugin through WordPress admin
+
+## Development
+
+### Includes
 
 Note that if you include your own classes, or third-party libraries, there are three locations in which said files may go:
 

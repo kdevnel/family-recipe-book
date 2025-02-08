@@ -5,6 +5,11 @@
  * @package Dvnl_Family_Recipe_Book
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
 /**
  * Provides repeater field functionality for metaboxes
  *
