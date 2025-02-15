@@ -1,5 +1,15 @@
 <?php
 /**
+ * Custom Post Types
+ *
+ * @link https://devnel.blog
+ * @since 1.0.0
+ *
+ * @package Dvnl_Family_Recipe_Book
+ * @subpackage Dvnl_Family_Recipe_Book/includes
+ */
+
+/**
  * Define the custom post types
  *
  * @link https://devnel.blog
@@ -14,8 +24,8 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 	 * Register custom post type
 	 *
 	 * @link https://codex.wordpress.org/Function_Reference/register_post_type
-     *
-     * @param array $fields fields to register post type.
+	 *
+	 * @param array $fields fields to register post type.
 	 */
 	private function register_single_post_type( $fields ) {
 
@@ -28,24 +38,36 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 			'name'                  => $fields['plural'],
 			'singular_name'         => $fields['singular'],
 			'menu_name'             => $fields['menu_name'],
-			'new_item'              => sprintf( __( 'New %s', 'plugin-name' ), $fields['singular'] ),
-			'add_new_item'          => sprintf( __( 'Add new %s', 'plugin-name' ), $fields['singular'] ),
-			'edit_item'             => sprintf( __( 'Edit %s', 'plugin-name' ), $fields['singular'] ),
-			'view_item'             => sprintf( __( 'View %s', 'plugin-name' ), $fields['singular'] ),
-			'view_items'            => sprintf( __( 'View %s', 'plugin-name' ), $fields['plural'] ),
-			'search_items'          => sprintf( __( 'Search %s', 'plugin-name' ), $fields['plural'] ),
-			'not_found'             => sprintf( __( 'No %s found', 'plugin-name' ), strtolower( $fields['plural'] ) ),
-			'not_found_in_trash'    => sprintf( __( 'No %s found in trash', 'plugin-name' ), strtolower( $fields['plural'] ) ),
-			'all_items'             => sprintf( __( 'All %s', 'plugin-name' ), $fields['plural'] ),
-			'archives'              => sprintf( __( '%s Archives', 'plugin-name' ), $fields['singular'] ),
-			'attributes'            => sprintf( __( '%s Attributes', 'plugin-name' ), $fields['singular'] ),
-			'insert_into_item'      => sprintf( __( 'Insert into %s', 'plugin-name' ), strtolower( $fields['singular'] ) ),
-			'uploaded_to_this_item' => sprintf( __( 'Uploaded to this %s', 'plugin-name' ), strtolower( $fields['singular'] ) ),
-
-			/* Labels for hierarchical post types only. */
-			'parent_item'           => sprintf( __( 'Parent %s', 'plugin-name' ), $fields['singular'] ),
-			'parent_item_colon'     => sprintf( __( 'Parent %s:', 'plugin-name' ), $fields['singular'] ),
-
+			/* translators: %s: singular post type name */
+			'new_item'              => sprintf( __( 'New %s', 'dvnl-family-recipe-book' ), $fields['singular'] ),
+			/* translators: %s: singular post type name */
+			'add_new_item'          => sprintf( __( 'Add new %s', 'dvnl-family-recipe-book' ), $fields['singular'] ),
+			/* translators: %s: singular post type name */
+			'edit_item'             => sprintf( __( 'Edit %s', 'dvnl-family-recipe-book' ), $fields['singular'] ),
+			/* translators: %s: singular post type name */
+			'view_item'             => sprintf( __( 'View %s', 'dvnl-family-recipe-book' ), $fields['singular'] ),
+			/* translators: %s: plural post type name */
+			'view_items'            => sprintf( __( 'View %s', 'dvnl-family-recipe-book' ), $fields['plural'] ),
+			/* translators: %s: plural post type name */
+			'search_items'          => sprintf( __( 'Search %s', 'dvnl-family-recipe-book' ), $fields['plural'] ),
+			/* translators: %s: plural post type name */
+			'not_found'             => sprintf( __( 'No %s found', 'dvnl-family-recipe-book' ), strtolower( $fields['plural'] ) ),
+			/* translators: %s: plural post type name */
+			'not_found_in_trash'    => sprintf( __( 'No %s found in trash', 'dvnl-family-recipe-book' ), strtolower( $fields['plural'] ) ),
+			/* translators: %s: plural post type name */
+			'all_items'             => sprintf( __( 'All %s', 'dvnl-family-recipe-book' ), $fields['plural'] ),
+			/* translators: %s: singular post type name */
+			'archives'              => sprintf( __( '%s Archives', 'dvnl-family-recipe-book' ), $fields['singular'] ),
+			/* translators: %s: singular post type name */
+			'attributes'            => sprintf( __( '%s Attributes', 'dvnl-family-recipe-book' ), $fields['singular'] ),
+			/* translators: %s: singular post type name */
+			'insert_into_item'      => sprintf( __( 'Insert into %s', 'dvnl-family-recipe-book' ), strtolower( $fields['singular'] ) ),
+			/* translators: %s: singular post type name */
+			'uploaded_to_this_item' => sprintf( __( 'Uploaded to this %s', 'dvnl-family-recipe-book' ), strtolower( $fields['singular'] ) ),
+			/* translators: %s: singular post type name */
+			'parent_item'           => sprintf( __( 'Parent %s', 'dvnl-family-recipe-book' ), $fields['singular'] ),
+			/* translators: %s: singular post type name */
+			'parent_item_colon'     => sprintf( __( 'Parent %s:', 'dvnl-family-recipe-book' ), $fields['singular'] ),
 			/* Custom archive label.  Must filter 'post_type_archive_title' to use. */
 			'archive_title'         => $fields['plural'],
 		);
@@ -149,42 +171,51 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 		 * @link https://codex.wordpress.org/Function_Reference/register_taxonomy
 		 */
 		if ( isset( $fields['taxonomies'] ) && is_array( $fields['taxonomies'] ) ) {
-
 			foreach ( $fields['taxonomies'] as $taxonomy ) {
-
 				$this->register_single_post_type_taxonomy( $taxonomy );
-
 			}
 		}
-
 	}
 
 	/**
-     * Post Type Taxonomies
-     *
-     * @param array $tax_fields Taxonomy fields.
-     * @return void
-     */
-    private function register_single_post_type_taxonomy( $tax_fields ) {
-
+	 * Post Type Taxonomies
+	 *
+	 * @param array $tax_fields Taxonomy fields.
+	 * @return void
+	 */
+	private function register_single_post_type_taxonomy( $tax_fields ) {
 		$labels = array(
 			'name'                       => $tax_fields['plural'],
 			'singular_name'              => $tax_fields['single'],
 			'menu_name'                  => $tax_fields['plural'],
-			'all_items'                  => sprintf( __( 'All %s', 'plugin-name' ), $tax_fields['plural'] ),
-			'edit_item'                  => sprintf( __( 'Edit %s', 'plugin-name' ), $tax_fields['single'] ),
-			'view_item'                  => sprintf( __( 'View %s', 'plugin-name' ), $tax_fields['single'] ),
-			'update_item'                => sprintf( __( 'Update %s', 'plugin-name' ), $tax_fields['single'] ),
-			'add_new_item'               => sprintf( __( 'Add New %s', 'plugin-name' ), $tax_fields['single'] ),
-			'new_item_name'              => sprintf( __( 'New %s Name', 'plugin-name' ), $tax_fields['single'] ),
-			'parent_item'                => sprintf( __( 'Parent %s', 'plugin-name' ), $tax_fields['single'] ),
-			'parent_item_colon'          => sprintf( __( 'Parent %s:', 'plugin-name' ), $tax_fields['single'] ),
-			'search_items'               => sprintf( __( 'Search %s', 'plugin-name' ), $tax_fields['plural'] ),
-			'popular_items'              => sprintf( __( 'Popular %s', 'plugin-name' ), $tax_fields['plural'] ),
-			'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', 'plugin-name' ), $tax_fields['plural'] ),
-			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', 'plugin-name' ), $tax_fields['plural'] ),
-			'choose_from_most_used'      => sprintf( __( 'Choose from the most used %s', 'plugin-name' ), $tax_fields['plural'] ),
-			'not_found'                  => sprintf( __( 'No %s found', 'plugin-name' ), $tax_fields['plural'] ),
+			/* translators: %s: plural taxonomy name */
+			'all_items'                  => sprintf( __( 'All %s', 'dvnl-family-recipe-book' ), $tax_fields['plural'] ),
+			/* translators: %s: singular taxonomy name */
+			'edit_item'                  => sprintf( __( 'Edit %s', 'dvnl-family-recipe-book' ), $tax_fields['single'] ),
+			/* translators: %s: singular taxonomy name */
+			'view_item'                  => sprintf( __( 'View %s', 'dvnl-family-recipe-book' ), $tax_fields['single'] ),
+			/* translators: %s: singular taxonomy name */
+			'update_item'                => sprintf( __( 'Update %s', 'dvnl-family-recipe-book' ), $tax_fields['single'] ),
+			/* translators: %s: singular taxonomy name */
+			'add_new_item'               => sprintf( __( 'Add New %s', 'dvnl-family-recipe-book' ), $tax_fields['single'] ),
+			/* translators: %s: singular taxonomy name */
+			'new_item_name'              => sprintf( __( 'New %s Name', 'dvnl-family-recipe-book' ), $tax_fields['single'] ),
+			/* translators: %s: singular taxonomy name */
+			'parent_item'                => sprintf( __( 'Parent %s', 'dvnl-family-recipe-book' ), $tax_fields['single'] ),
+			/* translators: %s: singular taxonomy name */
+			'parent_item_colon'          => sprintf( __( 'Parent %s:', 'dvnl-family-recipe-book' ), $tax_fields['single'] ),
+			/* translators: %s: plural taxonomy name */
+			'search_items'               => sprintf( __( 'Search %s', 'dvnl-family-recipe-book' ), $tax_fields['plural'] ),
+			/* translators: %s: plural taxonomy name */
+			'popular_items'              => sprintf( __( 'Popular %s', 'dvnl-family-recipe-book' ), $tax_fields['plural'] ),
+			/* translators: %s: plural taxonomy name */
+			'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', 'dvnl-family-recipe-book' ), $tax_fields['plural'] ),
+			/* translators: %s: plural taxonomy name */
+			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', 'dvnl-family-recipe-book' ), $tax_fields['plural'] ),
+			/* translators: %s: plural taxonomy name */
+			'choose_from_most_used'      => sprintf( __( 'Choose from the most used %s', 'dvnl-family-recipe-book' ), $tax_fields['plural'] ),
+			/* translators: %s: plural taxonomy name */
+			'not_found'                  => sprintf( __( 'No %s found', 'dvnl-family-recipe-book' ), $tax_fields['plural'] ),
 		);
 
 		$args = array(
@@ -210,25 +241,26 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 		$args = apply_filters( $tax_fields['taxonomy'] . '_args', $args );
 
 		register_taxonomy( $tax_fields['taxonomy'], $tax_fields['post_types'], $args );
-
-    }
+	}
 
 
 	/**
 	 * Assign capabilities to users
 	 *
+	 * @param array $caps_map Capabilities map.
+	 * @param array $users Users.
 	 * @link https://codex.wordpress.org/Function_Reference/register_post_type
 	 * @link https://typerocket.com/ultimate-guide-to-custom-post-types-in-wordpress/
 	 */
-    public function assign_capabilities( $caps_map, $users ) {
-        foreach ( $users as $user ) {
-            $user_role = get_role( $user );
+	public function assign_capabilities( $caps_map, $users ) {
+		foreach ( $users as $user ) {
+			$user_role = get_role( $user );
 
-    		foreach ( $caps_map as $cap_map_key => $capability ) {
-                $user_role->add_cap( $capability );
-            }
-    	}
-    }
+			foreach ( $caps_map as $cap_map_key => $capability ) {
+				$user_role->add_cap( $capability );
+			}
+		}
+	}
 
 
 	/**

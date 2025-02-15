@@ -32,7 +32,7 @@ class Dvnl_Family_Recipe_Book_Activator {
 		/**
 		 * Custom Post Types
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dvnl-family-recipe-book-post-types.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-dvnl-family-recipe-book-post-types.php';
 		$plugin_post_types = new Dvnl_Family_Recipe_Book_Post_Types();
 
 		/**
@@ -64,7 +64,5 @@ class Dvnl_Family_Recipe_Book_Activator {
 		 * @link https://codex.wordpress.org/Function_Reference/flush_rewrite_rules
 		 */
 		flush_rewrite_rules();
-
 	}
-
 }
