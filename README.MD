@@ -1,6 +1,6 @@
 # Family Recipe Book Plugin for WordPress
 
-## Technology
+## Technologies
 
 Built using:
 - [WordPress Plugin Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate)
