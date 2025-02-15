@@ -33,6 +33,10 @@ ln -s $(pwd) /path/to/wordpress/wp-content/plugins/dvnl-family-recipe-book
 
 4. Activate plugin through WordPress admin
 
+## Documentation
+
+Project documentation can be found in `/docs/`
+
 ## Development
 
 ### Includes
