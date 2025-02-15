@@ -80,6 +80,8 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 			'exclude_from_search' => ( isset( $fields['exclude_from_search'] ) ) ? $fields['exclude_from_search'] : false,
 			'show_ui'             => ( isset( $fields['show_ui'] ) ) ? $fields['show_ui'] : true,
 			'show_in_menu'        => ( isset( $fields['show_in_menu'] ) ) ? $fields['show_in_menu'] : true,
+			// Enable REST API support - required for block editor.
+			'show_in_rest'        => ( isset( $fields['show_in_rest'] ) ) ? $fields['show_in_rest'] : true,
 			'query_var'           => ( isset( $fields['query_var'] ) ) ? $fields['query_var'] : true,
 			'show_in_admin_bar'   => ( isset( $fields['show_in_admin_bar'] ) ) ? $fields['show_in_admin_bar'] : true,
 			'capability_type'     => ( isset( $fields['capability_type'] ) ) ? $fields['capability_type'] : 'post',
@@ -101,6 +103,10 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 			'menu_position'       => ( isset( $fields['menu_position'] ) ) ? $fields['menu_position'] : 21,
 			'menu_icon'           => ( isset( $fields['menu_icon'] ) ) ? $fields['menu_icon'] : 'dashicons-admin-generic',
 			'show_in_nav_menus'   => ( isset( $fields['show_in_nav_menus'] ) ) ? $fields['show_in_nav_menus'] : true,
+			// Enable template support for the post type.
+			'template'            => ( isset( $fields['template'] ) ) ? $fields['template'] : array(),
+			// Lock the template to prevent it from being changed.
+			'template_lock'       => ( isset( $fields['template_lock'] ) ) ? $fields['template_lock'] : 'all',
 		);
 
 		if ( isset( $fields['rewrite'] ) ) {
@@ -304,6 +310,7 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 				'exclude_from_search' => true,
 				'show_ui'             => true,
 				'show_in_menu'        => true,
+				'show_in_rest'        => true, // Enable REST API support for block editor.
 				'query_var'           => true,
 				'show_in_admin_bar'   => true,
 				'show_in_nav_menus'   => true,
@@ -315,6 +322,7 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 					'thumbnail',
 					'comments',
 					'revisions',
+					'custom-fields', // Enable custom fields support in block editor.
 				),
 				'custom_caps'         => true,
 				'custom_caps_users'   => array(
@@ -328,6 +336,80 @@ class Dvnl_Family_Recipe_Book_Post_Types {
 						'post_types' => array( 'dvnl_recipes' ),
 					),
 				),
+				'template'            => array(
+					// Core blocks for basic structure.
+					array(
+						'core/group',
+						array(
+							'className' => 'recipe-details',
+							'lock'      => array(
+								'move'   => true,
+								'remove' => true,
+							),
+						),
+					),
+					array(
+						// Recipe Details block.
+						array( 'dvnl/recipe-details', array() ),
+					),
+					array(
+						'core/group',
+						array(
+							'className' => 'recipe-timings',
+							'lock'      => array(
+								'move'   => true,
+								'remove' => true,
+							),
+						),
+					),
+					array(
+						// Recipe Timings block.
+						array( 'dvnl/recipe-timings', array() ),
+					),
+					array(
+						'core/group',
+						array(
+							'className' => 'recipe-ingredients',
+							'lock'      => array(
+								'move'   => true,
+								'remove' => true,
+							),
+						),
+					),
+					array(
+						// Ingredients block.
+						array( 'dvnl/recipe-ingredients', array() ),
+					),
+					array(
+						'core/group',
+						array(
+							'className' => 'recipe-instructions',
+							'lock'      => array(
+								'move'   => true,
+								'remove' => true,
+							),
+						),
+					),
+					array(
+						// Instructions block.
+						array( 'dvnl/recipe-instructions', array() ),
+					),
+					array(
+						'core/group',
+						array(
+							'className' => 'recipe-notes',
+							'lock'      => array(
+								'move'   => true,
+								'remove' => true,
+							),
+						),
+					),
+					array(
+						// Notes block.
+						array( 'dvnl/recipe-notes', array() ),
+					),
+				),
+				'template_lock'       => 'all',
 			),
 		);
 
