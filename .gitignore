@@ -12,7 +12,6 @@ Thumbs.db
 
 # Ignore editor-specific files
 .idea
-.vscode
 *.sublime-project
 *.sublime-workspace
 *.komodoproject

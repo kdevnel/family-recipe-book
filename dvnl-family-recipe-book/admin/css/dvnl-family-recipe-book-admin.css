@@ -2,3 +2,16 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+.dvnl-recipes.metabox {
+    display: grid;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+}
+
+.dvnl-recipes.metabox select {
+    width: 100%;
+}
+
+.dvnl-recipes.field {
+    display: contents;
+}

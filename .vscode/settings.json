@@ -1,7 +1,8 @@
 {
     "editor.codeActionsOnSave": {
         "source.fixAll.stylelint": "explicit",
-        "source.fixAll.eslint": "explicit"
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.php": "explicit"
     },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.detectIndentation": false,
@@ -10,16 +11,13 @@
     "editor.rulers": [
         86
     ],
-    "git.ignoreLimitWarning": true,
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "[php]": {
-        "editor.defaultFormatter": "wongjn.php-sniffer"
+        "editor.defaultFormatter": "wongjn.php-sniffer",
+        "editor.formatOnSave": true
     },
     "eslint.validate": [
         "javascript",
-        "javascriptreact",
+        "javascriptreact"
     ],
     "stylelint.validate": [
         "css",
@@ -27,8 +25,30 @@
         "postcss",
         "scss"
     ],
-    "phpSniffer.autoDetect": true,
-    "phpSniffer.standard": "WordPress",
-    "phpSniffer.run": "onType",
-    "phpSniffer.onTypeDelay": 250,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "intelephense.stubs": [
+        "wordpress",
+        "Core",
+        "SPL",
+        "standard"
+    ],
+    "intelephense.environment.includePaths": [
+        "vendor/php-stubs/wordpress-stubs"
+    ],
+    "php.suggest.basic": false,
+    "intelephense.files.maxSize": 5000000,
+    "intelephense.completion.triggerParameterHints": true,
+    "intelephense.completion.insertUseDeclaration": true,
+    "intelephense.trace.server": "messages",
+    "intelephense.diagnostics.undefinedFunctions": false,
+    "intelephense.diagnostics.undefinedConstants": false,
+    "intelephense.diagnostics.undefinedClassConstants": false,
+    "intelephense.diagnostics.undefinedMethods": false,
+    "intelephense.diagnostics.undefinedProperties": false,
+    "intelephense.diagnostics.undefinedTypes": false,
+    "intelephense.diagnostics.run": "onType",
+    "intelephense.format.enable": true,
+    "intelephense.phpdoc.useFullyQualifiedNames": true,
+    "intelephense.compatibility.correctForBaseClassStaticUnionTypes": true
 }

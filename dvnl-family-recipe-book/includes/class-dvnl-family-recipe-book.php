@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -70,7 +69,7 @@ class Dvnl_Family_Recipe_Book {
 		if ( defined( 'DVNL_FAMILY_RECIPE_BOOK_VERSION' ) ) {
 			$this->version = DVNL_FAMILY_RECIPE_BOOK_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '2.0.0';
 		}
 		$this->plugin_name = 'dvnl-family-recipe-book';
 
@@ -78,7 +77,6 @@ class Dvnl_Family_Recipe_Book {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -103,27 +101,36 @@ class Dvnl_Family_Recipe_Book {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dvnl-family-recipe-book-loader.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-dvnl-family-recipe-book-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dvnl-family-recipe-book-i18n.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-dvnl-family-recipe-book-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-dvnl-family-recipe-book-admin.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-dvnl-family-recipe-book-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-dvnl-family-recipe-book-public.php';
+		require_once plugin_dir_path( __DIR__ ) . 'public/class-dvnl-family-recipe-book-public.php';
+
+		/**
+		 * Custom post types
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-dvnl-family-recipe-book-post-types.php';
+
+		/**
+		 * Custom post type metaboxes
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-dvnl-family-recipe-book-metaboxes.php';
 
 		$this->loader = new Dvnl_Family_Recipe_Book_Loader();
-
 	}
 
 	/**
@@ -140,7 +147,6 @@ class Dvnl_Family_Recipe_Book {
 		$plugin_i18n = new Dvnl_Family_Recipe_Book_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -157,6 +163,27 @@ class Dvnl_Family_Recipe_Book {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		/**
+		* The problem with the initial activation code is that when the activation hook runs, it's after the init hook has run,
+		* so hooking into init from the activation hook won't do anything.
+		* You don't need to register the CPT within the activation function unless you need rewrite rules to be added
+		* via flush_rewrite_rules() on activation. In that case, you'll want to register the CPT normally, via the
+		* loader on the init hook, and also re-register it within the activation function and
+		* call flush_rewrite_rules() to add the CPT rewrite rules.
+		*
+		* @link https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/issues/261
+		*/
+		$plugin_post_types = new Dvnl_Family_Recipe_Book_Post_Types();
+		$this->loader->add_action( 'init', $plugin_post_types, 'create_custom_post_type', 999 );
+
+		/**
+		 * Register meta field and create metabox
+		 *
+		 * @link https:// code.tutsplus.com/articles/rock-solid-wordpress-30-themes-using-custom-post-types--net-12093
+		 */
+		$plugin_metaboxes = new Dvnl_Family_Recipe_Book_Metaboxes();
+		$this->loader->add_action( 'add_meta_boxes', $plugin_metaboxes, 'register_recipe_metaboxes' );
+		$this->loader->add_action( 'save_post', $plugin_metaboxes, 'save_recipe_metaboxes' );
 	}
 
 	/**
@@ -172,7 +199,6 @@ class Dvnl_Family_Recipe_Book {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -214,5 +240,4 @@ class Dvnl_Family_Recipe_Book {
 	public function get_version() {
 		return $this->version;
 	}
-
 }

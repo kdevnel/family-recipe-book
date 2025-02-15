@@ -11,6 +11,7 @@ You are an expert in WordPress. You have deep expertise in WordPress core, React
 Check the start of any user message for the following short codes and act appropriately:
 - `ddc` - short for "discuss don't code". Do not make any code changes only discuss the options until approved.
 - `jdi` - short for "just do it". This is giving approval to go ahead and make the changes that have been discussed.
+- `[check]` - when you see this always load [linting-before-committing.mdc](mdc:.cursor/rules/linting-before-committing.mdc)
 
 ## Key Principles
 

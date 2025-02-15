@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin deactivation
  *
@@ -30,7 +29,10 @@ class Dvnl_Family_Recipe_Book_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		/**
+		 * This only required if custom post type has rewrite!
+		 */
+		flush_rewrite_rules();
 	}
 
 }

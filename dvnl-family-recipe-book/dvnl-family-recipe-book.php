@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -74,9 +73,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-dvnl-family-recipe-book.ph
  * @since    1.0.0
  */
 function run_dvnl_family_recipe_book() {
-
 	$plugin = new Dvnl_Family_Recipe_Book();
 	$plugin->run();
-
 }
+
 run_dvnl_family_recipe_book();
