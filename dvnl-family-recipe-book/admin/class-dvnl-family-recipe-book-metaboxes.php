@@ -302,8 +302,22 @@ class Dvnl_Family_Recipe_Book_Metaboxes {
 		foreach ( $fields as $field ) {
 			if ( 'repeater' === $field['type'] ) {
 				$this->save_repeater_field( $post_id, $field );
-			} elseif ( array_key_exists( $field['id'], $_POST ) ) {
-				update_post_meta( $post_id, $field['id'], sanitize_text_field( wp_unslash( $_POST[ $field['id'] ] ) ) );
+			} elseif ( isset( $_POST[ sanitize_key( $field['id'] ) ] ) ) {
+				$value = sanitize_text_field( wp_unslash( $_POST[ sanitize_key( $field['id'] ) ] ) );
+				switch ( $field['type'] ) {
+					case 'date':
+						if ( ! empty( $value ) && strtotime( $value ) !== false ) {
+							$date = DateTime::createFromFormat( 'Y-m-d', $value );
+							if ( $date instanceof DateTime ) {
+								update_post_meta( $post_id, $field['id'], $date->format( 'Y-m-d' ) );
+							}
+						} else {
+							delete_post_meta( $post_id, $field['id'] );
+						}
+						break;
+					default:
+						update_post_meta( $post_id, $field['id'], sanitize_text_field( $value ) );
+				}
 			}
 		}
 	}
