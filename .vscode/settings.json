@@ -25,13 +25,10 @@
         "postcss",
         "scss"
     ],
-    "phpSniffer.autoDetect": true,
-    "phpSniffer.standard": "WordPress",
     "editor.insertSpaces": false,
     "editor.tabSize": 4,
     "intelephense.stubs": [
         "wordpress",
-        "php",
         "Core",
         "SPL",
         "standard"
@@ -50,7 +47,7 @@
     "intelephense.diagnostics.undefinedMethods": false,
     "intelephense.diagnostics.undefinedProperties": false,
     "intelephense.diagnostics.undefinedTypes": false,
-    "intelephense.diagnostics.run": true,
+    "intelephense.diagnostics.run": "onType",
     "intelephense.format.enable": true,
     "intelephense.phpdoc.useFullyQualifiedNames": true,
     "intelephense.compatibility.correctForBaseClassStaticUnionTypes": true

@@ -5,7 +5,7 @@ globs:
 
 # Perform linting and code checks
 
-Code linting and checks should be performed when given the [CHECK CODE] shortcode.
+Code linting and checks should be performed when given the [check] shortcode.
 
 - Check all modified files for PHP compliance with the [phpcs.xml](mdc:family-recipe-book/family-recipe-book/family-recipe-book/family-recipe-book/phpcs.xml) file
 - Check all modified files for compliance with WordPress Coding Standards (WPCS)

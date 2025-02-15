@@ -9,9 +9,6 @@
     <!-- Use WordPress as the base -->
     <rule ref="WordPress"/>
 
-    <!-- Set installed standards paths -->
-    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs"/>
-
     <!-- Paths to check -->
     <file>dvnl-family-recipe-book</file>
 
