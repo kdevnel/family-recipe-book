@@ -77,6 +77,7 @@ class Dvnl_Family_Recipe_Book {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_block_hooks();
 	}
 
 	/**
@@ -130,6 +131,11 @@ class Dvnl_Family_Recipe_Book {
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'admin/class-dvnl-family-recipe-book-metaboxes.php';
 
+		/**
+		 * The class responsible for registering and initializing blocks
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-dvnl-family-recipe-book-blocks.php';
+
 		$this->loader = new Dvnl_Family_Recipe_Book_Loader();
 	}
 
@@ -150,6 +156,18 @@ class Dvnl_Family_Recipe_Book {
 	}
 
 	/**
+	 * Register all of the hooks related to blocks functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_block_hooks() {
+		$plugin_blocks = new Dvnl_Family_Recipe_Book_Blocks();
+		$this->loader->add_action( 'init', $plugin_blocks, 'init_blocks' );
+	}
+
+	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
@@ -157,7 +175,6 @@ class Dvnl_Family_Recipe_Book {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
 		$plugin_admin = new Dvnl_Family_Recipe_Book_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );

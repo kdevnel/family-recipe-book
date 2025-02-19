@@ -1,0 +1,23 @@
+{
+  "name": "dvnl-family-recipe-book",
+  "version": "1.0.0",
+  "description": "Family Recipe Book WordPress Plugin",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "dependencies": {
+    "@wordpress/blocks": "^13.5.0",
+    "@wordpress/block-editor": "^12.21.0",
+    "@wordpress/components": "^27.0.0",
+    "@wordpress/i18n": "^4.51.0"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.11.0"
+  }
+}

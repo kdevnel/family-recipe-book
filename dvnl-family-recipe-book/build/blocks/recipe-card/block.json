@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dvnl-family-recipe-book/recipe-card",
+  "version": "1.0.0",
+  "title": "Recipe Card",
+  "category": "widgets",
+  "icon": "food",
+  "description": "Display a recipe with title and instructions.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "source": "html",
+      "selector": "h2"
+    },
+    "instructions": {
+      "type": "string",
+      "source": "html",
+      "selector": "div"
+    }
+  },
+  "textdomain": "dvnl-family-recipe-book",
+  "editorScript": "file:index.js",
+  "editorStyle": "file:editor.scss",
+  "style": "file:style.scss"
+}

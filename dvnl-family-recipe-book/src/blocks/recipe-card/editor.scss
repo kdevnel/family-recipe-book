@@ -1,0 +1,16 @@
+.wp-block-dvnl-family-recipe-book-recipe-card {
+    // Editor-specific styles
+    .rich-text {
+        width: 100%;
+    }
+
+    h2[data-empty="true"]::before {
+        content: attr(placeholder);
+        color: #757575;
+    }
+
+    div[data-empty="true"]::before {
+        content: attr(placeholder);
+        color: #757575;
+    }
+}
