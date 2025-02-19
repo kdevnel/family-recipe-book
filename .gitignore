@@ -25,6 +25,7 @@ nbproject
 # Ignore dependency directories
 /vendor/
 /node_modules/
+*/node_modules/
 
 # Ignore WordPress core files (if not version controlled)
 /wp-admin/
