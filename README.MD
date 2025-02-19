@@ -13,25 +13,37 @@ Built using:
 ```bash
 git clone https://github.com/kdevnel/family-recipe-book.git
 
-cd family-recipe-book/dvnl-family-recipe-book
+cd family-recipe-book
 ```
 
 2. Install dependencies:
 ```bash
+# Composer dependencies first
 composer install
+
+# Node dependencies next
+cd dvnl-family-recipe-book
+
+# If using nvm - switch to correct node version
+nvm use
+
+npm install
 ```
 
-3. Install plugin:
-- Run `wp-now` or `wp-env` from the `/dvnl-family-recipe-book` folder
-
-OR
-
-- Symlink or copy the `dvnl-family-recipe-book` directory to your WordPress install:
+3. Build assets:
 ```bash
-ln -s $(pwd) /path/to/wordpress/wp-content/plugins/dvnl-family-recipe-book
+# Build only
+npm run build
+
+# Watch for changes and build them
+npm run start
 ```
 
-4. Activate plugin through WordPress admin
+4. Start development site
+```bash
+# Run with npm to ensure we use the bundled version
+npm run wp-env
+```
 
 ## Documentation
 
