@@ -13,8 +13,10 @@
     ],
     "[php]": {
         "editor.defaultFormatter": "wongjn.php-sniffer",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
     },
+	"phpSniffer.executablesFolder": "vendor/bin",
+	"phpSniffer.standard": "phpcs.xml",
     "eslint.validate": [
         "javascript",
         "javascriptreact"

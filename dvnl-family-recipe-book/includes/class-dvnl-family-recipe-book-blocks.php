@@ -32,7 +32,7 @@ class Dvnl_Family_Recipe_Book_Blocks {
 			return;
 		}
 
-		// Register the block using block.json from the build directory
+		// Register the block using block.json from the build directory.
 		register_block_type( plugin_dir_path( __DIR__ ) . 'build/blocks/recipe-card' );
 	}
 }
