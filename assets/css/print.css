@@ -1,0 +1,138 @@
+/**
+ * Family Recipe Book - Print Styles
+ */
+
+/* Print-specific styles */
+@media print {
+    /* Hide unnecessary elements */
+    header,
+    footer,
+    sidebar,
+    .comments-area,
+    .navigation,
+    .entry-meta,
+    .widget-area,
+    .site-header,
+    .site-footer,
+    .wp-block-search,
+    .wp-block-button,
+    .wp-block-social-links,
+    .wp-block-latest-posts,
+    .wp-block-latest-comments,
+    .wp-block-categories,
+    .wp-block-archives,
+    .wp-block-tag-cloud,
+    .wp-block-calendar,
+    .wp-block-rss,
+    .dvnl-recipe-print-button {
+        display: none !important;
+    }
+
+    /* Ensure the recipe content is visible */
+    .wp-block-dvnl-recipe-details,
+    .wp-block-dvnl-recipe-ingredients,
+    .wp-block-dvnl-recipe-instructions {
+        display: block !important;
+        page-break-inside: avoid;
+        margin: 20px 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    /* Style recipe details */
+    .dvnl-recipe-details-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .dvnl-recipe-detail {
+        padding: 5px !important;
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    /* Style recipe ingredients */
+    .dvnl-recipe-ingredients-list {
+        padding-left: 0 !important;
+    }
+
+    .dvnl-recipe-ingredient-item {
+        padding: 5px 0 !important;
+        border-bottom: 1px solid #eee !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    .dvnl-recipe-ingredient-checkbox {
+        display: none !important;
+    }
+
+    /* Style recipe instructions */
+    .dvnl-recipe-instructions-list {
+        padding-left: 20px !important;
+    }
+
+    .dvnl-recipe-instruction-item {
+        padding: 5px 0 !important;
+        margin-bottom: 10px !important;
+        border-bottom: 1px solid #eee !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    .dvnl-recipe-instruction-checkbox,
+    .dvnl-recipe-instruction-timer {
+        display: none !important;
+    }
+
+    /* General print styles */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+        font-size: 12pt !important;
+        line-height: 1.5 !important;
+        color: #000 !important;
+        background: #fff !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid !important;
+    }
+
+    p, h2, h3 {
+        orphans: 3 !important;
+        widows: 3 !important;
+    }
+
+    a {
+        color: #000 !important;
+        text-decoration: none !important;
+    }
+
+    /* Add a footer with the URL */
+    @page {
+        margin: 2cm;
+    }
+
+    @page :first {
+        margin-top: 2cm;
+    }
+
+    @page :left {
+        margin-right: 3cm;
+    }
+
+    @page :right {
+        margin-left: 3cm;
+    }
+}

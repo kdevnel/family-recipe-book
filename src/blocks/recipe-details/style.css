@@ -1,0 +1,68 @@
+/**
+ * Recipe Details Block - Frontend Styles
+ */
+
+.wp-block-dvnl-recipe-details {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.wp-block-dvnl-recipe-details h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.75rem;
+}
+
+.dvnl-recipe-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.25rem;
+}
+
+.dvnl-recipe-detail {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dvnl-recipe-detail:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dvnl-recipe-detail-label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dvnl-recipe-detail-value {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .dvnl-recipe-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wp-block-dvnl-recipe-details {
+        padding: 1rem;
+    }
+}

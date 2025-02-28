@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	>
+	<testsuites>
+		<testsuite name="Family Recipe Book Test Suite">
+			<directory prefix="test-" suffix=".php">./tests/</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist>
+			<directory suffix=".php">./includes</directory>
+			<file>./family-recipe-book.php</file>
+			<exclude>
+				<directory>./vendor</directory>
+				<directory>./node_modules</directory>
+				<directory>./tests</directory>
+				<directory>./build</directory>
+			</exclude>
+		</whitelist>
+	</filter>
+</phpunit>

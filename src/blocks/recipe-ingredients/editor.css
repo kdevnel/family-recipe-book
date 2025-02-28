@@ -1,0 +1,69 @@
+/**
+ * Recipe Ingredients Block - Editor Styles
+ */
+
+.wp-block-dvnl-recipe-ingredients {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wp-block-dvnl-recipe-ingredients h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.dvnl-recipe-ingredients-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.dvnl-recipe-ingredient-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dvnl-recipe-ingredient-item:last-child {
+    margin-bottom: 0;
+}
+
+.dvnl-recipe-ingredient-item .components-button.is-small {
+    padding: 0 6px;
+}
+
+.dvnl-recipe-ingredient-item .components-button.has-icon {
+    min-width: 24px;
+}
+
+.dvnl-recipe-ingredient-text {
+    flex-grow: 1;
+    margin: 0 0.5rem;
+}
+
+.dvnl-recipe-ingredient-actions {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.dvnl-recipe-ingredients-add {
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.dvnl-recipe-ingredient-input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}

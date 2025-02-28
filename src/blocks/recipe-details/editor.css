@@ -1,0 +1,47 @@
+/**
+ * Recipe Details Block - Editor Styles
+ */
+
+.wp-block-dvnl-recipe-details {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wp-block-dvnl-recipe-details h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.dvnl-recipe-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.dvnl-recipe-detail {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dvnl-recipe-detail-label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.dvnl-recipe-detail-value {
+    font-size: 1.1rem;
+    color: #333;
+}

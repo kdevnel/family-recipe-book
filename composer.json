@@ -1,0 +1,53 @@
+{
+    "name": "dvnl/family-recipe-book",
+    "description": "A WordPress plugin for managing family recipes with modern best practices.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "wp-coding-standards/wpcs": "^2.3",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+        "phpunit/phpunit": "^9.5",
+        "yoast/phpunit-polyfills": "^4.0",
+        "brain/monkey": "^2.6",
+        "mockery/mockery": "^1.5"
+    },
+    "scripts": {
+        "lint": "phpcs",
+        "fix": "phpcbf",
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html coverage",
+        "post-install-cmd": [
+            "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/phpcompatibility/phpcompatibility-wp"
+        ],
+        "post-update-cmd": [
+            "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/phpcompatibility/phpcompatibility-wp"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "dvnl\\": "includes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "dvnl\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

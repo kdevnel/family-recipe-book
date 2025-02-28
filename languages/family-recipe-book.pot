@@ -1,0 +1,221 @@
+# Copyright (C) 2023 Your Name
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Family Recipe Book 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/family-recipe-book\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-01-01T12:00:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: family-recipe-book\n"
+
+#. Plugin Name of the plugin
+msgid "Family Recipe Book"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/yourusername/family-recipe-book"
+msgstr ""
+
+#. Description of the plugin
+msgid "A WordPress plugin for managing family recipes with modern best practices."
+msgstr ""
+
+#. Author of the plugin
+msgid "Your Name"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://yourwebsite.com"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:42
+msgid "Add New"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:43
+msgid "Add New Recipe"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:44
+msgid "New Recipe"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:45
+msgid "Edit Recipe"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:46
+msgid "View Recipe"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:47
+msgid "All Recipes"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:48
+msgid "Search Recipes"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:49
+msgid "Parent Recipes:"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:50
+msgid "No recipes found."
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:51
+msgid "No recipes found in Trash."
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:76
+msgid "Description"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:79
+msgid "Write a brief description of your recipe..."
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:83
+msgid "Ingredients"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:86
+msgid "Add ingredients..."
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:90
+msgid "Instructions"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:93
+msgid "Add instructions..."
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:169
+msgid "Recipe Details"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:190
+msgid "Preparation Time (minutes):"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:194
+msgid "Cooking Time (minutes):"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:198
+msgid "Total Time (minutes):"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:202
+msgid "Servings:"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:206
+msgid "Calories (per serving):"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:210
+msgid "Difficulty:"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:212
+msgid "Easy"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:213
+msgid "Medium"
+msgstr ""
+
+#: includes/PostTypes/Recipe.php:214
+msgid "Hard"
+msgstr ""
+
+#: includes/Blocks/BlockManager.php:118
+msgid "Prep Time:"
+msgstr ""
+
+#: includes/Blocks/BlockManager.php:119
+#: includes/Blocks/BlockManager.php:125
+#: includes/Blocks/BlockManager.php:131
+msgid "minutes"
+msgstr ""
+
+#: includes/Blocks/BlockManager.php:124
+msgid "Cook Time:"
+msgstr ""
+
+#: includes/Blocks/BlockManager.php:130
+msgid "Total Time:"
+msgstr ""
+
+#: includes/Blocks/BlockManager.php:142
+msgid "Calories:"
+msgstr ""
+
+#: includes/Blocks/BlockManager.php:143
+msgid "per serving"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:13
+msgid "Recipe Details"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:16
+msgid "recipe"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:17
+msgid "details"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:18
+msgid "cooking"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:95
+msgid "Preparation Time (minutes)"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:102
+msgid "Cooking Time (minutes)"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:109
+msgid "Total Time (minutes)"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:116
+msgid "Servings"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:123
+msgid "Calories (per serving)"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:130
+msgid "Difficulty"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:133
+msgid "Select difficulty"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:134
+msgid "Easy"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:135
+msgid "Medium"
+msgstr ""
+
+#: src/blocks/recipe-details/index.js:136
+msgid "Hard"
+msgstr ""

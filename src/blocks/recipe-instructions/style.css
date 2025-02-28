@@ -1,0 +1,89 @@
+/**
+ * Recipe Instructions Block - Frontend Styles
+ */
+
+.wp-block-dvnl-recipe-instructions {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.wp-block-dvnl-recipe-instructions h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.75rem;
+}
+
+.dvnl-recipe-instructions-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    counter-reset: step-counter;
+}
+
+.dvnl-recipe-step-item {
+    position: relative;
+    padding: 1.25rem 1.25rem 1.25rem 3.5rem;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.dvnl-recipe-step-item:last-child {
+    margin-bottom: 0;
+}
+
+.dvnl-recipe-step-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dvnl-recipe-step-item::before {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+    position: absolute;
+    left: 1rem;
+    top: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Print styles */
+@media print {
+    .wp-block-dvnl-recipe-instructions {
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .dvnl-recipe-step-item {
+        background-color: transparent;
+        box-shadow: none;
+        padding-left: 2.5rem;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .dvnl-recipe-step-item::before {
+        background-color: #333;
+    }
+}

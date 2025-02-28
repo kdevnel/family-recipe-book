@@ -1,0 +1,79 @@
+/**
+ * Recipe Instructions Block - Editor Styles
+ */
+
+.wp-block-dvnl-recipe-instructions {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wp-block-dvnl-recipe-instructions h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.dvnl-recipe-instructions-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    counter-reset: step-counter;
+}
+
+.dvnl-recipe-step-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.dvnl-recipe-step-item:last-child {
+    margin-bottom: 0;
+}
+
+.dvnl-recipe-step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.dvnl-recipe-step-text {
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.dvnl-recipe-step-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.dvnl-recipe-instructions-add {
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.dvnl-recipe-step-textarea {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    min-height: 80px;
+}

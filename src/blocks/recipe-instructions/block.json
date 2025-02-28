@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "dvnl/recipe-instructions",
+    "version": "1.0.0",
+    "title": "Recipe Instructions",
+    "category": "widgets",
+    "icon": "editor-ol",
+    "description": "Add step-by-step instructions for your recipe.",
+    "supports": {
+        "html": false,
+        "multiple": false
+    },
+    "textdomain": "family-recipe-book",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "attributes": {
+        "steps": {
+            "type": "array",
+            "default": []
+        },
+        "title": {
+            "type": "string",
+            "default": "Instructions"
+        }
+    }
+}

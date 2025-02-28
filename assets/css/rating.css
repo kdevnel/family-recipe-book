@@ -1,0 +1,133 @@
+/**
+ * Family Recipe Book - Rating Styles
+ */
+
+/* Rating container */
+.dvnl-recipe-rating {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.dvnl-recipe-rating h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Rating stars */
+.dvnl-recipe-rating-stars {
+    display: inline-flex;
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.dvnl-recipe-star {
+    color: #ddd;
+    margin-right: 5px;
+    cursor: default;
+}
+
+.dvnl-recipe-star.filled {
+    color: #ffb900;
+}
+
+/* Interactive rating stars */
+.dvnl-recipe-rating-interactive .dvnl-recipe-star {
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.dvnl-recipe-rating-interactive .dvnl-recipe-star:hover,
+.dvnl-recipe-rating-interactive .dvnl-recipe-star.hover {
+    transform: scale(1.2);
+    color: #ffb900;
+}
+
+.dvnl-recipe-rating-interactive .dvnl-recipe-star.hover ~ .dvnl-recipe-star.hover {
+    color: #ddd;
+}
+
+/* Rating text */
+.dvnl-recipe-rating-text {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* User rating section */
+.dvnl-recipe-user-rating {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.dvnl-recipe-user-rating p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Rating message */
+.dvnl-recipe-rating-message {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 3px;
+    display: none;
+}
+
+.dvnl-recipe-rating-message.success {
+    display: block;
+    background-color: #f0f9eb;
+    color: #67c23a;
+    border: 1px solid #c2e7b0;
+}
+
+.dvnl-recipe-rating-message.error {
+    display: block;
+    background-color: #fef0f0;
+    color: #f56c6c;
+    border: 1px solid #fbc4c4;
+}
+
+/* Admin meta box */
+.dvnl-recipe-rating-meta-box .dvnl-recipe-rating-stars {
+    font-size: 18px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .dvnl-recipe-rating {
+        padding: 15px;
+    }
+
+    .dvnl-recipe-rating-stars {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dvnl-recipe-rating-stars {
+        font-size: 18px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .dvnl-recipe-user-rating {
+        display: none;
+    }
+
+    .dvnl-recipe-rating {
+        border: none;
+        padding: 0;
+        margin: 15px 0;
+        background: none;
+    }
+}

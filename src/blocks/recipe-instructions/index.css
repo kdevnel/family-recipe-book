@@ -1,0 +1,110 @@
+/**
+ * Recipe Instructions Block - Editor Styles
+ */
+
+.wp-block-dvnl-recipe-instructions {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin-bottom: 28px;
+}
+
+.wp-block-dvnl-recipe-instructions h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.5em;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
+}
+
+.dvnl-recipe-instructions-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: step-counter;
+}
+
+.dvnl-recipe-instruction-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.dvnl-recipe-instruction-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    margin-right: 12px;
+    font-weight: bold;
+    color: #555;
+    flex-shrink: 0;
+}
+
+.dvnl-recipe-instruction-text {
+    flex-grow: 1;
+    padding: 4px 0;
+}
+
+.dvnl-recipe-instruction-actions {
+    display: flex;
+    gap: 4px;
+    margin-left: 8px;
+}
+
+.dvnl-recipe-instruction-actions button {
+    padding: 2px;
+    height: 24px;
+    width: 24px;
+    min-width: 24px;
+}
+
+.dvnl-recipe-instruction-add {
+    margin-top: 16px;
+}
+
+.dvnl-recipe-instruction-add button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #f0f0f0;
+    border: 1px dashed #ccc;
+    color: #555;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dvnl-recipe-instruction-add button:hover {
+    background-color: #e8e8e8;
+    border-color: #aaa;
+}
+
+.dvnl-recipe-instruction-add button svg {
+    margin-right: 8px;
+}
+
+.dvnl-recipe-instructions-empty {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px dashed #ddd;
+}
+
+.dvnl-recipe-instructions-title-input {
+    margin-bottom: 16px;
+    width: 100%;
+}

@@ -1,0 +1,349 @@
+/**
+ * Family Recipe Book - Search and Filtering Styles
+ */
+
+/* Main search container */
+.dvnl-recipe-search {
+    margin: 30px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.dvnl-recipe-search-title {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Search form */
+.dvnl-recipe-search-form {
+    margin-bottom: 30px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+}
+
+.dvnl-recipe-search-input {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.dvnl-recipe-search-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+.dvnl-recipe-search-input button {
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.dvnl-recipe-search-input button:hover {
+    background-color: #005f8b;
+}
+
+/* Filters */
+.dvnl-recipe-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dvnl-recipe-filter {
+    margin-bottom: 20px;
+}
+
+.dvnl-recipe-filter h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.dvnl-recipe-filter-options {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.dvnl-recipe-filter-options label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.dvnl-recipe-filter-options input[type="checkbox"],
+.dvnl-recipe-filter-options input[type="radio"] {
+    margin-right: 8px;
+}
+
+.dvnl-recipe-count {
+    margin-left: 5px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.dvnl-recipe-filter-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.dvnl-recipe-filter-actions button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+#dvnl-recipe-filter-apply {
+    background-color: #0073aa;
+    color: white;
+}
+
+#dvnl-recipe-filter-apply:hover {
+    background-color: #005f8b;
+}
+
+#dvnl-recipe-filter-reset {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+#dvnl-recipe-filter-reset:hover {
+    background-color: #e0e0e0;
+}
+
+/* Results */
+.dvnl-recipe-search-results {
+    position: relative;
+    min-height: 200px;
+}
+
+.dvnl-recipe-search-results-count {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.dvnl-recipe-search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.dvnl-recipe-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dvnl-recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dvnl-recipe-card-image {
+    height: 180px;
+    background-color: #f1f1f1;
+    background-size: cover;
+    background-position: center;
+}
+
+.dvnl-recipe-card-content {
+    padding: 15px;
+}
+
+.dvnl-recipe-card-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.dvnl-recipe-card-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.dvnl-recipe-card-title a:hover {
+    color: #0073aa;
+}
+
+.dvnl-recipe-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.dvnl-recipe-card-meta-item {
+    margin-right: 15px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.dvnl-recipe-card-meta-item svg {
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+}
+
+.dvnl-recipe-card-excerpt {
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.dvnl-recipe-card-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dvnl-recipe-card-rating-stars {
+    display: inline-flex;
+    font-size: 18px;
+    line-height: 1;
+    margin-right: 8px;
+    color: #ddd;
+}
+
+.dvnl-recipe-card-rating-stars .filled {
+    color: #ffb900;
+}
+
+.dvnl-recipe-card-rating-count {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.dvnl-recipe-card-difficulty {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.dvnl-recipe-card-difficulty.easy {
+    background-color: #e6f7e6;
+    color: #2e7d32;
+}
+
+.dvnl-recipe-card-difficulty.medium {
+    background-color: #fff8e1;
+    color: #ff8f00;
+}
+
+.dvnl-recipe-card-difficulty.hard {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Loading and no results */
+.dvnl-recipe-search-loading,
+.dvnl-recipe-search-no-results {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.dvnl-recipe-search.is-loading .dvnl-recipe-search-loading {
+    display: block;
+}
+
+.dvnl-recipe-search.no-results .dvnl-recipe-search-no-results {
+    display: block;
+}
+
+/* Pagination */
+.dvnl-recipe-search-pagination {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.dvnl-recipe-search-pagination-item {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dvnl-recipe-search-pagination-item:hover {
+    background-color: #f1f1f1;
+}
+
+.dvnl-recipe-search-pagination-item.current {
+    background-color: #0073aa;
+    color: white;
+    border-color: #0073aa;
+}
+
+.dvnl-recipe-search-pagination-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .dvnl-recipe-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .dvnl-recipe-search-results-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .dvnl-recipe-search-input {
+        flex-direction: column;
+    }
+
+    .dvnl-recipe-search-input input {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .dvnl-recipe-search-input button {
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    .dvnl-recipe-search-results-grid {
+        grid-template-columns: 1fr;
+    }
+}
