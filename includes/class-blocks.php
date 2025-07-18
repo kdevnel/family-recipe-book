@@ -37,29 +37,26 @@ class Blocks {
 			return;
 		}
 
-		// Register blocks from the build directory
-		$blocks_dir = DVNL_FAMILY_RECIPE_BOOK_PLUGIN_DIR . 'build';
+		// Register blocks via a centralized action
+		add_action( 'dvnl_register_blocks', function() {
+			register_block_type( 'dvnl/recipe-details', array(
+				'editor_script' => 'dvnl-family-recipe-book-editor',
+				'editor_style'  => 'dvnl-family-recipe-book-editor-style',
+				'style'         => 'dvnl-family-recipe-book-style',
+			) );
 
-		// Register recipe details block
-		register_block_type( 'dvnl/recipe-details', array(
-			'editor_script' => 'dvnl-family-recipe-book-editor',
-			'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-			'style'         => 'dvnl-family-recipe-book-style',
-		) );
+			register_block_type( 'dvnl/recipe-ingredients', array(
+				'editor_script' => 'dvnl-family-recipe-book-editor',
+				'editor_style'  => 'dvnl-family-recipe-book-editor-style',
+				'style'         => 'dvnl-family-recipe-book-style',
+			) );
 
-		// Register recipe ingredients block
-		register_block_type( 'dvnl/recipe-ingredients', array(
-			'editor_script' => 'dvnl-family-recipe-book-editor',
-			'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-			'style'         => 'dvnl-family-recipe-book-style',
-		) );
-
-		// Register recipe instructions block
-		register_block_type( 'dvnl/recipe-instructions', array(
-			'editor_script' => 'dvnl-family-recipe-book-editor',
-			'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-			'style'         => 'dvnl-family-recipe-book-style',
-		) );
+			register_block_type( 'dvnl/recipe-instructions', array(
+				'editor_script' => 'dvnl-family-recipe-book-editor',
+				'editor_style'  => 'dvnl-family-recipe-book-editor-style',
+				'style'         => 'dvnl-family-recipe-book-style',
+			) );
+		} );
 	}
 
 	/**

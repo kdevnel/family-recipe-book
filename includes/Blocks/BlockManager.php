@@ -41,17 +41,12 @@ class BlockManager
     public function register_blocks()
     {
         // Check if Gutenberg is active
-        if (!function_exists('register_block_type')) {
+        if (!function_exists('\register_block_type')) {
             return;
         }
 
-        // Register recipe details block
-        register_block_type(
-            DVNL_FAMILY_RECIPE_BOOK_PLUGIN_DIR . 'build/blocks/recipe-details',
-            array(
-                'render_callback' => array($this, 'render_recipe_details_block'),
-            )
-        );
+        // Register blocks from a centralized location
+        do_action('dvnl_register_blocks');
     }
 
     /**
