@@ -22,7 +22,8 @@
         "phpunit/phpunit": "^9.5",
         "yoast/phpunit-polyfills": "^4.0",
         "brain/monkey": "^2.6",
-        "mockery/mockery": "^1.5"
+        "mockery/mockery": "^1.5",
+        "php-stubs/wordpress-stubs": "^6.8"
     },
     "prefer-stable": true,
     "scripts": {

@@ -334,6 +334,3 @@ class Settings {
 		return isset( $this->options[ $key ] ) ? $this->options[ $key ] : $default;
 	}
 }
-
-// Initialize the class.
-new Settings();

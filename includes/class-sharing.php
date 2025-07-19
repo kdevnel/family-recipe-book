@@ -19,24 +19,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Sharing {
 
-	/**
-	 * Settings instance
-	 *
-	 * @var Settings
-	 */
-	private $settings;
+	   /**
+		* Settings instance
+		*
+		* @var Settings
+		*/
+	   private $settings;
 
-	/**
-	 * Initialize the class
-	 */
-	public function __construct() {
-		// Get settings instance
-		$this->settings = new Settings();
+	   /**
+		* Initialize the class
+		*
+		* @param Settings $settings Settings instance.
+		*/
+	   public function __construct( Settings $settings ) {
+			   $this->settings = $settings;
 
-		// Only proceed if sharing is enabled
-		if ( 'yes' !== $this->settings->get_option( 'enable_sharing', 'yes' ) ) {
-			return;
-		}
+			   // Only proceed if sharing is enabled
+			   if ( 'yes' !== $this->settings->get_option( 'enable_sharing', 'yes' ) ) {
+					   return;
+			   }
 
 		// Add sharing buttons to recipe content
 		add_filter( 'the_content', array( $this, 'add_sharing_buttons' ) );
@@ -250,6 +251,3 @@ class Sharing {
 		);
 	}
 }
-
-// Initialize the class.
-new Sharing();

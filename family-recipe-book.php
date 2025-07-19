@@ -67,10 +67,10 @@ function dvnl_family_recipe_book_init() {
     $settings = new \dvnl\Settings();
 
     // Register print functionality
-    $print = new \dvnl\Print_Recipe();
+    $print = new \dvnl\Print_Recipe( $settings );
 
     // Register sharing functionality
-    $sharing = new \dvnl\Sharing();
+    $sharing = new \dvnl\Sharing( $settings );
 
     // Register rating functionality
     $rating = new \dvnl\Rating();

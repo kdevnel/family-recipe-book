@@ -19,24 +19,25 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Print_Recipe {
 
-	/**
-	 * Settings instance
-	 *
-	 * @var Settings
-	 */
-	private $settings;
+	   /**
+		* Settings instance
+		*
+		* @var Settings
+		*/
+	   private $settings;
 
-	/**
-	 * Initialize the class
-	 */
-	public function __construct() {
-		// Get settings instance
-		$this->settings = new Settings();
+	   /**
+		* Initialize the class
+		*
+		* @param Settings $settings Settings instance.
+		*/
+	   public function __construct( Settings $settings ) {
+			   $this->settings = $settings;
 
-		// Only proceed if print button is enabled
-		if ( 'yes' !== $this->settings->get_option( 'enable_print_button', 'yes' ) ) {
-			return;
-		}
+			   // Only proceed if print button is enabled
+			   if ( 'yes' !== $this->settings->get_option( 'enable_print_button', 'yes' ) ) {
+					   return;
+			   }
 
 		// Add print button to recipe content
 		add_filter( 'the_content', array( $this, 'add_print_button' ) );
@@ -404,6 +405,3 @@ class Print_Recipe {
 		exit;
 	}
 }
-
-// Initialize the class.
-new Print_Recipe();
