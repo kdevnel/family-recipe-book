@@ -1,4 +1,7 @@
 # phpstan.neon.dist
+includes:
+    - phpstan-baseline.neon # Ignore historic errors and only check new errors
+
 parameters:
     # The lowest level is 0, the highest is 9.
     # Start with a lower level (e.g., 5) and increase it over time.

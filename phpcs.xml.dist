@@ -26,18 +26,21 @@
     </rule>
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
-            <property name="prefixes" type="array" value="dvnl"/>
+            <property name="prefixes" type="array">
+                <element value="dvnl"/>
+            </property>
         </properties>
     </rule>
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="family-recipe-book"/>
+            <property name="text_domain" type="array">
+                <element value="family-recipe-book"/>
+            </property>
         </properties>
     </rule>
     <rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
         <properties>
             <property name="blank_line_check" value="true"/>
-            <property name="spaces_before_closure_open_paren" value="0"/>
             <property name="space_before_colon" value="forbidden"/>
         </properties>
     </rule>
