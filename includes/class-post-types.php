@@ -75,7 +75,7 @@ class Post_Types {
 			'hierarchical'       => false,
 			'menu_position'      => 20,
 			'menu_icon'          => 'dashicons-food',
-			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
+			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions', 'custom-fields' ),
 			'show_in_rest'       => true,
 		);
 
