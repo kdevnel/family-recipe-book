@@ -1,12 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Constant DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL not found\.$#'
-			identifier: constant.notFound
-			count: 3
-			path: includes/Blocks/BlockManager.php
-
-		-
 			message: '#^Parameter \#3 \$args of function register_taxonomy expects array\{labels\?\: array\<string\>, description\?\: string, public\?\: bool, publicly_queryable\?\: bool, hierarchical\?\: bool, show_ui\?\: bool, show_in_menu\?\: bool, show_in_nav_menus\?\: bool, \.\.\.\}, array\{labels\: array\{name\: string, singular_name\: string, search_items\: string, popular_items\: string, all_items\: string, parent_item\: null, parent_item_colon\: null, edit_item\: string, \.\.\.\}, hierarchical\: false, public\: true, show_ui\: true, show_admin_column\: true, show_in_nav_menus\: true, show_tagcloud\: true, show_in_rest\: true, \.\.\.\} given\.$#'
 			identifier: argument.type
 			count: 1

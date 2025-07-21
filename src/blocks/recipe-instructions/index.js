@@ -32,10 +32,45 @@ import './style.css';
 /**
  * Register the block
  */
-registerBlockType('dvnl/recipe-instructions', {
-    edit: Edit,
-    save: Save,
-});
+registerBlockType(
+    'dvnl/recipe-instructions',
+    {
+        title: __( 'Recipe Instructions', 'family-recipe-book' ),
+        icon: 'carrot',
+        category: 'common',
+        attributes: {
+            title: {
+                type: 'string',
+                source: 'html',
+                selector: 'h2',
+            },
+            steps: {
+                type: 'array',
+                source: 'children',
+                selector: 'ol',
+            },
+        },
+        description: __( 'A block to add step-by-step instructions for a recipe.', 'family-recipe-book' ),
+        keywords: [ __( 'recipe', 'family-recipe-book' ), __( 'instructions', 'family-recipe-book' ), __( 'cooking', 'family-recipe-book' ) ],
+        supports: {
+            html: false, // Disable HTML mode for this block
+        },
+        example: {
+            attributes: {
+                title: __( 'Instructions', 'family-recipe-book' ),
+                steps: [
+                    __( 'Preheat the oven to 350°F (175°C).', 'family-recipe-book' ),
+                    __( 'Mix flour, sugar, and eggs in a bowl.', 'family-recipe-book' ),
+                    __( 'Pour the mixture into a baking dish.', 'family-recipe-book' ),
+                    __( 'Bake for 30 minutes or until golden brown.', 'family-recipe-book' ),
+                ],
+            },
+        },
+        // Define the edit and save functions
+        edit: Edit,
+        save: Save,
+    }
+);
 
 /**
  * Block Edit component

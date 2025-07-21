@@ -23,7 +23,7 @@ class Blocks {
 	 * Initialize the class
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'register_blocks' ) );
+		// add_action( 'init', array( $this, 'register_blocks' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
 		add_action( 'rest_api_init', array( $this, 'register_meta_fields' ) );
 	}
@@ -37,38 +37,73 @@ class Blocks {
 			return;
 		}
 
-		// Register blocks via a centralized action.
-		add_action(
-			'dvnl_register_blocks',
-			function () {
-				register_block_type(
-					'dvnl/recipe-details',
-					array(
-						'editor_script' => 'dvnl-family-recipe-book-editor',
-						'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-						'style'         => 'dvnl-family-recipe-book-style',
-					)
-				);
-
-				register_block_type(
-					'dvnl/recipe-ingredients',
-					array(
-						'editor_script' => 'dvnl-family-recipe-book-editor',
-						'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-						'style'         => 'dvnl-family-recipe-book-style',
-					)
-				);
-
-				register_block_type(
-					'dvnl/recipe-instructions',
-					array(
-						'editor_script' => 'dvnl-family-recipe-book-editor',
-						'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-						'style'         => 'dvnl-family-recipe-book-style',
-					)
-				);
-			}
+		// Centralized scalable block registration with REST API and server-side rendering.
+		$blocks = array(
+			'dvnl/recipe-details'      => array(
+				'editor_script'   => 'dvnl-family-recipe-book-editor',
+				'editor_style'    => 'dvnl-family-recipe-book-editor-style',
+				'style'           => 'dvnl-family-recipe-book-style',
+				'render_callback' => array( $this, 'render_recipe_details_block' ),
+				'attributes'      => array(), // Add block attributes as needed
+			),
+			'dvnl/recipe-ingredients'  => array(
+				'editor_script'   => 'dvnl-family-recipe-book-editor',
+				'editor_style'    => 'dvnl-family-recipe-book-editor-style',
+				'style'           => 'dvnl-family-recipe-book-style',
+				'render_callback' => array( $this, 'render_recipe_ingredients_block' ),
+				'attributes'      => array(), // Add block attributes as needed
+			),
+			'dvnl/recipe-instructions' => array(
+				'editor_script'   => 'dvnl-family-recipe-book-editor',
+				'editor_style'    => 'dvnl-family-recipe-book-editor-style',
+				'style'           => 'dvnl-family-recipe-book-style',
+				'render_callback' => array( $this, 'render_recipe_instructions_block' ),
+				'attributes'      => array(), // Add block attributes as needed
+			),
+			// Add more blocks here as needed
 		);
+
+		foreach ( $blocks as $name => $args ) {
+			register_block_type( $name, $args );
+		}
+
+		// REST API support is handled automatically for blocks registered with register_block_type.
+	}
+
+	/**
+	 * Server-side render callback for recipe details block
+	 *
+	 * @param array  $attributes Block attributes.
+	 * @param string $content    Block content.
+	 * @return string Rendered block output.
+	 */
+	public function render_recipe_details_block( $attributes, $content ) {
+		// TODO: Implement server-side rendering logic for recipe details block
+		return '<div class="dvnl-recipe-details-block">' . $content . '</div>';
+	}
+
+	/**
+	 * Server-side render callback for recipe ingredients block
+	 *
+	 * @param array  $attributes Block attributes.
+	 * @param string $content    Block content.
+	 * @return string Rendered block output.
+	 */
+	public function render_recipe_ingredients_block( $attributes, $content ) {
+		// TODO: Implement server-side rendering logic for recipe ingredients block
+		return '<div class="dvnl-recipe-ingredients-block">' . $content . '</div>';
+	}
+
+	/**
+	 * Server-side render callback for recipe instructions block
+	 *
+	 * @param array  $attributes Block attributes.
+	 * @param string $content    Block content.
+	 * @return string Rendered block output.
+	 */
+	public function render_recipe_instructions_block( $attributes, $content ) {
+		// TODO: Implement server-side rendering logic for recipe instructions block
+		return '<div class="dvnl-recipe-instructions-block">' . $content . '</div>';
 	}
 
 	/**

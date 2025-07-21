@@ -46,7 +46,7 @@ class Template_Locking {
 			),
 			array( 'dvnl/recipe-details', array() ),
 			array( 'dvnl/recipe-ingredients', array() ),
-			// array( 'dvnl/recipe-instructions', array() ),
+			array( 'dvnl/recipe-instructions', array() ),
 		);
 
 		// Set template lock to 'insert' - allows adding blocks but not removing required ones

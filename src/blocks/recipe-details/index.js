@@ -24,51 +24,51 @@ import './editor.css';
 import './style.css';
 
 // Register the block
-registerBlockType('dvnl/recipe-details', {
-    title: __('Recipe Details', 'family-recipe-book'),
-    icon: 'food',
-    category: 'common',
-    keywords: [
-        __('recipe', 'family-recipe-book'),
-        __('details', 'family-recipe-book'),
-        __('cooking', 'family-recipe-book'),
-    ],
-    attributes: {
-        prepTime: {
-            type: 'string',
-            source: 'meta',
-            meta: '_dvnl_recipe_prep_time',
+registerBlockType(
+    'dvnl/recipe-details',
+    {
+        title: __( 'Recipe Details', 'family-recipe-book' ),
+        icon: 'food',
+        category: 'common',
+        keywords: [
+            __( 'recipe', 'family-recipe-book' ),
+            __( 'details', 'family-recipe-book' ),
+            __( 'cooking', 'family-recipe-book' ),
+        ],
+        attributes: {
+            prepTime: {
+                type: 'string',
+                source: 'meta',
+                meta: '_dvnl_recipe_prep_time',
+            },
+            cookTime: {
+                type: 'string',
+                source: 'meta',
+                meta: '_dvnl_recipe_cook_time',
+            },
+            totalTime: {
+                type: 'string',
+                source: 'meta',
+                meta: '_dvnl_recipe_total_time',
+            },
+            servings: {
+                type: 'string',
+                source: 'meta',
+                meta: '_dvnl_recipe_servings',
+            },
+            calories: {
+                type: 'string',
+                source: 'meta',
+                meta: '_dvnl_recipe_calories',
+            },
+            difficulty: {
+                type: 'string',
+                source: 'meta',
+                meta: '_dvnl_recipe_difficulty',
+            },
         },
-        cookTime: {
-            type: 'string',
-            source: 'meta',
-            meta: '_dvnl_recipe_cook_time',
-        },
-        totalTime: {
-            type: 'string',
-            source: 'meta',
-            meta: '_dvnl_recipe_total_time',
-        },
-        servings: {
-            type: 'string',
-            source: 'meta',
-            meta: '_dvnl_recipe_servings',
-        },
-        calories: {
-            type: 'string',
-            source: 'meta',
-            meta: '_dvnl_recipe_calories',
-        },
-        difficulty: {
-            type: 'string',
-            source: 'meta',
-            meta: '_dvnl_recipe_difficulty',
-        },
-    },
-
     // Define the edit interface
-    edit: Edit,
-
+        edit: Edit,
     // Define the save interface (empty because we're using a dynamic block)
     save: Save,
 });

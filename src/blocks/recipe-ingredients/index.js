@@ -32,10 +32,28 @@ import './style.css';
 /**
  * Register the block
  */
-registerBlockType('dvnl/recipe-ingredients', {
-    edit: Edit,
-    save: Save,
-});
+registerBlockType(
+    'dvnl/recipe-ingredients',
+    {
+        title: __( 'Recipe Ingredients', 'family-recipe-book' ),
+        icon: 'carrot',
+        category: 'common',
+        attributes: {
+            title: {
+                type: 'string',
+                source: 'html',
+                selector: 'h2',
+            },
+            ingredients: {
+                type: 'array',
+                source: 'children',
+                selector: 'ul',
+            },
+        },
+        edit: Edit,
+        save: Save,
+    }
+);
 
 /**
  * Block Edit component
