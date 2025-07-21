@@ -26,7 +26,7 @@ class Post_Types {
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
-		add_action( 'save_post_recipe', array( $this, 'save_meta_boxes' ), 10, 2 );
+		add_action( 'save_post_recipe', array( $this, 'save_meta_boxes' ), 10, 1 );
 		add_filter( 'manage_recipe_posts_columns', array( $this, 'add_recipe_columns' ) );
 		add_action( 'manage_recipe_posts_custom_column', array( $this, 'render_recipe_columns' ), 10, 2 );
 	}
@@ -179,11 +179,11 @@ class Post_Types {
 		wp_nonce_field( 'recipe_details_nonce', 'recipe_details_nonce' );
 
 		// Get saved values
-		$prep_time = get_post_meta( $post->ID, '_dvnl_recipe_prep_time', true );
-		$cook_time = get_post_meta( $post->ID, '_dvnl_recipe_cook_time', true );
+		$prep_time  = get_post_meta( $post->ID, '_dvnl_recipe_prep_time', true );
+		$cook_time  = get_post_meta( $post->ID, '_dvnl_recipe_cook_time', true );
 		$total_time = get_post_meta( $post->ID, '_dvnl_recipe_total_time', true );
-		$servings = get_post_meta( $post->ID, '_dvnl_recipe_servings', true );
-		$calories = get_post_meta( $post->ID, '_dvnl_recipe_calories', true );
+		$servings   = get_post_meta( $post->ID, '_dvnl_recipe_servings', true );
+		$calories   = get_post_meta( $post->ID, '_dvnl_recipe_calories', true );
 		$difficulty = get_post_meta( $post->ID, '_dvnl_recipe_difficulty', true );
 		?>
 		<div class="dvnl-recipe-meta-box">
@@ -222,10 +222,9 @@ class Post_Types {
 	/**
 	 * Save the meta box data
 	 *
-	 * @param int      $post_id The post ID.
-	 * @param \WP_Post $post    The post object.
+	 * @param int $post_id The post ID.
 	 */
-	public function save_meta_boxes( $post_id, $post ) {
+	public function save_meta_boxes( $post_id ) {
 		// Check if nonce is set
 		if ( ! isset( $_POST['recipe_details_nonce'] ) ) {
 			return;
