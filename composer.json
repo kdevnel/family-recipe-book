@@ -23,13 +23,19 @@
         "yoast/phpunit-polyfills": "^4.0",
         "brain/monkey": "^2.6",
         "mockery/mockery": "^1.5",
-        "php-stubs/wordpress-stubs": "^6.8"
+        "php-stubs/wordpress-stubs": "^6.8",
+        "phpstan/phpstan": "^2.1",
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "phpstan/extension-installer": "^1.4",
+        "captainhook/captainhook-phar": "^5.25"
     },
     "prefer-stable": true,
     "scripts": {
         "lint": "phpcs",
         "fix": "phpcbf",
         "test": "phpunit",
+        "phpstan": "vendor/bin/phpstan analyse --memory-limit=2G",
+        "phpstan-baseline": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist --generate-baseline --memory-limit=2G",
         "test:coverage": "phpunit --coverage-html coverage",
         "post-install-cmd": [
             "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/phpcompatibility/phpcompatibility-wp"
@@ -50,7 +56,9 @@
     },
     "config": {
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
+            "captainhook/captainhook-phar": true
         }
     }
 }

@@ -61,6 +61,8 @@ logs/
 .htaccess
 sitemap.xml
 sitemap.xml.gz
+phpstan.neon
+phpstan-baseline.neon
 
 # WordPress Environment
 .wp-env/

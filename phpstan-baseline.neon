@@ -1,0 +1,121 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Constant DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL not found\.$#'
+			identifier: constant.notFound
+			count: 3
+			path: includes/Blocks/BlockManager.php
+
+		-
+			message: '#^Parameter \#3 \$args of function register_taxonomy expects array\{labels\?\: array\<string\>, description\?\: string, public\?\: bool, publicly_queryable\?\: bool, hierarchical\?\: bool, show_ui\?\: bool, show_in_menu\?\: bool, show_in_nav_menus\?\: bool, \.\.\.\}, array\{labels\: array\{name\: string, singular_name\: string, search_items\: string, popular_items\: string, all_items\: string, parent_item\: null, parent_item_colon\: null, edit_item\: string, \.\.\.\}, hierarchical\: false, public\: true, show_ui\: true, show_admin_column\: true, show_in_nav_menus\: true, show_tagcloud\: true, show_in_rest\: true, \.\.\.\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/PostTypes/Recipe.php
+
+		-
+			message: '#^Offset 1 on array\{list\<string\>, list\<string\>\} in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.offset
+			count: 2
+			path: includes/Schema/RecipeSchema.php
+
+		-
+			message: '#^Offset 1 on array\{non\-falsy\-string, string\} in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.offset
+			count: 2
+			path: includes/Schema/RecipeSchema.php
+
+		-
+			message: '#^Parameter \#1 \$author_id of function get_author_posts_url expects int, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/Schema/RecipeSchema.php
+
+		-
+			message: '#^Parameter \#2 \$user_id of function get_the_author_meta expects int\|false, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/Schema/RecipeSchema.php
+
+		-
+			message: '#^Right side of && is always true\.$#'
+			identifier: booleanAnd.rightAlwaysTrue
+			count: 2
+			path: includes/Schema/RecipeSchema.php
+
+		-
+			message: '#^Constant DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL not found\.$#'
+			identifier: constant.notFound
+			count: 2
+			path: includes/class-blocks.php
+
+		-
+			message: '#^Parameter \#3 \$args of function register_taxonomy expects array\{labels\?\: array\<string\>, description\?\: string, public\?\: bool, publicly_queryable\?\: bool, hierarchical\?\: bool, show_ui\?\: bool, show_in_menu\?\: bool, show_in_nav_menus\?\: bool, \.\.\.\}, array\{labels\: array\{name\: string, singular_name\: string, search_items\: string, popular_items\: string, all_items\: string, parent_item\: null, parent_item_colon\: null, edit_item\: string, \.\.\.\}, hierarchical\: false, public\: true, show_ui\: true, show_admin_column\: true, show_in_nav_menus\: true, show_tagcloud\: true, show_in_rest\: true, \.\.\.\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/class-post-types.php
+
+		-
+			message: '#^Constant DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL not found\.$#'
+			identifier: constant.notFound
+			count: 2
+			path: includes/class-print.php
+
+		-
+			message: '#^Constant COOKIEPATH not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: includes/class-rating.php
+
+		-
+			message: '#^Constant COOKIE_DOMAIN not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: includes/class-rating.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/class-rating.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int\<1, 5\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/class-rating.php
+
+		-
+			message: '#^Parameter \#2 \$value of function setcookie expects string, int\<1, 5\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/class-rating.php
+
+		-
+			message: '#^Parameter \#2 \$user_id of function get_the_author_meta expects int\|false, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/class-schema.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: includes/class-search.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_html expects string, int given\.$#'
+			identifier: argument.type
+			count: 2
+			path: includes/class-search.php
+
+		-
+			message: '#^Constant DVNL_FAMILY_RECIPE_BOOK_PLUGIN_BASENAME not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: includes/class-settings.php
+
+		-
+			message: '#^Constant DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL not found\.$#'
+			identifier: constant.notFound
+			count: 2
+			path: includes/class-sharing.php

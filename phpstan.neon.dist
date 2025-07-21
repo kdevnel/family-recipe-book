@@ -1,0 +1,30 @@
+# phpstan.neon.dist
+parameters:
+    # The lowest level is 0, the highest is 9.
+    # Start with a lower level (e.g., 5) and increase it over time.
+    level: 5
+
+    # Paths to analyze. Point this to your plugin's source code.
+    # Adjust 'src/' or other directories based on your plugin's structure.
+    paths:
+        - includes/
+        - family-recipe-book.php # Include your main plugin file if it's not in a sub-directory
+
+    # Exclude files/directories from analysis (e.g., vendor, build files, test data)
+    excludePaths:
+        - vendor/*
+        - tests/* # Exclude if your tests are in a separate directory
+        - build/* # Exclude any build output directories
+
+    # If you are NOT using phpstan/extension-installer, you would manually include the extension here:
+    # includes:
+    #     - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+    # Baseline configuration (optional but highly recommended for existing projects)
+    # This helps ignore existing errors so you can focus on new issues.
+    # See Step 6 for how to generate this.
+    # ignoreErrors:
+    #     - '#Some existing error pattern#'
+    #     # Example: Ignore unused variable in specific file
+    #     - message: '#Unused variable \$foo#'
+    #       path: path/to/some-file.php
