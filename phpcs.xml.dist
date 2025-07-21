@@ -45,6 +45,13 @@
         </properties>
     </rule>
 
+    <!-- Rules: PHP Code Sniffer -->
+    <rule ref="Squiz.Commenting.InlineComment.InvalidEndChar">
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+    </rule>
+
+
+
     <!-- Rules: PHP Compatibility -->
     <config name="testVersion" value="7.4-"/>
     <rule ref="PHPCompatibilityWP"/>
