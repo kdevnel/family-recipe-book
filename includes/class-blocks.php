@@ -32,38 +32,50 @@ class Blocks {
 	 * Register custom blocks
 	 */
 	public function register_blocks() {
-		// Check if Gutenberg is active
+		// Check if Gutenberg is active.
 		if ( ! function_exists( 'register_block_type' ) ) {
 			return;
 		}
 
-		// Register blocks via a centralized action
-		add_action( 'dvnl_register_blocks', function() {
-			register_block_type( 'dvnl/recipe-details', array(
-				'editor_script' => 'dvnl-family-recipe-book-editor',
-				'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-				'style'         => 'dvnl-family-recipe-book-style',
-			) );
+		// Register blocks via a centralized action.
+		add_action(
+			'dvnl_register_blocks',
+			function () {
+				register_block_type(
+					'dvnl/recipe-details',
+					array(
+						'editor_script' => 'dvnl-family-recipe-book-editor',
+						'editor_style'  => 'dvnl-family-recipe-book-editor-style',
+						'style'         => 'dvnl-family-recipe-book-style',
+					)
+				);
 
-			register_block_type( 'dvnl/recipe-ingredients', array(
-				'editor_script' => 'dvnl-family-recipe-book-editor',
-				'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-				'style'         => 'dvnl-family-recipe-book-style',
-			) );
+				register_block_type(
+					'dvnl/recipe-ingredients',
+					array(
+						'editor_script' => 'dvnl-family-recipe-book-editor',
+						'editor_style'  => 'dvnl-family-recipe-book-editor-style',
+						'style'         => 'dvnl-family-recipe-book-style',
+					)
+				);
 
-			register_block_type( 'dvnl/recipe-instructions', array(
-				'editor_script' => 'dvnl-family-recipe-book-editor',
-				'editor_style'  => 'dvnl-family-recipe-book-editor-style',
-				'style'         => 'dvnl-family-recipe-book-style',
-			) );
-		} );
+				register_block_type(
+					'dvnl/recipe-instructions',
+					array(
+						'editor_script' => 'dvnl-family-recipe-book-editor',
+						'editor_style'  => 'dvnl-family-recipe-book-editor-style',
+						'style'         => 'dvnl-family-recipe-book-style',
+					)
+				);
+			}
+		);
 	}
 
 	/**
 	 * Enqueue block editor assets
 	 */
 	public function enqueue_editor_assets() {
-		// Enqueue block editor JS
+		// Enqueue block editor JS.
 		wp_enqueue_script(
 			'dvnl-family-recipe-book-editor',
 			DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL . 'build/blocks.js',
@@ -72,7 +84,7 @@ class Blocks {
 			true
 		);
 
-		// Enqueue block editor CSS
+		// Enqueue block editor CSS.
 		wp_enqueue_style(
 			'dvnl-family-recipe-book-editor-style',
 			DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL . 'build/blocks.css',
@@ -85,7 +97,7 @@ class Blocks {
 	 * Register meta fields for blocks
 	 */
 	public function register_meta_fields() {
-		// Register meta fields for recipe details
+		// Register meta fields for recipe details.
 		$meta_fields = array(
 			'_dvnl_recipe_prep_time',
 			'_dvnl_recipe_cook_time',
@@ -103,7 +115,7 @@ class Blocks {
 					'show_in_rest'  => true,
 					'single'        => true,
 					'type'          => 'string',
-					'auth_callback' => function() {
+					'auth_callback' => function () {
 						return current_user_can( 'edit_posts' );
 					},
 				)

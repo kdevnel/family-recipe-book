@@ -232,7 +232,7 @@ class Post_Types {
 		}
 
 		// Verify nonce
-		if ( ! wp_verify_nonce( $_POST['recipe_details_nonce'], 'recipe_details_nonce' ) ) {
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['recipe_details_nonce'] ) ), 'recipe_details_nonce' ) ) {
 			return;
 		}
 
@@ -248,17 +248,17 @@ class Post_Types {
 
 		// Define fields to save
 		$fields = array(
-			'_dvnl_recipe_prep_time'   => 'dvnl_recipe_prep_time',
-			'_dvnl_recipe_cook_time'   => 'dvnl_recipe_cook_time',
-			'_dvnl_recipe_total_time'  => 'dvnl_recipe_total_time',
-			'_dvnl_recipe_servings'    => 'dvnl_recipe_servings',
-			'_dvnl_recipe_calories'    => 'dvnl_recipe_calories',
-			'_dvnl_recipe_difficulty'  => 'dvnl_recipe_difficulty',
+			'_dvnl_recipe_prep_time'  => 'dvnl_recipe_prep_time',
+			'_dvnl_recipe_cook_time'  => 'dvnl_recipe_cook_time',
+			'_dvnl_recipe_total_time' => 'dvnl_recipe_total_time',
+			'_dvnl_recipe_servings'   => 'dvnl_recipe_servings',
+			'_dvnl_recipe_calories'   => 'dvnl_recipe_calories',
+			'_dvnl_recipe_difficulty' => 'dvnl_recipe_difficulty',
 		);
 
 		foreach ( $fields as $meta_key => $post_key ) {
 			if ( isset( $_POST[ $post_key ] ) ) {
-				$value = sanitize_text_field( $_POST[ $post_key ] );
+				$value = sanitize_text_field( wp_unslash( $_POST[ $post_key ] ) );
 				update_post_meta( $post_id, $meta_key, $value );
 			}
 		}
@@ -275,7 +275,7 @@ class Post_Types {
 
 		foreach ( $columns as $key => $value ) {
 			if ( 'title' === $key ) {
-				$new_columns[ $key ] = $value;
+				$new_columns[ $key ]           = $value;
 				$new_columns['recipe_details'] = __( 'Recipe Details', 'family-recipe-book' );
 			} else {
 				$new_columns[ $key ] = $value;
@@ -293,9 +293,9 @@ class Post_Types {
 	 */
 	public function render_recipe_columns( $column, $post_id ) {
 		if ( 'recipe_details' === $column ) {
-			$prep_time = get_post_meta( $post_id, '_dvnl_recipe_prep_time', true );
-			$cook_time = get_post_meta( $post_id, '_dvnl_recipe_cook_time', true );
-			$servings = get_post_meta( $post_id, '_dvnl_recipe_servings', true );
+			$prep_time  = get_post_meta( $post_id, '_dvnl_recipe_prep_time', true );
+			$cook_time  = get_post_meta( $post_id, '_dvnl_recipe_cook_time', true );
+			$servings   = get_post_meta( $post_id, '_dvnl_recipe_servings', true );
 			$difficulty = get_post_meta( $post_id, '_dvnl_recipe_difficulty', true );
 
 			if ( $prep_time ) {

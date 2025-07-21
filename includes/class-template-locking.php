@@ -38,12 +38,15 @@ class Template_Locking {
 
 		// Define the template structure
 		$post_type_object->template = array(
-			array( 'core/paragraph', array(
-				'placeholder' => __( 'Add a brief description of your recipe...', 'family-recipe-book' ),
-			) ),
+			array(
+				'core/paragraph',
+				array(
+					'placeholder' => __( 'Add a brief description of your recipe...', 'family-recipe-book' ),
+				),
+			),
 			array( 'dvnl/recipe-details', array() ),
 			array( 'dvnl/recipe-ingredients', array() ),
-			array( 'dvnl/recipe-instructions', array() ),
+			// array( 'dvnl/recipe-instructions', array() ),
 		);
 
 		// Set template lock to 'insert' - allows adding blocks but not removing required ones
