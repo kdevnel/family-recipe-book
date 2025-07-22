@@ -30,7 +30,7 @@ class Template_Locking {
 	 * Register the template for the recipe post type
 	 */
 	public function register_recipe_template() {
-		$post_type_object = get_post_type_object( 'recipe' );
+		$post_type_object = get_post_type_object( 'dvnl_recipes' );
 
 		if ( ! $post_type_object ) {
 			return;

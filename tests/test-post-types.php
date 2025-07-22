@@ -15,7 +15,7 @@ class PostTypesTest extends WP_UnitTestCase {
 	 */
 	public function test_recipe_post_type_exists() {
 		$post_types = get_post_types();
-		$this->assertArrayHasKey( 'recipe', $post_types );
+		$this->assertArrayHasKey( 'dvnl_recipes', $post_types );
 	}
 
 	/**
@@ -31,18 +31,18 @@ class PostTypesTest extends WP_UnitTestCase {
 	 * Test that the recipe post type supports the correct features.
 	 */
 	public function test_recipe_post_type_supports() {
-		$this->assertTrue( post_type_supports( 'recipe', 'title' ) );
-		$this->assertTrue( post_type_supports( 'recipe', 'editor' ) );
-		$this->assertTrue( post_type_supports( 'recipe', 'thumbnail' ) );
-		$this->assertTrue( post_type_supports( 'recipe', 'author' ) );
-		$this->assertTrue( post_type_supports( 'recipe', 'excerpt' ) );
+		$this->assertTrue( post_type_supports( 'dvnl_recipes', 'title' ) );
+		$this->assertTrue( post_type_supports( 'dvnl_recipes', 'editor' ) );
+		$this->assertTrue( post_type_supports( 'dvnl_recipes', 'thumbnail' ) );
+		$this->assertTrue( post_type_supports( 'dvnl_recipes', 'author' ) );
+		$this->assertTrue( post_type_supports( 'dvnl_recipes', 'excerpt' ) );
 	}
 
 	/**
 	 * Test that the recipe post type has the correct labels.
 	 */
 	public function test_recipe_post_type_labels() {
-		$post_type_object = get_post_type_object( 'recipe' );
+		$post_type_object = get_post_type_object( 'dvnl_recipes' );
 		$this->assertEquals( 'Recipes', $post_type_object->label );
 		$this->assertEquals( 'Recipe', $post_type_object->labels->singular_name );
 	}

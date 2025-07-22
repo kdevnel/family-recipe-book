@@ -35,7 +35,7 @@ class Search {
      */
     public function enqueue_scripts() {
         // Only load on archive pages or when shortcode is used
-        if ( is_post_type_archive( 'recipe' ) || is_tax( array( 'recipe_category', 'recipe_tag' ) ) || has_shortcode( get_the_content(), 'recipe_search' ) ) {
+        if ( is_post_type_archive( 'dvnl_recipes' ) || is_tax( array( 'recipe_category', 'recipe_tag' ) ) || has_shortcode( get_the_content(), 'recipe_search' ) ) {
             wp_enqueue_style(
                 'dvnl-recipe-search-style',
                 plugin_dir_url( dirname( __FILE__ ) ) . 'assets/css/search.css',
@@ -239,7 +239,7 @@ class Search {
 
         // Build query args
         $args = array(
-            'post_type'      => 'recipe',
+            'post_type'      => 'dvnl_recipes',
             'post_status'    => 'publish',
             'posts_per_page' => $per_page,
             'paged'          => $page,
@@ -379,12 +379,12 @@ class Search {
         // Only modify main query on frontend
         if ( ! is_admin() && $query->is_main_query() ) {
             // If it's a recipe search or archive
-            if ( $query->is_search() && isset( $_GET['post_type'] ) && 'recipe' === $_GET['post_type'] ) {
-                $query->set( 'post_type', 'recipe' );
+            if ( $query->is_search() && isset( $_GET['post_type'] ) && 'dvnl_recipes' === $_GET['post_type'] ) {
+                $query->set( 'post_type', 'dvnl_recipes' );
 
                 // Add filters from GET parameters
                 $this->add_filters_from_get( $query );
-            } elseif ( $query->is_post_type_archive( 'recipe' ) || $query->is_tax( array( 'recipe_category', 'recipe_tag' ) ) ) {
+            } elseif ( $query->is_post_type_archive( 'dvnl_recipes' ) || $query->is_tax( array( 'recipe_category', 'recipe_tag' ) ) ) {
                 // Add filters from GET parameters
                 $this->add_filters_from_get( $query );
             }

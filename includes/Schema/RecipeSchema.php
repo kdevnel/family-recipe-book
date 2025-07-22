@@ -40,7 +40,7 @@ class RecipeSchema
     public function output_schema()
     {
         // Only output schema on single recipe pages
-        if (!is_singular('dvnl_recipe')) {
+        if (!is_singular('dvnl_recipes')) {
             return;
         }
 

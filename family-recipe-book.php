@@ -35,6 +35,7 @@ define('DVNL_FAMILY_RECIPE_BOOK_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('DVNL_FAMILY_RECIPE_BOOK_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
+
 // Include required files
 require_once DVNL_FAMILY_RECIPE_BOOK_PLUGIN_DIR . 'includes/class-post-types.php';
 require_once DVNL_FAMILY_RECIPE_BOOK_PLUGIN_DIR . 'includes/class-blocks.php';
@@ -98,7 +99,7 @@ function dvnl_family_recipe_book_admin_enqueue_scripts() {
     $screen = get_current_screen();
 
     // Only enqueue on recipe post type
-    if ('recipe' === $screen->post_type) {
+    if ('dvnl_recipes' === $screen->post_type) {
         wp_enqueue_style(
             'dvnl-family-recipe-book-admin',
             DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL . 'assets/css/admin.css',
@@ -119,7 +120,7 @@ add_action('admin_enqueue_scripts', 'dvnl_family_recipe_book_admin_enqueue_scrip
 
 // Enqueue frontend scripts and styles
 function dvnl_family_recipe_book_enqueue_scripts() {
-    if (is_singular('recipe')) {
+    if (is_singular('dvnl_recipes')) {
         wp_enqueue_style(
             'dvnl-family-recipe-book',
             DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL . 'assets/css/public.css',
@@ -151,7 +152,7 @@ function dvnl_family_recipe_book_enqueue_scripts() {
     }
 
     // Enqueue search styles and scripts on archive pages
-    if (is_post_type_archive('recipe') || is_tax(array('recipe_category', 'recipe_tag'))) {
+    if (is_post_type_archive('dvnl_recipes') || is_tax(array('recipe_category', 'recipe_tag'))) {
         wp_enqueue_style(
             'dvnl-family-recipe-book-search',
             DVNL_FAMILY_RECIPE_BOOK_PLUGIN_URL . 'assets/css/search.css',

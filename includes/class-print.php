@@ -63,7 +63,7 @@ class Print_Recipe {
 	 */
 	public function add_print_button( $content ) {
 		// Only add to recipe post type
-		if ( ! is_singular( 'recipe' ) ) {
+		if ( ! is_singular( 'dvnl_recipes' ) ) {
 			return $content;
 		}
 
@@ -85,7 +85,7 @@ class Print_Recipe {
 	 */
 	public function enqueue_print_styles() {
 		// Only enqueue on recipe pages
-		if ( ! is_singular( 'recipe' ) ) {
+		if ( ! is_singular( 'dvnl_recipes' ) ) {
 			return;
 		}
 
@@ -135,7 +135,7 @@ class Print_Recipe {
 	 */
 	public function enqueue_print_script() {
 		// Only enqueue on recipe pages
-		if ( ! is_singular( 'recipe' ) ) {
+		if ( ! is_singular( 'dvnl_recipes' ) ) {
 			return;
 		}
 
@@ -167,7 +167,7 @@ class Print_Recipe {
 		}
 
 		// Only handle recipe post type
-		if ( ! is_singular( 'recipe' ) ) {
+		if ( ! is_singular( 'dvnl_recipes' ) ) {
 			return;
 		}
 
