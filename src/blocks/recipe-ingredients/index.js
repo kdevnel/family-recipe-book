@@ -41,15 +41,15 @@ registerBlockType(
         attributes: {
             title: {
                 type: 'string',
-                source: 'html',
+                source: 'meta',
                 selector: 'h2',
                 meta: '_dvnl_recipe_ingredients_title',
             },
             ingredients: {
                 type: 'array',
-                source: 'children',
-                selector: 'ul',
+                source: 'meta',
                 meta: '_dvnl_recipe_ingredients_list',
+                default: [],
             },
         },
         edit: Edit,
@@ -202,7 +202,7 @@ function Save({ attributes }) {
             />
 
             <ul className="dvnl-recipe-ingredients-list">
-                {ingredients.map((ingredient, index) => (
+                { Array.isArray( ingredients ) && ingredients.map( ( ingredient, index ) => (
                     <li key={index} className="dvnl-recipe-ingredient-item">
                         {ingredient}
                     </li>

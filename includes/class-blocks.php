@@ -54,19 +54,17 @@ class Blocks {
 	 * Register meta fields for blocks
 	 */
 	public function register_meta_fields() {
-		// Register meta fields for recipe details.
-		$meta_fields = array(
+		// Register string meta fields for recipe details.
+		$string_meta_fields = array(
 			'_dvnl_recipe_prep_time',
 			'_dvnl_recipe_cook_time',
 			'_dvnl_recipe_total_time',
-			'_dvnl_recipe_servings',
 			'_dvnl_recipe_calories',
 			'_dvnl_recipe_difficulty',
 			'_dvnl_recipe_ingredients_title',
-			'_dvnl_recipe_ingredients_list',
 		);
 
-		foreach ( $meta_fields as $meta_key ) {
+		foreach ( $string_meta_fields as $meta_key ) {
 			register_meta(
 				'post',
 				$meta_key,
@@ -80,6 +78,41 @@ class Blocks {
 				)
 			);
 		}
+
+		// Register integer meta fields
+		register_meta(
+			'post',
+			'_dvnl_recipe_servings',
+			array(
+				'show_in_rest'  => true,
+				'single'        => true,
+				'type'          => 'integer',
+				'auth_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+
+		// Register array meta fields.
+		register_meta(
+			'post',
+			'_dvnl_recipe_ingredients_list',
+			array(
+				'show_in_rest' => array(
+					'schema' => array(
+						'type'  => 'array',
+						'items' => array(
+							'type' => 'string',
+						),
+					),
+				),
+				'single'        => true,
+				'type'          => 'array',
+				'auth_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
 	}
 }
 

@@ -52,9 +52,10 @@ registerBlockType(
                 meta: '_dvnl_recipe_total_time',
             },
             servings: {
-                type: 'string',
+                type: 'number',
                 source: 'meta',
                 meta: '_dvnl_recipe_servings',
+                default: 4,
             },
             calories: {
                 type: 'string',
@@ -158,6 +159,7 @@ function Edit({ attributes, setAttributes }) {
                         label={__('Servings', 'family-recipe-book')}
                         value={servings}
                         onChange={(value) => setAttributes({ servings: value })}
+                        defaultValue={ 4 }
                         min={1}
                         max={20}
                     />
@@ -247,7 +249,7 @@ function Save({ attributes }) {
                 </div>
                 <div className="dvnl-recipe-detail">
                     <span className="dvnl-recipe-detail-label">{__('Servings', 'family-recipe-book')}</span>
-                    <span className="dvnl-recipe-detail-value">{servings}</span>
+                    <span className="dvnl-recipe-detail-value">{ servings !== undefined ? servings : '' }</span>
                 </div>
                 <div className="dvnl-recipe-detail">
                     <span className="dvnl-recipe-detail-label">{__('Calories', 'family-recipe-book')}</span>
