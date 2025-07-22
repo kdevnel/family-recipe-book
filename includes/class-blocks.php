@@ -25,7 +25,8 @@ class Blocks {
 	public function __construct() {
 		// Blocks are registered in the relevant JS files. We just need to enqueue them and register meta fields.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
-		add_action( 'rest_api_init', array( $this, 'register_meta_fields' ) );
+		add_action( 'rest_api_init', array( $this, 'register_basic_meta_fields' ) );
+		add_action( 'rest_api_init', array( $this, 'register_array_meta_fields' ) );
 	}
 
 	/**
@@ -51,68 +52,103 @@ class Blocks {
 	}
 
 	/**
-	 * Register meta fields for blocks
+	 * Register basic meta fields for blocks. Used for strings and integers.
+	 * Arrays or more complex types are registered separately.
 	 */
-	public function register_meta_fields() {
+	public function register_basic_meta_fields() {
 		// Register string meta fields for recipe details.
-		$string_meta_fields = array(
-			'_dvnl_recipe_prep_time',
-			'_dvnl_recipe_cook_time',
-			'_dvnl_recipe_total_time',
-			'_dvnl_recipe_calories',
-			'_dvnl_recipe_difficulty',
-			'_dvnl_recipe_ingredients_title',
+		$basic_meta_fields = array(
+			array(
+				'name'          => '_dvnl_recipe_name',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_cook_time',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_total_time',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_servings',
+				'type'          => 'integer',
+			),
+			array(
+				'name'          => '_dvnl_recipe_calories',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_difficulty',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_ingredients_title',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_instructions_title',
+				'type'          => 'string',
+			),
 		);
 
-		foreach ( $string_meta_fields as $meta_key ) {
+		foreach ( $basic_meta_fields as $field ) {
+			// Ensure type is string or integer
+			if ( ! in_array( $field['type'], array( 'string', 'integer' ), true ) ) {
+				throw new \InvalidArgumentException( 'Invalid type for meta field: ' . $field['name'] . '. Use correct registration method.' );
+			}
+
 			register_meta(
 				'post',
-				$meta_key,
+				$field['name'],
 				array(
 					'show_in_rest'  => true,
 					'single'        => true,
-					'type'          => 'string',
+					'type'          => $field['type'],
 					'auth_callback' => function () {
 						return current_user_can( 'edit_posts' );
 					},
 				)
 			);
 		}
+	}
 
-		// Register integer meta fields
-		register_meta(
-			'post',
-			'_dvnl_recipe_servings',
+	/**
+	 * Register array meta fields for blocks
+	 */
+	public function register_array_meta_fields() {
+		$array_meta_fields = array(
 			array(
-				'show_in_rest'  => true,
-				'single'        => true,
-				'type'          => 'integer',
-				'auth_callback' => function () {
-					return current_user_can( 'edit_posts' );
-				},
-			)
+				'name'          => '_dvnl_recipe_ingredients_list',
+				'item_type'     => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_instructions_list',
+				'item_type'     => 'string',
+			),
 		);
 
-		// Register array meta fields.
-		register_meta(
-			'post',
-			'_dvnl_recipe_ingredients_list',
-			array(
-				'show_in_rest' => array(
-					'schema' => array(
-						'type'  => 'array',
-						'items' => array(
-							'type' => 'string',
+		foreach ( $array_meta_fields as $field ) {
+			register_meta(
+				'post',
+				$field['name'],
+				array(
+					'show_in_rest' => array(
+						'schema' => array(
+							'type'  => 'array',
+							'items' => array(
+								'type' => $field['item_type'],
+							),
 						),
 					),
-				),
-				'single'        => true,
-				'type'          => 'array',
-				'auth_callback' => function () {
-					return current_user_can( 'edit_posts' );
-				},
-			)
-		);
+					'single'        => true,
+					'type'          => 'array',
+					'auth_callback' => function () {
+						return current_user_can( 'edit_posts' );
+					},
+				)
+			);
+		}
 	}
 }
 
