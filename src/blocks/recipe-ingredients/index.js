@@ -42,7 +42,6 @@ registerBlockType(
             title: {
                 type: 'string',
                 source: 'meta',
-                selector: 'h2',
                 meta: '_dvnl_recipe_ingredients_title',
             },
             ingredients: {

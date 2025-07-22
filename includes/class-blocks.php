@@ -95,7 +95,8 @@ class Blocks {
 		foreach ( $basic_meta_fields as $field ) {
 			// Ensure type is string or integer
 			if ( ! in_array( $field['type'], array( 'string', 'integer' ), true ) ) {
-				throw new \InvalidArgumentException( 'Invalid type for meta field: ' . $field['name'] . '. Use correct registration method.' );
+				error_log( 'Invalid type for meta field: ' . $field['name'] . '. Use correct registration method.' );
+				wp_die( esc_html__( 'An error occurred while registering meta fields. Please contact the site administrator.', 'family-recipe-book' ) );
 			}
 
 			register_meta(
