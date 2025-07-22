@@ -27,8 +27,6 @@ class Recipe {
     public function register() {
         add_action( 'init', array( $this, 'register_post_type' ) );
         add_action( 'init', array( $this, 'register_taxonomies' ) );
-        add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
-        add_action( 'save_post_' . $this->post_type, array( $this, 'save_meta_boxes' ), 10, 2 );
     }
 
     /**
@@ -183,118 +181,5 @@ class Recipe {
         );
 
         register_taxonomy( 'dvnl_recipe_tag', $this->post_type, $tag_args );
-    }
-
-    /**
-     * Register meta boxes for the recipe post type.
-     *
-     * @return void
-     */
-    public function register_meta_boxes() {
-        add_meta_box(
-            'dvnl_recipe_details',
-            __( 'Recipe Details', 'family-recipe-book' ),
-            array( $this, 'render_meta_box' ),
-            $this->post_type,
-            'normal',
-            'high'
-        );
-    }
-
-    /**
-     * Render the recipe details meta box.
-     *
-     * @param \WP_Post $post The post object.
-     * @return void
-     */
-    public function render_meta_box( $post ) {
-        // Add nonce for security
-        wp_nonce_field( 'dvnl_recipe_details_nonce', 'dvnl_recipe_details_nonce' );
-
-        // Get saved values
-        $prep_time = get_post_meta( $post->ID, '_dvnl_recipe_prep_time', true );
-        $cook_time = get_post_meta( $post->ID, '_dvnl_recipe_cook_time', true );
-        $total_time = get_post_meta( $post->ID, '_dvnl_recipe_total_time', true );
-        $servings = get_post_meta( $post->ID, '_dvnl_recipe_servings', true );
-        $calories = get_post_meta( $post->ID, '_dvnl_recipe_calories', true );
-        $difficulty = get_post_meta( $post->ID, '_dvnl_recipe_difficulty', true );
-        ?>
-        <div class="dvnl-recipe-meta-box">
-            <p>
-                <label for="dvnl_recipe_prep_time"><?php esc_html_e( 'Preparation Time (minutes):', 'family-recipe-book' ); ?></label>
-                <input type="number" id="dvnl_recipe_prep_time" name="dvnl_recipe_prep_time" value="<?php echo esc_attr( $prep_time ); ?>" min="0" />
-            </p>
-            <p>
-                <label for="dvnl_recipe_cook_time"><?php esc_html_e( 'Cooking Time (minutes):', 'family-recipe-book' ); ?></label>
-                <input type="number" id="dvnl_recipe_cook_time" name="dvnl_recipe_cook_time" value="<?php echo esc_attr( $cook_time ); ?>" min="0" />
-            </p>
-            <p>
-                <label for="dvnl_recipe_total_time"><?php esc_html_e( 'Total Time (minutes):', 'family-recipe-book' ); ?></label>
-                <input type="number" id="dvnl_recipe_total_time" name="dvnl_recipe_total_time" value="<?php echo esc_attr( $total_time ); ?>" min="0" />
-            </p>
-            <p>
-                <label for="dvnl_recipe_servings"><?php esc_html_e( 'Servings:', 'family-recipe-book' ); ?></label>
-                <input type="number" id="dvnl_recipe_servings" name="dvnl_recipe_servings" value="<?php echo esc_attr( $servings ); ?>" min="1" />
-            </p>
-            <p>
-                <label for="dvnl_recipe_calories"><?php esc_html_e( 'Calories (per serving):', 'family-recipe-book' ); ?></label>
-                <input type="number" id="dvnl_recipe_calories" name="dvnl_recipe_calories" value="<?php echo esc_attr( $calories ); ?>" min="0" />
-            </p>
-            <p>
-                <label for="dvnl_recipe_difficulty"><?php esc_html_e( 'Difficulty:', 'family-recipe-book' ); ?></label>
-                <select id="dvnl_recipe_difficulty" name="dvnl_recipe_difficulty">
-                    <option value="easy" <?php selected( $difficulty, 'easy' ); ?>><?php esc_html_e( 'Easy', 'family-recipe-book' ); ?></option>
-                    <option value="medium" <?php selected( $difficulty, 'medium' ); ?>><?php esc_html_e( 'Medium', 'family-recipe-book' ); ?></option>
-                    <option value="hard" <?php selected( $difficulty, 'hard' ); ?>><?php esc_html_e( 'Hard', 'family-recipe-book' ); ?></option>
-                </select>
-            </p>
-        </div>
-        <?php
-    }
-
-    /**
-     * Save the meta box data.
-     *
-     * @param int      $post_id The post ID.
-     * @param \WP_Post $post    The post object.
-     * @return void
-     */
-    public function save_meta_boxes( $post_id, $post ) {
-        // Check if nonce is set
-        if ( ! isset( $_POST['dvnl_recipe_details_nonce'] ) ) {
-            return;
-        }
-
-        // Verify nonce
-        if ( ! wp_verify_nonce( $_POST['dvnl_recipe_details_nonce'], 'dvnl_recipe_details_nonce' ) ) {
-            return;
-        }
-
-        // Check if autosave
-        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-            return;
-        }
-
-        // Check permissions
-        if ( ! current_user_can( 'edit_post', $post_id ) ) {
-            return;
-        }
-
-        // Save meta fields
-        $fields = array(
-            '_dvnl_recipe_prep_time'   => 'dvnl_recipe_prep_time',
-            '_dvnl_recipe_cook_time'   => 'dvnl_recipe_cook_time',
-            '_dvnl_recipe_total_time'  => 'dvnl_recipe_total_time',
-            '_dvnl_recipe_servings'    => 'dvnl_recipe_servings',
-            '_dvnl_recipe_calories'    => 'dvnl_recipe_calories',
-            '_dvnl_recipe_difficulty'  => 'dvnl_recipe_difficulty',
-        );
-
-        foreach ( $fields as $meta_key => $post_key ) {
-            if ( isset( $_POST[ $post_key ] ) ) {
-                $value = sanitize_text_field( $_POST[ $post_key ] );
-                update_post_meta( $post_id, $meta_key, $value );
-            }
-        }
     }
 }

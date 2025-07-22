@@ -178,7 +178,7 @@ function Edit({ attributes, setAttributes }) {
             </InspectorControls>
 
             <div {...blockProps}>
-                <h2>{__('Recipe Details', 'family-recipe-book')}</h2>
+                <h2>{ __( 'Recipe Details', 'family-recipe-book' ) }</h2>
                 <div className="dvnl-recipe-details-grid">
                     <div className="dvnl-recipe-detail">
                         <span className="dvnl-recipe-detail-label">{__('Prep Time', 'family-recipe-book')}</span>
@@ -231,7 +231,7 @@ function Save({ attributes }) {
 
     return (
         <div {...blockProps}>
-            <h2>{__('Recipe Details', 'family-recipe-book')}</h2>
+            <h2>{ __( 'Recipe Details', 'family-recipe-book' ) }</h2>
             <div className="dvnl-recipe-details-grid">
                 <div className="dvnl-recipe-detail">
                     <span className="dvnl-recipe-detail-label">{__('Prep Time', 'family-recipe-book')}</span>

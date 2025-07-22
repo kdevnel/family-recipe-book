@@ -43,11 +43,13 @@ registerBlockType(
                 type: 'string',
                 source: 'html',
                 selector: 'h2',
+                meta: '_dvnl_recipe_ingredients_title',
             },
             ingredients: {
                 type: 'array',
                 source: 'children',
                 selector: 'ul',
+                meta: '_dvnl_recipe_ingredients_list',
             },
         },
         edit: Edit,
@@ -60,7 +62,9 @@ registerBlockType(
  */
 function Edit({ attributes, setAttributes }) {
     const { ingredients, title } = attributes;
+
     const blockProps = useBlockProps();
+
     const [newIngredient, setNewIngredient] = useState('');
 
     const addIngredient = () => {
