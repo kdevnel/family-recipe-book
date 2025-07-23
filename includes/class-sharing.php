@@ -57,7 +57,7 @@ class Sharing {
 	 */
 	public function add_sharing_buttons( $content ) {
 		// Only add to recipe post type
-		if ( ! is_singular( 'recipe' ) ) {
+		if ( ! is_singular( 'dvnl_recipes' ) ) {
 			return $content;
 		}
 
@@ -131,7 +131,7 @@ class Sharing {
 	 */
 	public function enqueue_sharing_styles() {
 		// Only enqueue on recipe pages
-		if ( ! is_singular( 'recipe' ) ) {
+		if ( ! is_singular( 'dvnl_recipes' ) ) {
 			return;
 		}
 
@@ -238,7 +238,7 @@ class Sharing {
 	 */
 	public function enqueue_sharing_script() {
 		// Only enqueue on recipe pages
-		if ( ! is_singular( 'recipe' ) ) {
+		if ( ! is_singular( 'dvnl_recipes' ) ) {
 			return;
 		}
 

@@ -31,7 +31,7 @@ class Schema {
 	 */
 	public function add_recipe_schema() {
 		// Only output schema on single recipe pages
-		if ( ! is_singular( 'recipe' ) ) {
+		if ( ! is_singular( 'dvnl_recipes' ) ) {
 			return;
 		}
 

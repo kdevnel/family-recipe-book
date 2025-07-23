@@ -35,7 +35,7 @@ class SearchTest extends WP_UnitTestCase {
             'post_title'   => 'Test Recipe for Search',
             'post_content' => 'This is a test recipe content for search functionality testing.',
             'post_status'  => 'publish',
-            'post_type'    => 'recipe',
+            'post_type'    => 'dvnl_recipes',
         ));
 
         // Add recipe metadata
@@ -140,7 +140,7 @@ class SearchTest extends WP_UnitTestCase {
     public function test_customize_recipe_search() {
         // Create a query with search parameters
         $query = new WP_Query();
-        $query->query_vars['post_type'] = 'recipe';
+        $query->query_vars['post_type'] = 'dvnl_recipes';
         $query->is_search = true;
 
         // Set up GET parameters

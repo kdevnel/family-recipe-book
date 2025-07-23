@@ -33,7 +33,7 @@ class RatingTest extends WP_UnitTestCase {
         // Create a test recipe post
         $this->post_id = $this->factory->post->create(array(
             'post_title' => 'Test Recipe',
-            'post_type' => 'recipe',
+            'post_type' => 'dvnl_recipes',
             'post_status' => 'publish',
         ));
 

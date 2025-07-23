@@ -10,7 +10,7 @@
 
 ### Post Types and Taxonomies
 - Created `includes/class-post-types.php` to handle the recipe custom post type
-- Registered 'recipe' custom post type with appropriate labels and settings
+- Registered 'dvnl_recipes' custom post type with appropriate labels and settings
 - Added 'recipe_category' (hierarchical) and 'recipe_tag' (non-hierarchical) taxonomies
 - Implemented meta boxes for recipe details (prep time, cook time, servings, etc.)
 - Added custom columns to the admin recipe list view

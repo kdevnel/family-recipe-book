@@ -33,7 +33,7 @@ class Rating {
      * Enqueue scripts and styles for rating functionality
      */
     public function enqueue_scripts() {
-        if ( is_singular( 'recipe' ) ) {
+        if ( is_singular( 'dvnl_recipes' ) ) {
             wp_enqueue_style(
                 'dvnl-recipe-rating-style',
                 plugin_dir_url( dirname( __FILE__ ) ) . 'assets/css/rating.css',
@@ -73,7 +73,7 @@ class Rating {
      * @return string Modified content with rating.
      */
     public function display_rating( $content ) {
-        if ( is_singular( 'recipe' ) && is_main_query() ) {
+        if ( is_singular( 'dvnl_recipes' ) && is_main_query() ) {
             $post_id = get_the_ID();
             $rating_html = $this->get_rating_html( $post_id );
 
@@ -209,7 +209,7 @@ class Rating {
         }
 
         // Check if post exists and is a recipe
-        if ( 'recipe' !== get_post_type( $post_id ) ) {
+        if ( 'dvnl_recipes' !== get_post_type( $post_id ) ) {
             wp_send_json_error( array( 'message' => __( 'Invalid recipe.', 'family-recipe-book' ) ) );
         }
 
@@ -306,7 +306,7 @@ class Rating {
             'dvnl_recipe_rating_meta_box',
             __( 'Recipe Ratings', 'family-recipe-book' ),
             array( $this, 'render_rating_meta_box' ),
-            'recipe',
+            'dvnl_recipes',
             'side',
             'default'
         );

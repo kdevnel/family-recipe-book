@@ -41,13 +41,14 @@ registerBlockType(
         attributes: {
             title: {
                 type: 'string',
-                source: 'html',
-                selector: 'h2',
+                source: 'meta',
+                meta: '_dvnl_recipe_ingredients_title',
             },
             ingredients: {
                 type: 'array',
-                source: 'children',
-                selector: 'ul',
+                source: 'meta',
+                meta: '_dvnl_recipe_ingredients_list',
+                default: [],
             },
         },
         edit: Edit,
@@ -60,7 +61,9 @@ registerBlockType(
  */
 function Edit({ attributes, setAttributes }) {
     const { ingredients, title } = attributes;
+
     const blockProps = useBlockProps();
+
     const [newIngredient, setNewIngredient] = useState('');
 
     const addIngredient = () => {
@@ -198,7 +201,7 @@ function Save({ attributes }) {
             />
 
             <ul className="dvnl-recipe-ingredients-list">
-                {ingredients.map((ingredient, index) => (
+                { Array.isArray( ingredients ) && ingredients.map( ( ingredient, index ) => (
                     <li key={index} className="dvnl-recipe-ingredient-item">
                         {ingredient}
                     </li>

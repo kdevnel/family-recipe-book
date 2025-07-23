@@ -41,13 +41,14 @@ registerBlockType(
         attributes: {
             title: {
                 type: 'string',
-                source: 'html',
-                selector: 'h2',
+                source: 'meta',
+                meta: '_dvnl_recipe_instructions_title',
             },
             steps: {
                 type: 'array',
-                source: 'children',
-                selector: 'ol',
+                source: 'meta',
+                meta: '_dvnl_recipe_instructions_list',
+                default: [],
             },
         },
         description: __( 'A block to add step-by-step instructions for a recipe.', 'family-recipe-book' ),

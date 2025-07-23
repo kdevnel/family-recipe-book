@@ -31,14 +31,14 @@ class Settings {
 	 *
 	 * @var string
 	 */
-	private $page_slug = 'family-recipe-book-settings';
+	private $page_slug = 'dvnl-recipes-settings';
 
 	/**
 	 * Option name in the database
 	 *
 	 * @var string
 	 */
-	private $option_name = 'dvnl_family_recipe_book_settings';
+	private $option_name = 'dvnl_recipes_settings';
 
 	/**
 	 * Initialize the class
@@ -77,7 +77,7 @@ class Settings {
 	 */
 	public function add_admin_menu() {
 		add_submenu_page(
-			'edit.php?post_type=recipe',
+			'edit.php?post_type=dvnl_recipes',
 			__( 'Recipe Book Settings', 'family-recipe-book' ),
 			__( 'Settings', 'family-recipe-book' ),
 			'manage_options',
@@ -98,7 +98,7 @@ class Settings {
 
 		// General Settings Section
 		add_settings_section(
-			'dvnl_family_recipe_book_general_section',
+			'dvnl_recipes_general_section',
 			__( 'General Settings', 'family-recipe-book' ),
 			array( $this, 'render_general_section' ),
 			$this->page_slug
@@ -110,7 +110,7 @@ class Settings {
 			__( 'Enable Print Button', 'family-recipe-book' ),
 			array( $this, 'render_checkbox_field' ),
 			$this->page_slug,
-			'dvnl_family_recipe_book_general_section',
+			'dvnl_recipes_general_section',
 			array(
 				'id' => 'enable_print_button',
 				'description' => __( 'Add a print button to recipe pages', 'family-recipe-book' ),
@@ -123,7 +123,7 @@ class Settings {
 			__( 'Enable Social Sharing', 'family-recipe-book' ),
 			array( $this, 'render_checkbox_field' ),
 			$this->page_slug,
-			'dvnl_family_recipe_book_general_section',
+			'dvnl_recipes_general_section',
 			array(
 				'id' => 'enable_sharing',
 				'description' => __( 'Add social sharing buttons to recipe pages', 'family-recipe-book' ),
@@ -136,7 +136,7 @@ class Settings {
 			__( 'Default Difficulty', 'family-recipe-book' ),
 			array( $this, 'render_select_field' ),
 			$this->page_slug,
-			'dvnl_family_recipe_book_general_section',
+			'dvnl_recipes_general_section',
 			array(
 				'id' => 'default_difficulty',
 				'description' => __( 'Set the default difficulty level for new recipes', 'family-recipe-book' ),
@@ -150,7 +150,7 @@ class Settings {
 
 		// Schema Settings Section
 		add_settings_section(
-			'dvnl_family_recipe_book_schema_section',
+			'dvnl_recipes_schema_section',
 			__( 'Schema.org Settings', 'family-recipe-book' ),
 			array( $this, 'render_schema_section' ),
 			$this->page_slug
@@ -162,7 +162,7 @@ class Settings {
 			__( 'Enable Recipe Ratings', 'family-recipe-book' ),
 			array( $this, 'render_checkbox_field' ),
 			$this->page_slug,
-			'dvnl_family_recipe_book_schema_section',
+			'dvnl_recipes_schema_section',
 			array(
 				'id' => 'schema_rating',
 				'description' => __( 'Add rating functionality to recipes and include in Schema.org markup', 'family-recipe-book' ),
@@ -171,7 +171,7 @@ class Settings {
 
 		// Advanced Settings Section
 		add_settings_section(
-			'dvnl_family_recipe_book_advanced_section',
+			'dvnl_recipes_advanced_section',
 			__( 'Advanced Settings', 'family-recipe-book' ),
 			array( $this, 'render_advanced_section' ),
 			$this->page_slug
@@ -183,7 +183,7 @@ class Settings {
 			__( 'Custom CSS', 'family-recipe-book' ),
 			array( $this, 'render_textarea_field' ),
 			$this->page_slug,
-			'dvnl_family_recipe_book_advanced_section',
+			'dvnl_recipes_advanced_section',
 			array(
 				'id' => 'custom_css',
 				'description' => __( 'Add custom CSS to style your recipes', 'family-recipe-book' ),
@@ -318,7 +318,7 @@ class Settings {
 	 * @return array Modified plugin action links.
 	 */
 	public function add_settings_link( $links ) {
-		$settings_link = '<a href="' . admin_url( 'edit.php?post_type=recipe&page=' . $this->page_slug ) . '">' . __( 'Settings', 'family-recipe-book' ) . '</a>';
+		$settings_link = '<a href="' . admin_url( 'edit.php?post_type=dvnl_recipes&page=' . $this->page_slug ) . '">' . __( 'Settings', 'family-recipe-book' ) . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}

@@ -23,87 +23,10 @@ class Blocks {
 	 * Initialize the class
 	 */
 	public function __construct() {
-		// add_action( 'init', array( $this, 'register_blocks' ) );
+		// Blocks are registered in the relevant JS files. We just need to enqueue them and register meta fields.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
-		add_action( 'rest_api_init', array( $this, 'register_meta_fields' ) );
-	}
-
-	/**
-	 * Register custom blocks
-	 */
-	public function register_blocks() {
-		// Check if Gutenberg is active.
-		if ( ! function_exists( 'register_block_type' ) ) {
-			return;
-		}
-
-		// Centralized scalable block registration with REST API and server-side rendering.
-		$blocks = array(
-			'dvnl/recipe-details'      => array(
-				'editor_script'   => 'dvnl-family-recipe-book-editor',
-				'editor_style'    => 'dvnl-family-recipe-book-editor-style',
-				'style'           => 'dvnl-family-recipe-book-style',
-				'render_callback' => array( $this, 'render_recipe_details_block' ),
-				'attributes'      => array(), // Add block attributes as needed
-			),
-			'dvnl/recipe-ingredients'  => array(
-				'editor_script'   => 'dvnl-family-recipe-book-editor',
-				'editor_style'    => 'dvnl-family-recipe-book-editor-style',
-				'style'           => 'dvnl-family-recipe-book-style',
-				'render_callback' => array( $this, 'render_recipe_ingredients_block' ),
-				'attributes'      => array(), // Add block attributes as needed
-			),
-			'dvnl/recipe-instructions' => array(
-				'editor_script'   => 'dvnl-family-recipe-book-editor',
-				'editor_style'    => 'dvnl-family-recipe-book-editor-style',
-				'style'           => 'dvnl-family-recipe-book-style',
-				'render_callback' => array( $this, 'render_recipe_instructions_block' ),
-				'attributes'      => array(), // Add block attributes as needed
-			),
-			// Add more blocks here as needed
-		);
-
-		foreach ( $blocks as $name => $args ) {
-			register_block_type( $name, $args );
-		}
-
-		// REST API support is handled automatically for blocks registered with register_block_type.
-	}
-
-	/**
-	 * Server-side render callback for recipe details block
-	 *
-	 * @param array  $attributes Block attributes.
-	 * @param string $content    Block content.
-	 * @return string Rendered block output.
-	 */
-	public function render_recipe_details_block( $attributes, $content ) {
-		// TODO: Implement server-side rendering logic for recipe details block
-		return '<div class="dvnl-recipe-details-block">' . $content . '</div>';
-	}
-
-	/**
-	 * Server-side render callback for recipe ingredients block
-	 *
-	 * @param array  $attributes Block attributes.
-	 * @param string $content    Block content.
-	 * @return string Rendered block output.
-	 */
-	public function render_recipe_ingredients_block( $attributes, $content ) {
-		// TODO: Implement server-side rendering logic for recipe ingredients block
-		return '<div class="dvnl-recipe-ingredients-block">' . $content . '</div>';
-	}
-
-	/**
-	 * Server-side render callback for recipe instructions block
-	 *
-	 * @param array  $attributes Block attributes.
-	 * @param string $content    Block content.
-	 * @return string Rendered block output.
-	 */
-	public function render_recipe_instructions_block( $attributes, $content ) {
-		// TODO: Implement server-side rendering logic for recipe instructions block
-		return '<div class="dvnl-recipe-instructions-block">' . $content . '</div>';
+		add_action( 'rest_api_init', array( $this, 'register_basic_meta_fields' ) );
+		add_action( 'rest_api_init', array( $this, 'register_array_meta_fields' ) );
 	}
 
 	/**
@@ -129,27 +52,98 @@ class Blocks {
 	}
 
 	/**
-	 * Register meta fields for blocks
+	 * Register basic meta fields for blocks. Used for strings and integers.
+	 * Arrays or more complex types are registered separately.
 	 */
-	public function register_meta_fields() {
-		// Register meta fields for recipe details.
-		$meta_fields = array(
-			'_dvnl_recipe_prep_time',
-			'_dvnl_recipe_cook_time',
-			'_dvnl_recipe_total_time',
-			'_dvnl_recipe_servings',
-			'_dvnl_recipe_calories',
-			'_dvnl_recipe_difficulty',
+	public function register_basic_meta_fields() {
+		// Register string meta fields for recipe details.
+		$basic_meta_fields = array(
+			array(
+				'name'          => '_dvnl_recipe_name',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_cook_time',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_total_time',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_servings',
+				'type'          => 'integer',
+			),
+			array(
+				'name'          => '_dvnl_recipe_calories',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_difficulty',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_ingredients_title',
+				'type'          => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_instructions_title',
+				'type'          => 'string',
+			),
 		);
 
-		foreach ( $meta_fields as $meta_key ) {
+		foreach ( $basic_meta_fields as $field ) {
+			// Ensure type is string or integer
+			if ( ! in_array( $field['type'], array( 'string', 'integer' ), true ) ) {
+				error_log( 'Invalid type for meta field: ' . $field['name'] . '. Use correct registration method.' );
+				wp_die( esc_html__( 'An error occurred while registering meta fields. Please contact the site administrator.', 'family-recipe-book' ) );
+			}
+
 			register_meta(
 				'post',
-				$meta_key,
+				$field['name'],
 				array(
 					'show_in_rest'  => true,
 					'single'        => true,
-					'type'          => 'string',
+					'type'          => $field['type'],
+					'auth_callback' => function () {
+						return current_user_can( 'edit_posts' );
+					},
+				)
+			);
+		}
+	}
+
+	/**
+	 * Register array meta fields for blocks
+	 */
+	public function register_array_meta_fields() {
+		$array_meta_fields = array(
+			array(
+				'name'          => '_dvnl_recipe_ingredients_list',
+				'item_type'     => 'string',
+			),
+			array(
+				'name'          => '_dvnl_recipe_instructions_list',
+				'item_type'     => 'string',
+			),
+		);
+
+		foreach ( $array_meta_fields as $field ) {
+			register_meta(
+				'post',
+				$field['name'],
+				array(
+					'show_in_rest' => array(
+						'schema' => array(
+							'type'  => 'array',
+							'items' => array(
+								'type' => $field['item_type'],
+							),
+						),
+					),
+					'single'        => true,
+					'type'          => 'array',
 					'auth_callback' => function () {
 						return current_user_can( 'edit_posts' );
 					},
