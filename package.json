@@ -19,8 +19,7 @@
     "env:logs": "wp-env logs",
     "env:run": "wp-env run",
     "env:cli": "wp-env run cli wp",
-    "env:phpunit": "wp-env run phpunit",
-    "test:php": "wp-env run phpunit 'phpunit -c /var/www/html/wp-content/plugins/family-recipe-book/phpunit.xml.dist'",
+    "test:php": "wp-env run tests-cli phpunit -c /var/www/html/wp-content/plugins/family-recipe-book/phpunit.xml.dist",
     "dev": "concurrently \"npm run start\" \"npm run env:start\""
   },
   "repository": {
